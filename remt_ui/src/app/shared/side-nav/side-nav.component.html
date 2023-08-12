@@ -1,0 +1,7 @@
+<span *ngFor="let user of user$">
+  <span *ngFor="let permission of user.permissions">
+    <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
+      {{permission}}
+    </a><br>
+  </span>
+</span>

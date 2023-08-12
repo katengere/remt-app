@@ -1,0 +1,45 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">User Type</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let user of users; let i=index">
+                <tr>
+                    <th scope="row" [attr.rowspan]="user.permissions.length+1">{{user.userTypeName}}</th>
+                </tr>
+                <tr *ngFor="let permission of user.permissions" routerLinkActive="active">
+                    <td>
+                        <div class="card">
+                            <div class="card-header ">
+                                <a class="btn btn-sm" [routerLink]="[user.userTypeName.toLowerCase()+'/'+permission]">
+                                {{permission}}
+                              </a>
+                                <!-- <h6>
+                                  <span>Reports: {{proj.reportsId.length}}</span> &nbsp;|&nbsp;
+                                  <span>Images: {{proj.images.length}}</span>
+                              </h6> -->
+                            </div>
+                            <div class="card-body">
+                                <!-- <p class="card-text">
+                                  {{proj.summary}}
+                              </p> -->
+                                <div class="card-footer d-flex justify-content-end">
+                                    <a class="btn bg-warning btn-sm card-link" (click)="openEditDialog(user)">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn bg-danger btn-sm card-link" style="margin-left: 2px;" (click)="delUser(user)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

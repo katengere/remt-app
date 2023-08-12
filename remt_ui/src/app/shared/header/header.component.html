@@ -1,0 +1,24 @@
+<mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+    <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
+        <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{route||'REMT'}}
+    </span>
+    <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice">
+        <mat-icon>list</mat-icon>
+    </button>
+    <mat-nav-list *ngIf="!isLessThenLargeDevice">
+        <span class="m-1" *ngFor="let user of user$">
+        <span *ngFor="let permission of user.permissions">
+          <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
+            {{permission}}
+          </a>
+        </span>
+        </span>
+    </mat-nav-list>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon">
+        <mat-icon>login</mat-icon>
+    </button>
+    <button *ngIf="route == 'admin' || route == 'lga'" mat-icon-button class="example-icon">
+        <mat-icon>signup</mat-icon>
+    </button>
+</mat-toolbar>

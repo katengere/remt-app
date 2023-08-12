@@ -1,0 +1,37 @@
+<div>
+    <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+        <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
+  <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">REMT
+  </span>
+        <button mat-icon-button class="example-icon" (click)="sidenav.toggle()" *ngIf="isLessThenLargeDevice">
+    <mat-icon>list</mat-icon>
+  </button>
+        <mat-nav-list *ngIf="!isLessThenLargeDevice">
+            <span class="m-1" *ngFor="let user of user$">
+      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" [routerLink]="[user.userTypeName.toLowerCase()]" routerLinkActive="active">{{user.userTypeName}} </a>
+      </span>
+        </mat-nav-list>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon">
+<mat-icon>login</mat-icon>
+</button>
+        <button *ngIf="route == 'admin' || route == 'lga'" mat-icon-button class="example-icon">
+<mat-icon>signup</mat-icon>
+</button>
+    </mat-toolbar>
+    <mat-sidenav-container class="">
+        <mat-sidenav style="background-color:  rgb(250, 173, 71);" #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
+            <span *ngFor="let user of user$">
+            <a mat-raised-button style="background-color: rgb(250, 173, 71);" class="m-1 align-content-center" [routerLink]="[user.userTypeName.toLowerCase()]" routerLinkActive="active">
+              {{user.userTypeName}}
+            </a><br>
+          </span>
+        </mat-sidenav>
+        <mat-sidenav-content style="background-color:  rgb(250, 173, 71)">
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+            <app-footer></app-footer>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

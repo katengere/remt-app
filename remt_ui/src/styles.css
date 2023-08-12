@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    background-color: rgb(250, 173, 71);
+    color: white;
+}
+
+.belowNav {
+    padding-top: 65px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-sidenav {
+    width: 40%;
+}
+
+.card {
+    background-color: inherit;
+}
