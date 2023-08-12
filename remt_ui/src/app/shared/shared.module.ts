@@ -10,18 +10,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { UserlayoutComponent } from './userlayout/userlayout.component';
+import { MessageComponent } from './message/message.component';
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SideNavComponent,
     FooterComponent,
-    UserlayoutComponent
+    UserlayoutComponent,
+    MessageComponent
   ],
   exports:[
     HeaderComponent,
     SideNavComponent,
-    FooterComponent
+    FooterComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,7 @@ import { UserlayoutComponent } from './userlayout/userlayout.component';
     MatButtonModule,
     MatListModule,
     RouterModule
-  ]
+  ],
+  providers:[{provide: MAT_SNACK_BAR_DATA, useValue:MAT_SNACK_BAR_DATA}]
 })
 export class SharedModule { }

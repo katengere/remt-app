@@ -8,17 +8,28 @@
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
         <span class="m-1" *ngFor="let user of user$">
         <span *ngFor="let permission of user.permissions">
-          <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
+          <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
             {{permission}}
           </a>
         </span>
         </span>
     </mat-nav-list>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon">
+    <div class="">
+      <a [routerLink]="['/auth']" *ngIf="route" mat-raised-button class="">
+        <i class="fa fa-lock-open"></i>{{route+' Name'}}
+      </a>
+      <a [routerLink]="['/auth']"  *ngIf="!route" mat-raised-button class="">
+        <i class="fa fa-lock-open"></i>Login
+      </a>
+      <a [routerLink]="['/auth/register']" *ngIf="route == 'admin' || route == 'lga'" mat-raised-button  class="m-1">
+        <i class="fa fa-sign-in-alt"></i>Register
+      </a>
+    </div>
+    <!-- <button mat-icon-button class="example-icon favorite-icon">
         <mat-icon>login</mat-icon>
     </button>
-    <button *ngIf="route == 'admin' || route == 'lga'" mat-icon-button class="example-icon">
+    <button mat-icon-button class="example-icon">
         <mat-icon>signup</mat-icon>
-    </button>
+    </button> -->
 </mat-toolbar>

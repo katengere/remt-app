@@ -12,12 +12,11 @@
       </span>
         </mat-nav-list>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon">
-<mat-icon>login</mat-icon>
-</button>
-        <button *ngIf="route == 'admin' || route == 'lga'" mat-icon-button class="example-icon">
-<mat-icon>signup</mat-icon>
-</button>
+        <div class="">
+          <a [routerLink]="['/auth']" mat-raised-button class="">
+            <i class="fa fa-lock-open"></i>Login
+          </a>
+        </div>
     </mat-toolbar>
     <mat-sidenav-container class="">
         <mat-sidenav style="background-color:  rgb(250, 173, 71);" #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">

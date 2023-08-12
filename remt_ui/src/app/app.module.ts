@@ -20,20 +20,17 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { usersReducer } from './users/store/users.reducers';
 import { UsersEffects } from './users/store/users.effects';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatSnackBarModule,
     LayoutModule,
     StoreModule.forRoot({users: usersReducer, router: routerReducer}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

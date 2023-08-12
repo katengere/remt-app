@@ -28,3 +28,7 @@ mat-sidenav {
 .card {
     background-color: inherit;
 }
+a{
+  background-color:  rgb(250, 173, 71) !important;
+  color: black !important;
+}

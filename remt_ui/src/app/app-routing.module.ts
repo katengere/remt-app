@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './auth/login/login.component';
+import { BrokerHomeComponent } from './users/broker/broker-home/broker-home.component';
 
 
 const routes: Routes = [
   {path:'', component:HomeComponent,
 children: [
-  {path:'', component:LoginComponent}
+  {path:'', component:BrokerHomeComponent}
 ]
 },
   {
@@ -37,6 +37,10 @@ children: [
   {
     path:'tenant',
     loadChildren:()=>import('./users/tenant/tenant.module').then(m=>m.TenantModule)
+  },
+  {
+    path:'auth',
+    loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)
   },
 ];
 

@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
     this.store.pipe(select(selectUrl)).subscribe({
       next:(route)=>{
         this.route = route.slice(1);
-        this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==this.route);
+        console.log(this.route);
+        this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==this.route || u.userTypeName.toLowerCase());
       }
     });
   }
