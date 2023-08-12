@@ -3,7 +3,7 @@
         <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{route||'REMT'}}
     </span>
     <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice">
-        <mat-icon>list</mat-icon>
+        <mat-icon>menu</mat-icon>
     </button>
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
         <span class="m-1" *ngFor="let user of user$">
