@@ -1,4 +1,4 @@
- const dataSource = [
+const initialUserData = [
     {
         id:'1',
         userTypeName: "Admin",
@@ -7,7 +7,6 @@
           dashboard: true,
           overview: true,
         },
-        userInfos:{name:'kadet', age:30, phoneNumber:+255744607060,nationId:15121989}
       },
       {
         id:'2',
@@ -24,7 +23,6 @@
             },
           },
         },
-        userInfos:{name:'carolene', age:40, phoneNumber:+255688605040,nationId:0}
       },
       {
         id:'3',
@@ -44,7 +42,6 @@
           invoices: true,
           rental_history: true,
         },
-        userInfos:{name:'gladness', age:60, phoneNumber:+255754302010,nationId:0}
       },
       {
         id:'4',
@@ -60,7 +57,6 @@
           invoices: true,
           rental_history: true,
         },
-        userInfos:{name:'nyanzala', age:20, phoneNumber:+255655101010,nationId:0}
       },
       {
         id:'5',
@@ -72,7 +68,6 @@
             properties: true,
           },
         },
-        userInfos:{name:'gilo', age:26, phoneNumber:+255754909090,nationId:0}
       },
       {
         id:'6',
@@ -90,7 +85,6 @@
           invoices: true,
           auto_payments: true,
         },
-        userInfos:{name:'mika', age:32, phoneNumber:+255644304020,nationId:0}
       },
       {
         id:'7',
@@ -102,24 +96,6 @@
             address_verification: true,
           },
         },
-        userInfos:{name:'jaoko', age:28, phoneNumber:+255622653255,nationId:0}
       }
- ];
-
- const Buildings = [{
-         owner: { id: '3', name: 'jaoko', age: 45, nationId: 11, phoneNumber: 1345 },
-         address: { id: '2', region: 'dsm', district: 'temeke', ward: 'tazara', street: 'kwampalange' },
-         rooms: 12,
-     },
-     {
-         owner: { id: '7', name: 'mika', age: 55, nationId: 15, phoneNumber: 5375 },
-         address: { id: '2', region: 'dsm', district: 'temeke', ward: 'tazara', street: 'kwampalange' },
-         rooms: 10,
-     },
-     {
-         owner: { id: '9', name: 'john', age: 35, nationId: 18, phoneNumber: 1985 },
-         address: { id: '2', region: 'dsm', district: 'temeke', ward: 'tazara', street: 'kwampalange' },
-         rooms: 7,
-     }
- ];
- module.exports = { dataSource };
+ ]
+ module.exports = {initialUserData};
