@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonInfoInterface } from 'src/app/users/types/userTypes';
+import { AppStateInterface, PersonInfoInterface } from 'src/app/users/types/userTypes';
 import { PersonInfoService } from '../services/person-info.service';
-import { MessageService } from 'src/app/shared/services/message.service';
+import * as userActions from "../../users/store/users.actions";
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,12 @@ import { MessageService } from 'src/app/shared/services/message.service';
 })
 export class RegisterComponent implements OnInit {
   remtUser: PersonInfoInterface = {
-    name: '', id: '', age: 0, nationId: 0,
-    phoneNumber: 0
+    name: '', age: 0, nationId: 0,
+    phoneNumber: 0, userTypeName:''
   }
   constructor(
     private personInfoService: PersonInfoService,
-    private msgService: MessageService,
+    private store: Store<AppStateInterface>,
     ) { }
 
   ngOnInit(): void {
@@ -23,23 +24,13 @@ export class RegisterComponent implements OnInit {
   onRegister(){
     const {name, nationId, phoneNumber} = this.remtUser;
     if (!name  || !nationId) {
-       return this.msgService.message({
-         title:'ERROR', text:'tafadhali hakikisha umejaza fomu kwa usahihi'
-        }, 'bg-danger');
+      return  this.store
+      .dispatch(userActions.loginFailure({
+        error:{
+          text:'Please make sure to fill all required fields!',
+        title: 'Form Error'}
+      }));
     }
-    return this.personInfoService.register(this.remtUser)
-    .subscribe({
-      next: (res)=>{
-       this.msgService.message({
-         title:'SUCCESS', text:'umefanikiwa kujisajili SAgPA'
-        }, 'bg-success') ;
-        console.log(res);
-    },
-    error:(error)=>{
-      console.log(error);
-      return this.msgService.message({
-        title:'ERROR', text:error.error
-       }, 'bg-success');
-    }});
+    return this.store.dispatch(userActions.register(this.remtUser));
   }
 }

@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from "@angular/material/dialog";
+import { StorageService } from './services/storage.service';
 
 
 @NgModule({
@@ -30,6 +31,9 @@ import { MatDialogModule } from "@angular/material/dialog";
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,MatGridListModule, MatButtonModule, MatDialogModule
+    ],
+    providers:[
+      StorageService
     ]
 })
 export class AuthModule { }

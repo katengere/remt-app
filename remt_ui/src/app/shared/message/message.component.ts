@@ -10,6 +10,6 @@ import { Message } from 'src/app/users/types/message';
 export class MessageComponent {
 
 constructor(
-  @Inject(MAT_SNACK_BAR_DATA) public data: Message
+  @Inject(MAT_SNACK_BAR_DATA) public data: Message|null
 ){}
 }

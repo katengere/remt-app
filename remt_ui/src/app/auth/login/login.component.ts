@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { userSelector } from 'src/app/users/store/users.selectors';
-import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTypes';
+import { AppStateInterface, PersonInfoInterface, UserTypeInterface } from 'src/app/users/types/userTypes';
+import { StorageService } from '../services/storage.service';
+import { MessageService } from 'src/app/shared/services/message.service';
+import { PersonInfoService } from '../services/person-info.service';
+import { NgForm } from '@angular/forms';
+import * as userActions from "../../users/store/users.actions";
 
 @Component({
   selector: 'app-login',
@@ -9,16 +14,43 @@ import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTy
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user = {name:'',password:'', userTypeName:''}
+  user: PersonInfoInterface = {name:'',phoneNumber:0,nationId:0,age:0}
   user$!: UserTypeInterface[];
-  constructor(private store: Store<AppStateInterface>) {
+  constructor(
+    private store: Store<AppStateInterface>,
+    private msgService: MessageService,
+    ) {
     this.store.pipe(select(userSelector)).subscribe({
       next:(users)=>this.user$ = users
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+
+  onSubmit(form: NgForm){
+    if (form.valid) {
+    //   this.userService.login(this.user).subscribe({
+    //     next:user=>{
+    //       this.storageService.saveToken(user.userInfos.name);
+    //       this.msgService.message({title:'SUCCESS', text:'Wellcome '+ user.userInfos.name.toUpperCase()}, 'bg-success');
+    //     },
+    //     error:err=>{
+    //       this.msgService.message({title:'SERVER ERROR' ,text: err.error.message}, 'bg-danger')
+    //     }
+    // })
+      ;
+      this.store.dispatch(userActions.login(this.user));
+      form.resetForm();
+    } else {
+      this.store
+      .dispatch(userActions.loginFailure({
+        error:{
+          text:'Please make sure to fill all required fields!',
+        title: 'Form Error'}
+      }))
+    }
+
   }
-  onSubmit(form:any){}
 
 }

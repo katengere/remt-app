@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, takeWhile } from 'rxjs';
+import { StorageService } from 'src/app/auth/services/storage.service';
 import { userSelector, isLoadingSelector, selectUrl } from 'src/app/users/store/users.selectors';
 import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTypes';
 
@@ -17,10 +18,12 @@ export class HeaderComponent implements OnInit {
   user$!: UserTypeInterface[];
   isLoading$!: Observable<boolean>;
   route!: string;
+  logInUser!: string | null;
   @Output() sideNav = new EventEmitter()
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private store: Store<AppStateInterface>
+    private store: Store<AppStateInterface>,
+    private storageService: StorageService
   ){
     this.breakpointObserver.observe(['(max-width: 1199px)']).pipe(takeWhile(() => this.isAlive)).subscribe(({matches}) => {
       this.isLessThenLargeDevice = matches;
@@ -34,6 +37,7 @@ export class HeaderComponent implements OnInit {
     this.store.pipe(select(selectUrl)).subscribe({
       next:(route)=>{
         this.route = route.slice(1);
+        this.logInUser = storageService.getUserName();
         this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==this.route);
       }
     });

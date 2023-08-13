@@ -1,4 +1,5 @@
 import { EntityState } from "@ngrx/entity";
+import { Message } from "./message";
 
 export interface UIConfigInterface {
   dashboard?: boolean;
@@ -21,11 +22,11 @@ export interface UIConfigInterface {
   address_verification?: boolean;
 }
 export interface PersonInfoInterface{
-  id:string;
   name:string;
   age:number;
   nationId:number;
   phoneNumber:number;
+  userTypeName?:string
 }
 export interface LocationInterface{
   id:string;
@@ -51,12 +52,12 @@ export interface UserTypeInterface {
   userTypeName: string;
   permissions: string[];
   ui: UIConfigInterface;
-  userInfos?:PersonInfoInterface;
+  userInfos:PersonInfoInterface;
 }
 
 export interface UserTypeStateInterface extends EntityState<UserTypeInterface> {
   isLoading: boolean;
-  error: string|null;
+  error: Message|null;
 }
 export interface AppStateInterface{
   userType: UserTypeStateInterface;

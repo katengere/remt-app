@@ -16,8 +16,8 @@
     </mat-nav-list>
     <span class="example-spacer"></span>
     <div class="">
-      <a [routerLink]="['/auth']" *ngIf="route" mat-raised-button class="">
-        <i class="fa fa-lock-open"></i>{{route+' Name'}}
+      <a [routerLink]="['/auth']" *ngIf="logInUser" mat-raised-button class="">
+        <i class="fa fa-user"></i> {{logInUser.toLocaleUpperCase()}}
       </a>
       <a [routerLink]="['/auth']"  *ngIf="!route" mat-raised-button class="">
         <i class="fa fa-lock-open"></i>Login

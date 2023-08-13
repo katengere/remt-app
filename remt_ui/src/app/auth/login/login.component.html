@@ -18,11 +18,11 @@
             </div>
             <div class="mb-1">
                 <label for="password" class="form-label"><i class="fa fa-passport"></i> Password</label>
-                <input type="password" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.password" required class="form-control" placeholder="Nenosiri">
+                <input type="password" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.phoneNumber" required class="form-control" placeholder="Nenosiri">
             </div>
             <div class="mb-1">
                 <label for="password" class="form-label"><i class="fa fa-user-plus"></i> User Type</label>
-                <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.userTypeName">
+                <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.name">
                 <option *ngFor="let item of user$" [value]="item" style="background-color:  rgb(250, 173, 71);">{{item.userTypeName}}</option>
               </select>
             </div>

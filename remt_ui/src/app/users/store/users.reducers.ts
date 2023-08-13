@@ -19,6 +19,18 @@ export const usersReducer = createReducer(
   on(usersActions.getAdminFailure, (state, {error})=>({
     ...state, isLoading:false, error:error
   })),
+  on(usersActions.login, (state,actions)=>({...state, isLoading:true})),
+  on(usersActions.loginSuccess, (state, {person})=>
+  usersAdapter.addOne(person, {...state, isLoading:false})),
+  on(usersActions.loginFailure, (state, {error})=>({
+    ...state, isLoading:false, error:error
+  })),
+  on(usersActions.register, (state,actions)=>({...state, isLoading:true})),
+  on(usersActions.registerSuccess, (state, {person})=>
+  usersAdapter.addOne(person, {...state, isLoading:false})),
+  on(usersActions.registerFailure, (state, {error})=>({
+    ...state, isLoading:false, error:error
+  })),
 );
 
 export const {selectAll,selectEntities,selectIds,selectTotal} = usersAdapter.getSelectors();
