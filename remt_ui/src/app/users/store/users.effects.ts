@@ -19,7 +19,10 @@ export class UsersEffects {
       }),
       catchError(err=>{
         console.log(err);
-        return of(usersActions.getAdminFailure({error:err.message}))
+        return of(usersActions.getAdminFailure({error:{
+          text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
+          title:'Loading Data Error'
+        }}))
       })
     ))
   ))
@@ -31,7 +34,7 @@ export class UsersEffects {
         this.storageService.saveToken(users.userInfos.name);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
-            title:'Login Success', text:'Wellcome '+ users.userInfos.name.toUpperCase()}, 'bg-success');
+            title:'Login Success', text: users.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania'}, 'bg-success');
         return usersActions.loginSuccess({person:users})
       }),
       catchError(err=>{
@@ -51,7 +54,7 @@ export class UsersEffects {
         this.storageService.saveToken(users.userInfos.name);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
-            title:'Login Success', text:'Wellcome '+ users.userInfos.name.toUpperCase()}, 'bg-success');
+            title:'Login Success', text:'Wellcome to Real Estate Management Tanzania '+ users.userInfos.name.toUpperCase()}, 'bg-success');
         return usersActions.registerSuccess({person:users})
       }),
       catchError(err=>{

@@ -2,7 +2,7 @@
     <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
         <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{route||'REMT'}}
     </span>
-    <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice">
+    <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice && !route.includes('auth')">
         <mat-icon>menu</mat-icon>
     </button>
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
@@ -16,20 +16,20 @@
     </mat-nav-list>
     <span class="example-spacer"></span>
     <div class="">
-      <a [routerLink]="['/auth']" *ngIf="logInUser" mat-raised-button class="">
-        <i class="fa fa-user"></i> {{logInUser.toLocaleUpperCase()}}
-      </a>
-      <a [routerLink]="['/auth']"  *ngIf="!route" mat-raised-button class="">
-        <i class="fa fa-lock-open"></i>Login
-      </a>
-      <a [routerLink]="['/auth/register']" *ngIf="route == 'admin' || route == 'lga'" mat-raised-button  class="m-1">
-        <i class="fa fa-sign-in-alt"></i>Register
-      </a>
+      <mat-menu #navOptions="matMenu">
+        <a *ngIf="logInUser" mat-menu-item class="">
+          <i class="fa fa-user"></i> {{logInUser.toLocaleUpperCase()}}
+        </a>
+        <a [routerLink]="['/auth']" mat-menu-item *ngIf="!route" class="">
+          <i class="fa fa-lock-open"></i>Login
+        </a>
+        <a [routerLink]="['/auth/register']" mat-menu-item *ngIf="route == 'admin' || route == 'lga'" class="m-1">
+          <i class="fa fa-sign-in-alt"></i>Register
+        </a>
+      </mat-menu>
+      <button [matMenuTriggerFor]="navOptions" mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
     </div>
-    <!-- <button mat-icon-button class="example-icon favorite-icon">
-        <mat-icon>login</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon">
-        <mat-icon>signup</mat-icon>
-    </button> -->
 </mat-toolbar>

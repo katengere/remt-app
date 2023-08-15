@@ -1,7 +1,7 @@
 <div class="grid-container">
   <mat-grid-list cols="3" rowHeight="550px" class="grid-list">
       <mat-grid-tile [colspan]="3" [rowspan]="1">
-          <mat-card class="dashboard-card">
+          <mat-card class="dashboard-card"  style="background-color:  rgb(250, 173, 71);">
               <mat-card-header>
                   <mat-card-title>
 
@@ -44,8 +44,9 @@
                           <input matInput name="age" [(ngModel)]="remtUser.age">
                       </mat-form-field>
                     </div>
-
+                    <div class="align-content-end">
                       <button mat-raised-button>Register!</button>
+                    </div>
                   </form>
               </mat-card-content>
           </mat-card>

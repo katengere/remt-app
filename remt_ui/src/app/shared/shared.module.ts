@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { UserlayoutComponent } from './userlayout/userlayout.component';
 import { MessageComponent } from './message/message.component';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatMenuModule
   ],
   providers:[{provide: MAT_SNACK_BAR_DATA, useValue:MAT_SNACK_BAR_DATA}]
 })

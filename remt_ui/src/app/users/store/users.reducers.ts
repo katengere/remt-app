@@ -31,6 +31,9 @@ export const usersReducer = createReducer(
   on(usersActions.registerFailure, (state, {error})=>({
     ...state, isLoading:false, error:error
   })),
+  on(usersActions.authFailure, (state, {error})=>({
+    ...state, isLoading:false, error:error
+  }))
 );
 
 export const {selectAll,selectEntities,selectIds,selectTotal} = usersAdapter.getSelectors();

@@ -10,6 +10,8 @@ export const login = createAction('[Login Page] login', props<PersonInfoInterfac
 export const loginSuccess = createAction('[Login Page] login success', props<{person:UserTypeInterface}>());
 export const loginFailure = createAction('[Login Page] login failure', props<{error:Message}>());
 
+export const authFailure = createAction('[Auth Snackbar] authentication failure', props<{error:Message}>());
+
 export const register = createAction('[Register Page] register', props<PersonInfoInterface>());
 export const registerSuccess = createAction('[Register Page] register success', props<{person:UserTypeInterface}>());
 export const registerFailure = createAction('[Register Page] register failure', props<{error:Message}>());
