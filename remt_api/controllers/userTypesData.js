@@ -1,5 +1,14 @@
  const dataSource = [
     {
+        id:'0',
+        userTypeName: "Admin",
+        permissions: ["manage_users"],
+        ui: {
+          dashboard: true,
+          overview: true,
+        },
+        userInfos:{name:'kadet', age:30, phoneNumber:+255754765698,nationId:15121989}
+      },{
         id:'1',
         userTypeName: "Admin",
         permissions: ["manage_users"],
@@ -7,7 +16,7 @@
           dashboard: true,
           overview: true,
         },
-        userInfos:{name:'kadet', age:30, phoneNumber:+255744607060,nationId:15121989}
+        userInfos:{name:'jaoko', age:30, phoneNumber:+255764779234,nationId:15121989}
       },
       {
         id:'2',

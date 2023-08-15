@@ -7,7 +7,7 @@ const getUserTypes = (req, res) => {
 };
 const logInUser = (req, res) => {
     const {phoneNumber, name} = req.body;
-    const foundUser = dataSource.find(u=>u.userInfos.name==name&&u.userInfos.phoneNumber==phoneNumber);
+    const foundUser = dataSource.find(u=>u.userInfos.name.toLowerCase()==name.toLowerCase()&&u.userInfos.phoneNumber==phoneNumber);
     if (foundUser) {
     return res.status(200).json(foundUser);
     } else {
@@ -23,7 +23,8 @@ function selectInitialUser(user) {
 }
 const registerUser = (req, res) => {
     const user = req.body;
-    const foundUser = dataSource.find(u=>u.userInfos.name==user.name&&u.userInfos.phoneNumber==user.phoneNumber);
+    const foundUser = dataSource.find(u=>u.userInfos.name.toLowerCase()==user.name.toLowerCase()
+    &&u.userInfos.phoneNumber==user.phoneNumber);
     if (foundUser) {
     return res.status(400).json('A user with same credentials already exit');
     } else {
