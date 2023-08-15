@@ -81,7 +81,7 @@
             properties: true,
           },
         },
-        userInfos:{name:'gilo', age:26, phoneNumber:+255754909090,nationId:0}
+        userInfos:{name:'swaga', age:26, phoneNumber:+255624992151,nationId:0}
       },
       {
         id:'6',
@@ -111,7 +111,7 @@
             address_verification: true,
           },
         },
-        userInfos:{name:'jaoko', age:28, phoneNumber:+255622653255,nationId:0}
+        userInfos:{name:'mery', age:28, phoneNumber:+255620223810,nationId:0}
       }
  ];
 
