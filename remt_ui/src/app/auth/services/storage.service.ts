@@ -6,15 +6,19 @@ export class StorageService {
 
   constructor(private router: Router) { }
 
-  saveToken(token:string){
-    return localStorage.setItem('remtUser', token);
+  saveToken(token:string, userTypeName:string){
+    localStorage.setItem('userTypeName', userTypeName)
+    localStorage.setItem('remtUserToken', token);
   }
   getToken(){
-    return localStorage.getItem('remtUser');
+    return localStorage.getItem('remtUserToken');
+  }
+  getUserTypeName(){
+    return localStorage.getItem('userTypeName');
   }
   removeToken(){
     this.router.navigateByUrl('');
-    return localStorage.removeItem('remtUser');
+    return localStorage.removeItem('remtUserToken');
   }
   isLoggedIn(): boolean{
     return this.getToken() ? true : false;

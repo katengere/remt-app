@@ -31,7 +31,7 @@ export class UsersEffects {
     exhaustMap((user)=>this.personInfoService.login(user).pipe(
       map((users)=>{
         console.log(users);
-        this.storageService.saveToken(users.userInfos.name);
+        this.storageService.saveToken(users.userInfos.name, users.userTypeName);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
             title:'Login Success', text: users.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania'}, 'bg-success');
@@ -46,12 +46,25 @@ export class UsersEffects {
       })
     ))
   ))
+  logout$ = createEffect(()=>this.actions.pipe(
+    ofType(usersActions.logout),
+    exhaustMap((user)=>of(this.storageService.removeToken()).pipe(
+      map(()=>{
+        console.log('user logged out');
+        this.router.navigate(['']);
+        this.msgService.message({
+            title:'Logout Success', text:'Successfully Logged out from REMT'
+          }, 'bg-success');
+        return usersActions.logoutSuccess({msg:' loggedout'})
+      })
+    ))
+  ))
   register$ = createEffect(()=>this.actions.pipe(
     ofType(usersActions.register),
     exhaustMap((user)=>this.personInfoService.register(user).pipe(
       map((users)=>{
         console.log(users);
-        this.storageService.saveToken(users.userInfos.name);
+        this.storageService.saveToken(users.userInfos.name, users.userTypeName);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
             title:'Login Success', text:'Wellcome to Real Estate Management Tanzania '+ users.userInfos.name.toUpperCase()}, 'bg-success');

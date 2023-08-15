@@ -5,6 +5,7 @@ import { Observable, takeWhile } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage.service';
 import { userSelector, isLoadingSelector, selectUrl } from 'src/app/users/store/users.selectors';
 import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTypes';
+import { logout } from "../../users/store/users.actions";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isAlive: boolean = true;
   isSidenavExpand = false;
   isLessThenLargeDevice = true;
-  user$!: UserTypeInterface[];
+  permisions!: string[];
   isLoading$!: Observable<boolean>;
   route!: string;
   logInUser!: string | null;
@@ -32,20 +33,27 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.store.pipe(select(userSelector)).subscribe({
-      next:(users)=>this.user$ = users
-    });
-    this.store.pipe(select(selectUrl)).subscribe({
-      next:(route)=>{
-        this.route = route.slice(1);
-        this.logInUser = storageService.getUserName();
-        this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==this.route);
+      next:(users)=>{
+        this.store.pipe(select(selectUrl)).subscribe({
+          next:(route)=>{
+            this.route = route.slice(1);
+            this.logInUser = storageService.getUserName();
+            this.permisions = users.filter(u=>u.userTypeName.toLowerCase()==this.route.toLowerCase())
+        .reduce((acc,{permissions})=>[...acc, ...permissions],[] as string[])
+        .filter((p,i,arr)=>arr.indexOf(p)==i);
+          }
+        });
       }
     });
+
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
   }
 
   displaySideNav(){
     this.sideNav.emit();
+  }
+  logout(){
+    this.store.dispatch(logout());
   }
 
   ngOnInit(): void {

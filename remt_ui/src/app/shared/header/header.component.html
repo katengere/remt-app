@@ -6,26 +6,32 @@
         <mat-icon>menu</mat-icon>
     </button>
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
-        <span class="m-1" *ngFor="let user of user$">
-        <span *ngFor="let permission of user.permissions">
+
+        <span *ngFor="let permission of permisions">
           <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
             {{permission}}
           </a>
         </span>
-        </span>
+
     </mat-nav-list>
     <span class="example-spacer"></span>
     <div class="">
       <mat-menu #navOptions="matMenu">
-        <a *ngIf="logInUser" mat-menu-item class="">
+        <button *ngIf="logInUser" mat-menu-item class="mt-1">
           <i class="fa fa-user"></i> {{logInUser.toLocaleUpperCase()}}
-        </a>
-        <a [routerLink]="['/auth']" mat-menu-item *ngIf="!route" class="">
-          <i class="fa fa-lock-open"></i>Login
-        </a>
-        <a [routerLink]="['/auth/register']" mat-menu-item *ngIf="route == 'admin' || route == 'lga'" class="m-1">
-          <i class="fa fa-sign-in-alt"></i>Register
-        </a>
+        </button>
+        <button [routerLink]="['/auth']" mat-menu-item *ngIf="!route" class="mt-1">
+          <i class="fa fa-lock-open"></i> Login
+        </button>
+        <button *ngIf="logInUser" (click)="logout()" mat-menu-item class="mt-1">
+          <i class="fa fa-sign-out-alt"></i> Logout
+        </button>
+        <button *ngIf="logInUser" mat-menu-item class="mt-1" >
+          <i class="fa fa-user-edit"></i> Account
+        </button>
+        <button [routerLink]="['/auth/register']" class="mt-1" mat-menu-item *ngIf="route == 'admin' || route == 'lga'">
+          <i class="fa fa-sign-in-alt"></i> Register
+        </button>
       </mat-menu>
       <button [matMenuTriggerFor]="navOptions" mat-icon-button>
         <mat-icon>more_vert</mat-icon>

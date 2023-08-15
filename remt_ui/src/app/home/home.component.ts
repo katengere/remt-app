@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   user$!: UserTypeInterface[];
   route!: string;
+  userTypeNames!:string[];
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -29,16 +30,13 @@ export class HomeComponent implements OnInit {
       }
     });
     this.store.pipe(select(userSelector)).subscribe({
-      next:(users)=>{this.user$ = users; console.log(users);
+      next:(users)=>{
+        this.user$ = users;
+        this.userTypeNames= users.map(u=>u.userTypeName.toLowerCase())
+          .filter((n,i,arr)=>arr.indexOf(n)==i);
       }
     });
-    this.store.pipe(select(selectUrl)).subscribe({
-      next:(route)=>{
-        this.route = route.slice(1);
-        console.log(this.route);
-        this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==this.route || u.userTypeName.toLowerCase());
-      }
-    });
+
   }
   ngOnInit(): void {}
   toggleSidenav(): void {

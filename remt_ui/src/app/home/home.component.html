@@ -7,8 +7,13 @@
     <mat-icon>menu</mat-icon>
   </button>
         <mat-nav-list *ngIf="!isLessThenLargeDevice">
-            <span class="m-1" *ngFor="let user of user$">
-      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" [routerLink]="[user.userTypeName.toLowerCase()]" routerLinkActive="active">{{user.userTypeName}} </a>
+            <span class="m-1" *ngFor="let userTypeName of userTypeNames">
+      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" [routerLink]="[userTypeName]" routerLinkActive="active">
+        <i [ngClass]="{
+          'fa fa-user-graduate': userTypeName=='admin'|| userTypeName=='lga'
+      }"></i>
+        {{userTypeName}}
+      </a>
       </span>
         </mat-nav-list>
         <span class="example-spacer"></span>
@@ -20,13 +25,12 @@
     </mat-toolbar>
     <mat-sidenav-container class="">
         <mat-sidenav style="background-color:  rgb(250, 173, 71);" #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
-            <span *ngFor="let user of user$">
-            <a mat-raised-button style="background-color: rgb(250, 173, 71);" class="m-1 align-content-center" [routerLink]="[user.userTypeName.toLowerCase()]" routerLinkActive="active">
+            <span *ngFor="let userTypeName of userTypeNames">
+            <a mat-raised-button style="background-color: rgb(250, 173, 71);" (click)="sidenav.toggle()" class="m-1 align-content-center" [routerLink]="[userTypeName]" routerLinkActive="active">
               <i [ngClass]="{
-                'fa fa-user-graduate': user.userTypeName.toLowerCase()=='admin'|| user.userTypeName.toLowerCase()=='lga',
-                'fa fa-user': user.userTypeName.toLowerCase()!=='admin'|| user.userTypeName.toLowerCase()!=='lga',
+                'fa fa-user-graduate': userTypeName=='admin'|| userTypeName=='lga'
             }"></i>
-              {{user.userTypeName}}
+              {{userTypeName}}
             </a><br>
           </span>
         </mat-sidenav>

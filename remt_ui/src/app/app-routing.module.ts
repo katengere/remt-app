@@ -14,37 +14,37 @@ children: [
   {
     path:'lga',
     loadChildren:()=>import('./users/LGA/lga.module').then(m=>m.LGAModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('lga')]
   },
   {
     path:'admin',
     loadChildren:()=>import('./users/mainAdmin/main-admin.module').then(m=>m.MainAdminModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('admin')]
   },
   {
     path:'broker',
     loadChildren:()=>import('./users/broker/broker.module').then(m=>m.BrokerModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('broker')]
   },
   {
     path:'landlord',
     loadChildren:()=>import('./users/landlord/landlord.module').then(m=>m.LandlordModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('landlord')]
   },
   {
     path:'caretaker',
     loadChildren:()=>import('./users/caretaker/caretaker.module').then(m=>m.CaretakerModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('caretaker')]
   },
   {
     path:'lender',
     loadChildren:()=>import('./users/lender/lender.module').then(m=>m.LenderModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('lender')]
   },
   {
     path:'tenant',
     loadChildren:()=>import('./users/tenant/tenant.module').then(m=>m.TenantModule),
-    canMatch:[LazyLoadGuard()]
+    canMatch:[LazyLoadGuard('tenant')]
   },
   {
     path:'auth',

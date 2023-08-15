@@ -14,7 +14,8 @@ export class SideNavComponent implements OnInit {
   isAlive: boolean = true;
   isSidenavExpand = false;
   isLessThenLargeDevice = true;
-  user$!: UserTypeInterface[];
+  permisions!: string[];
+  route!: string;
   isLoading$!: Observable<boolean>;
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -27,10 +28,16 @@ export class SideNavComponent implements OnInit {
       }
     });
     this.store.pipe(select(userSelector)).subscribe({
-      next:(users)=>this.user$ = users
-    });
-    this.store.pipe(select(selectUrl)).subscribe({
-      next:(route)=>this.user$ = this.user$.filter(u=>u.userTypeName.toLowerCase()==route.slice(1))
+      next:(users)=>{
+        this.store.pipe(select(selectUrl)).subscribe({
+          next:(route)=>{
+            this.route = route.slice(1);
+            this.permisions = users.filter(u=>u.userTypeName.toLowerCase()==this.route.toLowerCase())
+        .reduce((acc,{permissions})=>[...acc, ...permissions],[] as string[])
+        .filter((p,i,arr)=>arr.indexOf(p)==i);
+          }
+        });
+      }
     });
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
   }
