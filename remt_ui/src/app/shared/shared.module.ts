@@ -13,6 +13,7 @@ import { UserlayoutComponent } from './userlayout/userlayout.component';
 import { MessageComponent } from './message/message.component';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
+    FormsModule,
     RouterModule,
     MatMenuModule
   ],

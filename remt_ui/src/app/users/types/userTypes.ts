@@ -41,11 +41,12 @@ export interface RentalHistory{
   client: PersonInfoInterface
 }
 export interface HouseInterface{
-  owner:PersonInfoInterface;
+  owner_Id:string;
   address:LocationInterface;
   rooms:number;
-  rental_history?:RentalHistory;
-  tenants?:PersonInfoInterface[];
+  open:boolean;
+  rental_history?:RentalHistory[];
+  tenants_Ids?:string[];
 }
 export interface UserTypeInterface {
   id:string;
@@ -53,6 +54,7 @@ export interface UserTypeInterface {
   permissions: string[];
   ui: UIConfigInterface;
   userInfos:PersonInfoInterface;
+  estates: HouseInterface[] | null;
 }
 
 export interface UserTypeStateInterface extends EntityState<UserTypeInterface> {

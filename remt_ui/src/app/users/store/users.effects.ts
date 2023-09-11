@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as usersActions from "./users.actions";
-import { catchError, exhaustMap, from, map, of } from "rxjs";
+import { catchError, exhaustMap, filter, from, map, of } from "rxjs";
 import { DataSourceService } from "../services/data-source/data-source.service";
 import { PersonInfoService } from "src/app/auth/services/person-info.service";
 import { StorageService } from "src/app/auth/services/storage.service";
@@ -75,6 +75,27 @@ export class UsersEffects {
         return of(usersActions.loginFailure({error:{
           text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
           title:'Login Error'
+        }}))
+      })
+    ))
+  ))
+  search$ = createEffect(()=>this.actions.pipe(
+    ofType(usersActions.search),
+    exhaustMap((search)=>this.dataSourceService.getUserTypes().pipe(
+      filter((users,i)=>{
+        console.log(search);
+        console.log(i);
+        return users[i].userTypeName.toLowerCase().includes(search.search)
+      }),
+      map((users)=>{
+        console.log(users);
+        return usersActions.searchSuccess({result:users})
+      }),
+      catchError(err=>{
+        console.log(err);
+        return of(usersActions.searchFailure({error:{
+          text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
+          title:'Loading Data Error'
         }}))
       })
     ))

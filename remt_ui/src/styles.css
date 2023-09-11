@@ -26,9 +26,14 @@ mat-toolbar{
   z-index: 99;
 }
 mat-sidenav {
-    width: auto;
+  background-color:  rgb(250, 173, 71)  !important;
+  width: auto;
 }
-
+mat-sidenav-content,
+mat-dialog-content,
+mat-dialog-actions{
+  background-color:  rgb(250, 173, 71);
+}
 .card {
     background-color: inherit;
 }

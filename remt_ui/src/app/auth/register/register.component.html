@@ -1,55 +1,52 @@
-<div class="grid-container">
-  <mat-grid-list cols="3" rowHeight="550px" class="grid-list">
-      <mat-grid-tile [colspan]="3" [rowspan]="1">
-          <mat-card class="dashboard-card"  style="background-color:  rgb(250, 173, 71);">
-              <mat-card-header>
-                  <mat-card-title>
-
-                  </mat-card-title>
-              </mat-card-header>
-              <mat-card-content class="dashboard-card-content">
-                  <form action="" (submit)="onRegister()">
-                      <p>
-                          Registered? Please
-                          <a routerLink="/auth">Login</a>
-                      </p>
-                      <div>
-                          <mat-form-field appearance="fill" color="warn">
-                              <mat-label>Name</mat-label>
-                              <input matInput name="name" [(ngModel)]="remtUser.name">
-                          </mat-form-field>
+<mat-dialog-content class="col-12">
+                  <form action="">
+                      <div class="mb-2">
+                        <h3 mat-dialog-title class="d-flex justify-content-center">
+                          <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px">
+                        </h3>
+                        <p>
+                          Registered? <br> Please
+                         <button class="btn btn-sm" (click)="loginDialog()">Login</button>
+                       </p>
                       </div>
                       <div>
-                        <mat-form-field appearance="fill" color="warn">
-                            <mat-label>userTypeName</mat-label>
-                            <input matInput name="userTypeName" [(ngModel)]="remtUser.userTypeName">
-                        </mat-form-field>
+                          <div class="mb-2">
+                              <label class="form-label">Name</label>
+                              <input class="form-control" name="name" [(ngModel)]="remtUser.name">
+                          </div>
+                      </div>
+                      <div>
+                        <div class="mb-2">
+                            <label class="form-label">userTypeName</label>
+                            <input class="form-control" name="userTypeName" [(ngModel)]="remtUser.userTypeName">
+                        </div>
                     </div>
 
                       <div>
-                          <mat-form-field appearance="fill" color="warn">
-                              <mat-label>NationId</mat-label>
-                              <input matInput name="nationId" [(ngModel)]="remtUser.nationId">
-                          </mat-form-field>
+                          <div class="mb-2">
+                              <label class="form-label">NationId</label>
+                              <input class="form-control" name="nationId" [(ngModel)]="remtUser.nationId">
+                          </div>
                       </div>
                       <div>
-                        <mat-form-field appearance="fill" color="warn">
-                            <mat-label>PhoneNumber</mat-label>
-                            <input matInput name="phoneNumber" [(ngModel)]="remtUser.phoneNumber">
-                        </mat-form-field>
+                        <div class="mb-2">
+                            <label class="form-label">PhoneNumber</label>
+                            <input class="form-control" name="phoneNumber" [(ngModel)]="remtUser.phoneNumber">
+                        </div>
                     </div>
                     <div>
-                      <mat-form-field appearance="fill" color="warn">
-                          <mat-label>Age</mat-label>
-                          <input matInput name="age" [(ngModel)]="remtUser.age">
-                      </mat-form-field>
-                    </div>
-                    <div class="align-content-end">
-                      <button mat-raised-button>Register!</button>
+                      <div class="mb-2">
+                          <label class="form-label">Age</label>
+                          <input class="form-control" name="age" [(ngModel)]="remtUser.age">
+                      </div>
                     </div>
                   </form>
-              </mat-card-content>
-          </mat-card>
-      </mat-grid-tile>
-  </mat-grid-list>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-sm">
+    <i class="fa fa-window-close"></i>Close
+  </button>
+  <button class="btn btn-sm m-2" (click)="onRegister()">
+    <i class="fa fa-file-upload"></i> Register!
+  </button>
+</mat-dialog-actions>

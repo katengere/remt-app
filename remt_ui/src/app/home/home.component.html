@@ -8,7 +8,7 @@
   </button>
         <mat-nav-list *ngIf="!isLessThenLargeDevice">
             <span class="m-1" *ngFor="let userTypeName of userTypeNames">
-      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" [routerLink]="[userTypeName]" routerLinkActive="active">
+      <a mat-raised-button [routerLink]="[userTypeName]" routerLinkActive="active">
         <i [ngClass]="{
           'fa fa-user-graduate': userTypeName=='admin'|| userTypeName=='lga'
       }"></i>
@@ -18,15 +18,26 @@
         </mat-nav-list>
         <span class="example-spacer"></span>
         <div class="">
-          <a [routerLink]="['/auth']" mat-raised-button class="">
-            <i class="fa fa-lock-open"></i>Login
+          <a (click)="loginDialog()" *ngIf="!username" mat-raised-button class="">
+            <i class="fa fa-lock-open"></i> Login
           </a>
+          <a *ngIf="username" [matMenuTriggerFor]="navOptions" mat-raised-button >
+            <i class="fa fa-user-check"></i> {{username}}
+          </a>
+          <mat-menu #navOptions="matMenu">
+            <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
+              <i class="fa fa-sign-out-alt"></i> Logout
+            </button>
+            <button *ngIf="username" mat-menu-item class="mt-1" >
+              <i class="fa fa-user-edit"></i> Account
+            </button>
+          </mat-menu>
         </div>
     </mat-toolbar>
     <mat-sidenav-container class="">
-        <mat-sidenav style="background-color:  rgb(250, 173, 71);" #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
+        <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
             <span *ngFor="let userTypeName of userTypeNames">
-            <a mat-raised-button style="background-color: rgb(250, 173, 71);" (click)="sidenav.toggle()" class="m-1 align-content-center" [routerLink]="[userTypeName]" routerLinkActive="active">
+            <a mat-raised-button (click)="sidenav.toggle()" class="m-1 align-content-center" [routerLink]="[userTypeName]" routerLinkActive="active">
               <i [ngClass]="{
                 'fa fa-user-graduate': userTypeName=='admin'|| userTypeName=='lga'
             }"></i>
@@ -34,7 +45,7 @@
             </a><br>
           </span>
         </mat-sidenav>
-        <mat-sidenav-content style="background-color:  rgb(250, 173, 71)">
+        <mat-sidenav-content>
             <main>
                 <router-outlet></router-outlet>
             </main>

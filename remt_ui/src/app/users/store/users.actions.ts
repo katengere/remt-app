@@ -10,6 +10,10 @@ export const login = createAction('[Login Page] login', props<PersonInfoInterfac
 export const loginSuccess = createAction('[Login Page] login success', props<{person:UserTypeInterface}>());
 export const loginFailure = createAction('[Login Page] login failure', props<{error:Message}>());
 
+export const search = createAction('[Search Field] search', props<{search:string}>());
+export const searchSuccess = createAction('[Search Field] search success', props<{result:any}>());
+export const searchFailure = createAction('[Search Field] search failure', props<{error:Message}>());
+
 export const logout = createAction('[Logout Button] logout');
 export const logoutSuccess = createAction('[Logout Button] logout success', props<{msg:string}>());
 

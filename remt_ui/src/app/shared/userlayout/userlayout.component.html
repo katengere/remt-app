@@ -1,10 +1,10 @@
 <div>
     <app-header (sideNav)="toggleSidenav()"></app-header>
     <mat-sidenav-container class="">
-        <mat-sidenav #sidenav [mode]="'over'" style="background-color:  rgb(250, 173, 71)" [opened]="isSidenavExpand && isLessThenLargeDevice">
+        <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
             <app-side-nav></app-side-nav>
         </mat-sidenav>
-        <mat-sidenav-content style="background-color:  rgb(250, 173, 71)">
+        <mat-sidenav-content>
             <main>
                 <router-outlet></router-outlet>
             </main>

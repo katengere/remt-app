@@ -28,6 +28,7 @@ import { StorageService } from './services/storage.service';
         FormsModule,
         SharedModule,
         MatCardModule,
+        MatDialogModule,
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,MatGridListModule, MatButtonModule, MatDialogModule

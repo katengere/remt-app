@@ -7,6 +7,8 @@ import { MessageService } from 'src/app/shared/services/message.service';
 import { PersonInfoService } from '../services/person-info.service';
 import { NgForm } from '@angular/forms';
 import * as userActions from "../../users/store/users.actions";
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store<AppStateInterface>,
     private msgService: MessageService,
+    private dialog: MatDialog
     ) {
     this.store.pipe(select(userSelector)).subscribe({
       next:(users)=>this.user$ = users
@@ -27,8 +30,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  registerDialog(){
+    this.dialog.closeAll();
+    this.dialog.open(RegisterComponent);
+  }
 
-  onSubmit(form: NgForm){
+  onLogin(form: NgForm){
     if (form.valid) {
     //   this.userService.login(this.user).subscribe({
     //     next:user=>{
@@ -42,13 +49,14 @@ export class LoginComponent implements OnInit {
       ;
       this.store.dispatch(userActions.login(this.user));
       form.resetForm();
+      this.dialog.closeAll();
     } else {
       this.store
       .dispatch(userActions.loginFailure({
         error:{
           text:'Please make sure to fill all required fields!',
         title: 'Form Error'}
-      }))
+      }));
     }
 
   }

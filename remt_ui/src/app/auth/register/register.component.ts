@@ -3,6 +3,8 @@ import { AppStateInterface, PersonInfoInterface } from 'src/app/users/types/user
 import { PersonInfoService } from '../services/person-info.service';
 import * as userActions from "../../users/store/users.actions";
 import { Store } from '@ngrx/store';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -17,9 +19,14 @@ export class RegisterComponent implements OnInit {
   constructor(
     private personInfoService: PersonInfoService,
     private store: Store<AppStateInterface>,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
+  }
+  loginDialog(){
+    this.dialog.closeAll();
+    this.dialog.open(LoginComponent);
   }
   onRegister(){
     const {name, nationId, phoneNumber} = this.remtUser;
@@ -31,6 +38,7 @@ export class RegisterComponent implements OnInit {
         title: 'Form Error'}
       }));
     }
-    return this.store.dispatch(userActions.register(this.remtUser));
+      this.dialog.closeAll();
+      return this.store.dispatch(userActions.register(this.remtUser));
   }
 }

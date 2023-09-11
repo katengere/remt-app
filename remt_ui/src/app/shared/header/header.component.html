@@ -6,15 +6,17 @@
         <mat-icon>menu</mat-icon>
     </button>
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
-
         <span *ngFor="let permission of permisions">
           <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
             {{permission}}
           </a>
         </span>
-
     </mat-nav-list>
     <span class="example-spacer"></span>
+    <div class="form-group">
+        <input placeholder="Search" type="text" class="form-control" [(ngModel)]='userTypeSearch'>
+        <button class="btn btn-sm" (click)="ngOnChanges(userTypeSearch)" type="submit">Search</button>
+    </div>
     <div class="">
       <mat-menu #navOptions="matMenu">
         <button *ngIf="logInUser" mat-menu-item class="mt-1">
@@ -33,9 +35,8 @@
           <i class="fa fa-sign-in-alt"></i> Register
         </button>
       </mat-menu>
-      <button [matMenuTriggerFor]="navOptions" mat-icon-button>
+      <button [matMenuTriggerFor]="navOptions" *ngIf="logInUser" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
-
     </div>
 </mat-toolbar>

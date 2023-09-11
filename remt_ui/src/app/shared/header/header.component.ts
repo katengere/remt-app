@@ -1,11 +1,11 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, takeWhile } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage.service';
 import { userSelector, isLoadingSelector, selectUrl } from 'src/app/users/store/users.selectors';
 import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTypes';
-import { logout } from "../../users/store/users.actions";
+import { logout, search } from "../../users/store/users.actions";
 
 @Component({
   selector: 'app-header',
@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   route!: string;
   logInUser!: string | null;
+  userTypeSearch!: string;
   @Output() sideNav = new EventEmitter()
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -45,17 +46,18 @@ export class HeaderComponent implements OnInit {
         });
       }
     });
-
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
   }
-
   displaySideNav(){
     this.sideNav.emit();
   }
   logout(){
     this.store.dispatch(logout());
   }
-
   ngOnInit(): void {
+  }
+  ngOnChanges(changes: string): void {
+    console.log(changes);
+    this.store.dispatch(search({search:this.userTypeSearch}))
   }
 }

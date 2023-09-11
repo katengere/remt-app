@@ -1,34 +1,37 @@
-<div class="container mt-5" style="margin-bottom: 7.5em;">
-    <div class="row align-content-md-center">
-        <div class="col-md-4"></div>
 
-        <form class="col-md-4" #form="ngForm" (ngSubmit)="onSubmit(form)">
-            <div>
-                <h3 mat-dialog-title class="d-flex justify-content-center">
-                    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px">
-                </h3>
-                <!-- <h4>
-              bado haujasajili? Tafadhali
-              <a routerLink="/admin/register">sajili</a>
-          </h4> -->
+<mat-dialog-content>
+        <form #form="ngForm">
+            <div class="mb-3">
+              <h3 mat-dialog-title class="d-flex justify-content-center">
+                <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px">
+              </h3>
+              <p>
+                Not Registered? <br> Please
+                <button class="btn btn-sm" (click)="registerDialog()">Register</button>
+              </p>
             </div>
-            <div class="mb-1">
+            <div class="mb-3">
                 <label for="Name" class="form-label"><i class="fa fa-user"></i> Name</label>
                 <input type="text" name="Name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required placeholder="Name">
             </div>
-            <div class="mb-1">
+            <div class="mb-3">
                 <label for="password" class="form-label"><i class="fa fa-passport"></i> Password</label>
                 <input type="password" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.phoneNumber" required class="form-control" placeholder="Nenosiri">
             </div>
-            <div class="mb-1">
+            <div class="mb-3">
                 <label for="password" class="form-label"><i class="fa fa-user-plus"></i> User Type</label>
                 <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.name">
                 <option *ngFor="let item of user$" [value]="item" style="background-color:  rgb(250, 173, 71);">{{item.userTypeName}}</option>
               </select>
             </div>
-            <button type="submit" class="btn float-end mt-2" style="background-color:  black; color:  rgb(250, 173, 71);">
-        <i class="fa fa-lock-open" style="color:  rgb(250, 173, 71);"></i> Login!
-      </button>
         </form>
-    </div>
-</div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="btn btn-sm">
+      <i class="fa fa-window-close"></i>Close
+  </button>
+  <button class="btn btn-sm m-2" (click)="onLogin(form)">
+      <i class="fa fa-file-upload"></i> Login!
+  </button>
+</mat-dialog-actions>
