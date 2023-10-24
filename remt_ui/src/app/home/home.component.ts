@@ -8,8 +8,8 @@ import { UserTypeInterface, AppStateInterface } from '../users/types/userTypes';
 import { StorageService } from '../auth/services/storage.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { UserEntityService } from '../shared/services/user-entity.service';
 import { LoginComponent } from '../auth/login/login.component';
-import { RegisterComponent } from '../auth/register/register.component';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,8 @@ export class HomeComponent {
     private store: Store<AppStateInterface>,
     private storageService: StorageService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userEntityService: UserEntityService,
     ){
     this.breakpointObserver.observe(['(max-width: 1199px)']).pipe(takeWhile(() => this.isAlive)).subscribe(({matches}) => {
       this.isLessThenLargeDevice = matches;
@@ -39,7 +40,7 @@ export class HomeComponent {
         this.isSidenavExpand = false;
       }
     });
-    this.store.pipe(select(userSelector)).subscribe({
+    this.userEntityService.entities$.subscribe({
       next:(users)=>{
         this.user$ = users;
         this.username = this.storageService.getUserName();
@@ -52,11 +53,10 @@ export class HomeComponent {
   loginDialog(){
     this.dialog.open(LoginComponent)
   }
-  registerDialog(){
-    this.dialog.open(RegisterComponent)
-  }
+  
   logout() {
     this.store.dispatch(userActions.logout());
+    this.userEntityService.getAll();
     this.router.navigate([''])
     }
   toggleSidenav(): void {

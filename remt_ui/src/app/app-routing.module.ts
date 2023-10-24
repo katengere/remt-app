@@ -45,12 +45,7 @@ children: [
     path:'tenant',
     loadChildren:()=>import('./users/tenant/tenant.module').then(m=>m.TenantModule),
     canMatch:[LazyLoadGuard('tenant')]
-  },
-  {
-    path:'auth',
-    loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule),
-    canMatch:[LazyLoadGuard]
-  },
+  }
 ];
 
 @NgModule({

@@ -14,6 +14,6 @@ export class DataSourceService {
   constructor(private http:HttpClient) { }
 
   getUserTypes():Observable<UserTypeInterface[]>{
-    return this.http.get<UserTypeInterface[]>(apiUrl+'/remt');
+    return this.http.get<UserTypeInterface[]>(apiUrl+'/users');
   }
 }

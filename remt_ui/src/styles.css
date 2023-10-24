@@ -25,7 +25,7 @@ mat-toolbar{
   top: 0;
   z-index: 99;
 }
-mat-sidenav {
+mat-sidenav{
   background-color:  rgb(250, 173, 71)  !important;
   width: auto;
 }

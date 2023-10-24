@@ -12,9 +12,9 @@ export class PersonInfoService {
   constructor(private http: HttpClient) { }
 
   login(user: PersonInfoInterface):Observable<UserTypeInterface>{
-    return this.http.post<UserTypeInterface>(apiUrl+'/remt/auth/login', user);
+    return this.http.post<UserTypeInterface>(apiUrl+'/users/auth/login', user);
   }
   register(user: PersonInfoInterface):Observable<UserTypeInterface>{
-    return this.http.post<UserTypeInterface>(apiUrl+'/remt/auth/register', user);
+    return this.http.post<UserTypeInterface>(apiUrl+'/users/auth/register', user);
   }
 }

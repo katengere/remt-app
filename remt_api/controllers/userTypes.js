@@ -6,7 +6,8 @@ const getUserTypes = (req, res) => {
     return res.status(200).json(dataSource);
 };
 const logInUser = (req, res) => {
-    const {phoneNumber, name} = req.body;
+    console.log(req.body);
+    const {phoneNumber, name} = req.body.userInfos;
     const foundUser = dataSource.find(u=>u.userInfos.name.toLowerCase()==name.toLowerCase()&&u.userInfos.phoneNumber==phoneNumber);
     if (foundUser) {
     return res.status(200).json(foundUser);
@@ -22,14 +23,15 @@ function selectInitialUser(user) {
     }
 }
 const registerUser = (req, res) => {
-    const user = req.body;
+    const user = req.body.userInfos;
+    console.log(req.body);
     const foundUser = dataSource.find(u=>u.userInfos.name.toLowerCase()==user.name.toLowerCase()
     &&u.userInfos.phoneNumber==user.phoneNumber);
     if (foundUser) {
     return res.status(400).json('A user with same credentials already exit');
     } else {
-        const registeredUser = selectInitialUser(user)
-    return res.status(200).json(registeredUser);
+        dataSource.push(req.body);
+    return res.status(200).json(req.body);
     }
 };
 module.exports = {

@@ -14,6 +14,9 @@ import { MessageComponent } from './message/message.component';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { defaultDataServiceConfig } from './services/user-entity.service';
+import { DefaultDataServiceConfig } from '@ngrx/data';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     SideNavComponent,
     FooterComponent,
     UserlayoutComponent,
-    MessageComponent
+    MessageComponent, 
   ],
   exports:[
     HeaderComponent,
@@ -33,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MatIconModule,
     MatSidenavModule,
+    MatDialogModule,
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
@@ -40,6 +44,9 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     MatMenuModule
   ],
-  providers:[{provide: MAT_SNACK_BAR_DATA, useValue:MAT_SNACK_BAR_DATA}]
+  providers:[
+    {provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig},
+    {provide: MAT_SNACK_BAR_DATA, useValue:MAT_SNACK_BAR_DATA}
+  ]
 })
 export class SharedModule { }

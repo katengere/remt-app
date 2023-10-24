@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as userActions from "./users/store/users.actions";
-import { AppStateInterface } from './users/types/userTypes';
+import { UserEntityService } from './shared/services/user-entity.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +8,9 @@ import { AppStateInterface } from './users/types/userTypes';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private store: Store<AppStateInterface>
+    private userEntityService: UserEntityService
   ){}
   ngOnInit(){
-    this.store.dispatch(userActions.getUser());
+    this.userEntityService.getAll();
   }
 }

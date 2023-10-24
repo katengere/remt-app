@@ -23,10 +23,9 @@ export interface UIConfigInterface {
 }
 export interface PersonInfoInterface{
   name:string;
-  age:number;
-  nationId:number;
-  phoneNumber:number;
-  userTypeName?:string
+  age:number|null;
+  nationId:number|null;
+  phoneNumber:string;
 }
 export interface LocationInterface{
   id:string;
@@ -48,13 +47,14 @@ export interface HouseInterface{
   rental_history?:RentalHistory[];
   tenants_Ids?:string[];
 }
-export interface UserTypeInterface {
-  id:string;
-  userTypeName: string;
-  permissions: string[];
-  ui: UIConfigInterface;
-  userInfos:PersonInfoInterface;
-  estates: HouseInterface[] | null;
+export class UserTypeInterface {
+  id!:string;
+  userTypeName!: string;
+  permissions!: string[];
+  ui!: UIConfigInterface;
+  userInfos!: PersonInfoInterface;
+  estates!: HouseInterface[];
+  constructor(){}
 }
 
 export interface UserTypeStateInterface extends EntityState<UserTypeInterface> {

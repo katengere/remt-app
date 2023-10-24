@@ -12,16 +12,16 @@
             </div>
             <div class="mb-3">
                 <label for="Name" class="form-label"><i class="fa fa-user"></i> Name</label>
-                <input type="text" name="Name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required placeholder="Name">
+                <input type="text" name="Name" #name="ngModel" [(ngModel)]="user.userInfos.name" class="form-control" required placeholder="Name">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"><i class="fa fa-passport"></i> Password</label>
-                <input type="password" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.phoneNumber" required class="form-control" placeholder="Nenosiri">
+                <input type="tel" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.userInfos.phoneNumber" required placeholder="+255755000000" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"><i class="fa fa-user-plus"></i> User Type</label>
-                <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.name">
-                <option *ngFor="let item of user$" [value]="item" style="background-color:  rgb(250, 173, 71);">{{item.userTypeName}}</option>
+                <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.userTypeName">
+                <option *ngFor="let userTypeName of userTypeNames" [value]="userTypeName" style="background-color:  rgb(250, 173, 71);">{{userTypeName}}</option>
               </select>
             </div>
         </form>

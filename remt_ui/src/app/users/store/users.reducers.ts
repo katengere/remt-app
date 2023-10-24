@@ -31,21 +31,6 @@ export const usersReducer = createReducer(
   on(usersActions.registerFailure, (state, {error})=>({
     ...state, isLoading:false, error:error
   })),
-
-  on(usersActions.search, (state,actions)=>{
-    console.log(state);
-    console.log(actions);
-    return ({...state, isLoading:true})
-  }),
-  on(usersActions.searchSuccess, (state, {result})=>{
-    console.log(result);
-    return usersAdapter.addOne(result, {...state, isLoading:false});
-  }),
-
-  on(usersActions.searchFailure, (state, {error})=>({
-    ...state, isLoading:false, error:error
-  })),
-
   on(usersActions.authFailure, (state, {error})=>({
     ...state, isLoading:false, error:error
   }))

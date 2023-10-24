@@ -27,6 +27,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ENTITY_METADATA_TOKEN, EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserModule,
     SharedModule,
     AppRoutingModule,
+    AuthModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatGridListModule,
@@ -55,9 +59,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([UsersEffects]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EntityDataModule.forRoot(entityConfig)
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

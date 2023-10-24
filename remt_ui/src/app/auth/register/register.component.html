@@ -12,32 +12,34 @@
                       <div>
                           <div class="mb-2">
                               <label class="form-label">Name</label>
-                              <input class="form-control" name="name" [(ngModel)]="remtUser.name">
+                              <input class="form-control" name="name" [(ngModel)]="remtUser.userInfos.name">
                           </div>
                       </div>
                       <div>
                         <div class="mb-2">
-                            <label class="form-label">userTypeName</label>
-                            <input class="form-control" name="userTypeName" [(ngModel)]="remtUser.userTypeName">
-                        </div>
+                          <label for="password" class="form-label"><i class="fa fa-user-plus"></i> User Type</label>
+                          <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="remtUser.userTypeName">
+                          <option *ngFor="let userTypeName of userTypeNames" [value]="userTypeName" style="background-color:  rgb(250, 173, 71);">{{userTypeName}}</option>
+                        </select>
+                      </div>                       
                     </div>
 
                       <div>
                           <div class="mb-2">
                               <label class="form-label">NationId</label>
-                              <input class="form-control" name="nationId" [(ngModel)]="remtUser.nationId">
+                              <input class="form-control" name="nationId" [(ngModel)]="remtUser.userInfos.nationId">
                           </div>
                       </div>
                       <div>
                         <div class="mb-2">
                             <label class="form-label">PhoneNumber</label>
-                            <input class="form-control" name="phoneNumber" [(ngModel)]="remtUser.phoneNumber">
+                            <input class="form-control" name="phoneNumber" [(ngModel)]="remtUser.userInfos.phoneNumber">
                         </div>
                     </div>
                     <div>
                       <div class="mb-2">
                           <label class="form-label">Age</label>
-                          <input class="form-control" name="age" [(ngModel)]="remtUser.age">
+                          <input class="form-control" name="age" [(ngModel)]="remtUser.userInfos.age">
                       </div>
                     </div>
                   </form>

@@ -14,8 +14,7 @@
     </mat-nav-list>
     <span class="example-spacer"></span>
     <div class="form-group">
-        <input placeholder="Search" type="text" class="form-control" [(ngModel)]='userTypeSearch'>
-        <button class="btn btn-sm" (click)="ngOnChanges(userTypeSearch)" type="submit">Search</button>
+        <input placeholder="search" type="text" #searchTerm id="searchField" class="form-control" (keyup)="search(searchTerm.value)">
     </div>
     <div class="">
       <mat-menu #navOptions="matMenu">
@@ -31,7 +30,7 @@
         <button *ngIf="logInUser" mat-menu-item class="mt-1" >
           <i class="fa fa-user-edit"></i> Account
         </button>
-        <button [routerLink]="['/auth/register']" class="mt-1" mat-menu-item *ngIf="route == 'admin' || route == 'lga'">
+        <button (click)="registerDialog()" class="mt-1" mat-menu-item *ngIf="route == 'admin' || route == 'lga'">
           <i class="fa fa-sign-in-alt"></i> Register
         </button>
       </mat-menu>

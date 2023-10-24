@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { AppStateInterface, UserTypeInterface } from '../../types/userTypes';
-import { userSelector } from '../../store/users.selectors';
+import { UserTypeInterface } from '../../types/userTypes';
+import { UserEntityService } from 'src/app/shared/services/user-entity.service';
 
 @Component({
   selector: 'app-broker-home',
@@ -11,14 +10,13 @@ import { userSelector } from '../../store/users.selectors';
 export class BrokerHomeComponent implements OnInit {
   users!: UserTypeInterface[];
   constructor(
-    private store: Store<AppStateInterface>
+    private userEntityService: UserEntityService
   ){
-    this.store.pipe(select(userSelector)).subscribe({
+    this.userEntityService.entities$.subscribe({
       next:(users)=>{
-        this.users = users.filter(u=>u.estates?.length);
-
+        this.users = users.filter(u=>u.estates!=null);
         console.log(this.users);
-
+        
       }
     });
   }
