@@ -42,7 +42,7 @@ export interface RentalHistory{
 export interface HouseInterface{
   owner_Id:string;
   address:LocationInterface;
-  rooms:number;
+  type:string;
   open:boolean;
   rental_history?:RentalHistory[];
   tenants_Ids?:string[];
@@ -53,7 +53,7 @@ export class UserTypeInterface {
   permissions!: string[];
   ui!: UIConfigInterface;
   userInfos!: PersonInfoInterface;
-  estates!: HouseInterface[];
+  estates!: HouseInterface[] | null;
   constructor(){}
 }
 

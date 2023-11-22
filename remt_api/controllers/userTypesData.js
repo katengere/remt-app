@@ -8,7 +8,7 @@
           overview: true,
         },
         userInfos:{name:'jaoko', age:30, phoneNumber:+255764779234,nationId:15121989},
-        estates:null
+        estates:[]
       },
       {
         id:'2',
@@ -26,7 +26,7 @@
           },
         },
         userInfos:{name:'mery', age:40, phoneNumber:+255769044790,nationId:0},
-        estates:null
+        estates:[]
       },
       {
         id:'3',
@@ -51,20 +51,14 @@
           {
             owner_Id:'',
             address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:12,
+            type:'appartments',
             open:false
           },
           {
             owner_Id:'',
             address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:10,
+            type:'rooms',
             open:false
-          },
-          {
-            owner_Id:'',
-            address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:7,
-            open:true
           }
         ]
       },
@@ -81,20 +75,14 @@
           {
             owner_Id:'',
             address:{id:'2', region:'shy',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:12,
+            type:'rooms',
             open:false
           },
           {
             owner_Id:'',
             address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:10,
+            type:'appartments',
             open:false
-          },
-          {
-            owner_Id:'',
-            address:{id:'2', region:'dodoma',district:'temeke',ward:'tazara',street:'kwampalange'},
-            rooms:7,
-            open:true
           }
         ]
       },
@@ -113,7 +101,7 @@
           rental_history: true,
         },
         userInfos:{name:'nyanzala', age:20, phoneNumber:+255655101010,nationId:0},
-        estates:null
+        estates:[]
       },
       {
         id:'5',
@@ -126,7 +114,7 @@
           },
         },
         userInfos:{name:'swaga', age:26, phoneNumber:+255624992151,nationId:0},
-        estates:null
+        estates:[]
       },
       {
         id:'6',
@@ -145,7 +133,7 @@
           auto_payments: true,
         },
         userInfos:{name:'mika', age:32, phoneNumber:+255644304020,nationId:0},
-        estates:null
+        estates:[]
       },
       {
         id:'7',
@@ -158,7 +146,7 @@
           },
         },
         userInfos:{name:'mery', age:28, phoneNumber:+255620223810,nationId:0},
-        estates:null
+        estates:[]
       }
  ];
 

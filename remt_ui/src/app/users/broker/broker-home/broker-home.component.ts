@@ -7,7 +7,7 @@ import { UserEntityService } from 'src/app/shared/services/user-entity.service';
   templateUrl: './broker-home.component.html',
   styleUrls: ['./broker-home.component.css']
 })
-export class BrokerHomeComponent implements OnInit {
+export class BrokerHomeComponent {
   users!: UserTypeInterface[];
   constructor(
     private userEntityService: UserEntityService
@@ -15,13 +15,9 @@ export class BrokerHomeComponent implements OnInit {
     this.userEntityService.entities$.subscribe({
       next:(users)=>{
         this.users = users.filter(u=>u.estates!=null);
-        console.log(this.users);
-        
+        console.log(this.users);        
       }
     });
-  }
-
-  ngOnInit(): void {
   }
 
 }

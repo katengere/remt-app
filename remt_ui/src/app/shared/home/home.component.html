@@ -8,7 +8,7 @@
   </button>
         <mat-nav-list *ngIf="!isLessThenLargeDevice">
             <span class="m-1" *ngFor="let userTypeName of userTypeNames">
-      <a mat-raised-button [routerLink]="[userTypeName]" routerLinkActive="active">
+      <a [routerLink]="[userTypeName]" routerLinkActive="active" class="btn btn-sm m-0 p-0">
         <i [ngClass]="{
           'fa fa-user-graduate': userTypeName=='admin'|| userTypeName=='lga'
       }"></i>
@@ -18,10 +18,10 @@
         </mat-nav-list>
         <span class="example-spacer"></span>
         <div class="">
-          <a (click)="loginDialog()" *ngIf="!username" mat-raised-button class="">
+          <a (click)="loginDialog()" *ngIf="!username" class="btn btn-sm m-0 p-0">
             <i class="fa fa-lock-open"></i> Login
           </a>
-          <a *ngIf="username" [matMenuTriggerFor]="navOptions" mat-raised-button >
+          <a *ngIf="username" [matMenuTriggerFor]="navOptions" class="btn btn-sm m-0 p-0">
             <i class="fa fa-user-check"></i> {{username}}
           </a>
           <mat-menu #navOptions="matMenu">

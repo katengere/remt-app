@@ -2,7 +2,7 @@
     <app-header (sideNav)="toggleSidenav()"></app-header>
     <mat-sidenav-container class="">
         <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
-            <app-side-nav></app-side-nav>
+            <app-side-nav (sideNav)="toggleSidenav()"></app-side-nav>
         </mat-sidenav>
         <mat-sidenav-content>
             <main>

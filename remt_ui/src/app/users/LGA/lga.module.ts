@@ -8,11 +8,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AddLandlordsComponent } from './add-landlords/add-landlords.component';
+import { AddPropertiesComponent } from './add-properties/add-properties.component';
 
 
 @NgModule({
   declarations: [
     LgaHomeComponent,
+    AddLandlordsComponent,
+    AddPropertiesComponent,
   ],
   imports: [
     CommonModule,

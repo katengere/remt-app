@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { defaultDataServiceConfig } from './services/user-entity.service';
 import { DefaultDataServiceConfig } from '@ngrx/data';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BrokerDetailsComponent } from './broker-details/broker-details.component';
+import { LandlordDetailsComponent } from './landlord-details/landlord-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     SideNavComponent,
     FooterComponent,
     UserlayoutComponent,
-    MessageComponent, 
+    MessageComponent,
+    BrokerDetailsComponent,
+    LandlordDetailsComponent, 
   ],
   exports:[
     HeaderComponent,

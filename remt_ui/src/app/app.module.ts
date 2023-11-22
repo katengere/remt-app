@@ -20,7 +20,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './shared/home/home.component';
 import { usersReducer } from './users/store/users.reducers';
 import { UsersEffects } from './users/store/users.effects';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ENTITY_METADATA_TOKEN, EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     AppRoutingModule,
     AuthModule,
+    DashboardModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatGridListModule,

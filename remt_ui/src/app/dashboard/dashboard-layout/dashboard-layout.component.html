@@ -1,0 +1,63 @@
+<div>
+    <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+        <span [routerLink]="['']" class="" routerLinkActive="active">
+  <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">REMT
+  </span>
+        <span class="example-icon" (click)="sidenav.toggle()" *ngIf="isLessThenLargeDevice">
+    <mat-icon>menu</mat-icon>
+        </span>
+        <mat-nav-list *ngIf="!isLessThenLargeDevice">
+            <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
+                <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
+            </a>
+            <a routerLink="/dashboard/profile" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
+                <mat-icon class="mr-2">account_circle</mat-icon> View my profile
+            </a>
+            <a routerLink="/dashboard/saved-items" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
+                <mat-icon class="mr-2">list</mat-icon> Saved Items
+            </a>
+            <a routerLink="/dashboard/orders" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
+                <mat-icon class="mr-2">article</mat-icon> Orders
+            </a>
+        </mat-nav-list>
+        <span class="example-spacer"></span>
+        <div class="">
+          <a (click)="loginDialog()" *ngIf="!username" class="btn btn-sm mb-2">
+            <i class="fa fa-lock-open"></i> Login
+          </a>
+          <a *ngIf="username" [matMenuTriggerFor]="navOptions" class="btn btn-sm m-0 p-0">
+            <i class="fa fa-user-check"></i> {{username}}
+          </a>
+          <mat-menu #navOptions="matMenu">
+            <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
+              <i class="fa fa-sign-out-alt"></i> Logout
+            </button>
+            <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase()]" mat-menu-item class="mt-1" >
+              <i class="fa fa-user-edit"></i> {{userType}}
+            </button>
+          </mat-menu>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container class="">
+        <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">            
+            <a routerLink="/dashboard" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
+            </a><br>
+            <a routerLink="/dashboard/profile" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">account_circle</mat-icon> View my profile
+            </a><br>
+            <a routerLink="/dashboard/saved-items" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">list</mat-icon> Saved Items
+            </a><br>
+            <a routerLink="/dashboard/orders" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">article</mat-icon> Orders
+            </a><br>          
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+            <app-footer></app-footer>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

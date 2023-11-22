@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
     <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
-        <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{route||'REMT'}}
+        <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{'REMT'}}
     </span>
     <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice && !route.includes('auth')">
         <mat-icon>menu</mat-icon>

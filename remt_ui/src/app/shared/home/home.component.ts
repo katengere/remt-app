@@ -2,14 +2,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { takeWhile } from 'rxjs';
-import { userSelector } from '../users/store/users.selectors';
-import * as userActions from '../users/store/users.actions';
-import { UserTypeInterface, AppStateInterface } from '../users/types/userTypes';
-import { StorageService } from '../auth/services/storage.service';
+import { userSelector } from '../../users/store/users.selectors';
+import * as userActions from '../../users/store/users.actions';
+import { UserTypeInterface, AppStateInterface } from '../../users/types/userTypes';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { UserEntityService } from '../shared/services/user-entity.service';
-import { LoginComponent } from '../auth/login/login.component';
+import { StorageService } from 'src/app/auth/services/storage.service';
+import { UserEntityService } from '../services/user-entity.service';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 
 @Component({
   selector: 'app-home',

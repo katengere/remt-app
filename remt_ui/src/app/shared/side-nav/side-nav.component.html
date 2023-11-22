@@ -1,6 +1,7 @@
 
   <span *ngFor="let permission of permisions">
-    <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
+    <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
+    [routerLink]="[permission]" routerLinkActive="active" (click)="toggleSideNav()">
       {{permission}}
     </a><br>
   </span>

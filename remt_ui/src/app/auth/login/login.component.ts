@@ -41,10 +41,10 @@ export class LoginComponent {
     });
   }
 
-  registerDialog(){
-    this.dialog.closeAll();
-    this.dialog.open(RegisterComponent);
-  }
+  // registerDialog(){
+  //   this.dialog.closeAll();
+  //   this.dialog.open(RegisterComponent);
+  // }
 
   onLogin(form: NgForm){
     if (form.valid) {

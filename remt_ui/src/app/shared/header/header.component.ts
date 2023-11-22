@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   route!: string;
   logInUser!: string | null;
   userTypeSearch!: string;
-  @Output() sideNav = new EventEmitter()
+  @Output() sideNav = new EventEmitter();
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store,
@@ -39,13 +39,14 @@ export class HeaderComponent implements OnInit {
       }
     });
     combineLatest([this.store.select(selectUrl), this.userEntityService.entities$]).subscribe({
-      next:([params, users])=>{         
+      next:([params, users])=>{           
         this.route = params.slice(1);
+        const userType = storageService.getUserTypeName()?.toLowerCase();
         this.logInUser = this.storageService.getUserName();
-        this.permisions = users.filter(u=>u.userTypeName.toLowerCase()==this.route.toLowerCase())
+        this.permisions = users.filter(u=>u.userTypeName.toLowerCase()==this.route.toLowerCase() ||
+        u.userTypeName.toLowerCase() == userType)
         .reduce((acc,{permissions})=>[...acc, ...permissions],[] as string[])
-        .filter((p,i,arr)=>arr.indexOf(p)==i);  
-        
+        .filter((p,i,arr)=>arr.indexOf(p)==i);
       }
     });
     this.isLoading$ = userEntityService.loading$;

@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './shared/home/home.component';
 import { BrokerHomeComponent } from './users/broker/broker-home/broker-home.component';
 import { LazyLoadGuard } from './users/guards/lazy-load.guard';
+import { BrokerDetailsComponent } from './shared/broker-details/broker-details.component';
+import { LandlordDetailsComponent } from './shared/landlord-details/landlord-details.component';
+import { DashboardLayoutComponent } from './dashboard/dashboard-layout/dashboard-layout.component';
+import { DashboardIndexComponent } from './dashboard/dashboard-index/dashboard-index.component';
 
 
 const routes: Routes = [
-  {path:'', component:HomeComponent,
-children: [
-  {path:'', component:BrokerHomeComponent}
-]
-},
+  { 
+    path:'', 
+    redirectTo:'dashboard/broker', pathMatch:'full'
+  },
+  { 
+    path:'dashboard/broker', 
+    component:DashboardLayoutComponent,
+    children:[{path:'', component:DashboardIndexComponent}]
+  },
   {
     path:'lga',
     loadChildren:()=>import('./users/LGA/lga.module').then(m=>m.LGAModule),

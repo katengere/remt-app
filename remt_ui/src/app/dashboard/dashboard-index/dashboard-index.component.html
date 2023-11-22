@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<div class="row">
+		<div *ngFor="let user of users; let i=index" class="card col-md-4 mb-1 m-0 p-0">
+			<p class="card-header  d-flex justify-content-between">
+			<img src="../../../assets/login.PNG" width="25px" height="30px" class="rounded" alt="...">
+			<span>{{user.userInfos.name}}</span>
+			</p>
+			<img src="../../../assets/imgs/img1.jpg" width="auto" height="199px" class="card-img-top" alt="...">
+			<div class="card-body">
+			  <h5 class="card-title">Card title</h5>			  
+				<p class="card-text">
+					This is a wider card with supporting text below as a natural lead-in to additional content. 
+					This content is a little bit longer.
+				</p>
+				<p class="card-text d-flex justify-content-end">
+					<small class="btn btn-link" [routerLink]="[user.id]" style="background-color: black; color: rgb(250, 173, 71);" >
+						more...
+					</small>
+				</p>			  
+			</div>
+		</div>		  
+	</div>
+</div>

@@ -3,7 +3,6 @@ import { AppStateInterface, UserTypeInterface } from 'src/app/users/types/userTy
 import * as userActions from "../../users/store/users.actions";
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
 import { UserDataService } from 'src/app/shared/services/user-data.service';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
@@ -45,10 +44,6 @@ export class RegisterComponent {
       });
   }
 
-  loginDialog(){
-    this.dialog.closeAll();
-    this.dialog.open(LoginComponent);
-  }
   onRegister(){
     const {name, nationId, phoneNumber, age, } = this.remtUser.userInfos;
     if (!name  || !nationId) {
@@ -63,7 +58,7 @@ export class RegisterComponent {
         next:(user)=>{
           console.log(user);
           this.storageService.saveToken(user.userInfos.name, user.userTypeName);
-          this.router.navigate([user.userTypeName.toLowerCase()]);
+          // this.router.navigate([user.userTypeName.toLowerCase()]);
           this.userEntityService.getAll();
           this.msgService.message({
             title:'Login Success', text: user.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania'
