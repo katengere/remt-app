@@ -1,4 +1,5 @@
 export interface Message{
   title: string,
-  text: string|null
+  text: string|null,
+  color: string
 }

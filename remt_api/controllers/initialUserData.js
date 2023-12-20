@@ -1,6 +1,5 @@
 const initialUserData = [
     {
-        id:'1',
         userTypeName: "Admin",
         permissions: ["manage_users"],
         ui: {
@@ -9,7 +8,6 @@ const initialUserData = [
         },
       },
       {
-        id:'2',
         userTypeName: "LGA",
         permissions: ["add_landlords", "add_properties"],
         ui: {
@@ -25,7 +23,6 @@ const initialUserData = [
         },
       },
       {
-        id:'3',
         userTypeName: "Landlord",
         permissions: [
           "manage_properties",
@@ -44,7 +41,6 @@ const initialUserData = [
         },
       },
       {
-        id:'4',
         userTypeName: "Caretaker",
         permissions: [
           "manage_tenants",
@@ -59,7 +55,6 @@ const initialUserData = [
         },
       },
       {
-        id:'5',
         userTypeName: "Broker",
         permissions: ["recruit_tenants"],
         ui: {
@@ -70,7 +65,6 @@ const initialUserData = [
         },
       },
       {
-        id:'6',
         userTypeName: "Tenant",
         permissions: [
           "manage_rental_payments",
@@ -87,7 +81,6 @@ const initialUserData = [
         },
       },
       {
-        id:'7',
         userTypeName: "Lender",
         permissions: ["verify_address"],
         ui: {

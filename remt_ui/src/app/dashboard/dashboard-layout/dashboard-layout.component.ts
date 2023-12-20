@@ -16,6 +16,7 @@ export class DashboardLayoutComponent {
   @ViewChild('sidenav') sidenav: any;
   username!: string | null;
   userType!: string | null;
+  id!: string | null;
 
   constructor(
     private breakpointObserver: BreakpointObserver, private router: Router,
@@ -28,8 +29,9 @@ export class DashboardLayoutComponent {
           this.isSidenavExpand = false;
         }
       });
-      this.username = this.storageService.getUserName()
-      this.userType = this.storageService.getUserTypeName()      
+      this.username = this.storageService.getUserName();
+      this.userType = this.storageService.getUserTypeName();
+      this.id = storageService.getId();      
     }
 
   loginDialog(){

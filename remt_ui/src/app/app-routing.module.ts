@@ -20,37 +20,37 @@ const routes: Routes = [
     children:[{path:'', component:DashboardIndexComponent}]
   },
   {
-    path:'lga',
+    path:'lga/:id',
     loadChildren:()=>import('./users/LGA/lga.module').then(m=>m.LGAModule),
     canMatch:[LazyLoadGuard('lga')]
   },
   {
-    path:'admin',
+    path:'admin/:id',
     loadChildren:()=>import('./users/mainAdmin/main-admin.module').then(m=>m.MainAdminModule),
     canMatch:[LazyLoadGuard('admin')]
   },
   {
-    path:'broker',
+    path:'broker/:id',
     loadChildren:()=>import('./users/broker/broker.module').then(m=>m.BrokerModule),
     canMatch:[LazyLoadGuard('broker')]
   },
   {
-    path:'landlord',
+    path:'landlord/:id',
     loadChildren:()=>import('./users/landlord/landlord.module').then(m=>m.LandlordModule),
     canMatch:[LazyLoadGuard('landlord')]
   },
   {
-    path:'caretaker',
+    path:'caretaker/:id',
     loadChildren:()=>import('./users/caretaker/caretaker.module').then(m=>m.CaretakerModule),
     canMatch:[LazyLoadGuard('caretaker')]
   },
   {
-    path:'lender',
+    path:'lender/:id',
     loadChildren:()=>import('./users/lender/lender.module').then(m=>m.LenderModule),
     canMatch:[LazyLoadGuard('lender')]
   },
   {
-    path:'tenant',
+    path:'tenant/:id',
     loadChildren:()=>import('./users/tenant/tenant.module').then(m=>m.TenantModule),
     canMatch:[LazyLoadGuard('tenant')]
   }

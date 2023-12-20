@@ -21,7 +21,8 @@ export class UsersEffects {
         console.log(err);
         return of(usersActions.getAdminFailure({error:{
           text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
-          title:'Loading Data Error'
+          title:'Loading Data Error',
+          color:'red'
         }}))
       })
     ))
@@ -31,17 +32,21 @@ export class UsersEffects {
     exhaustMap((user)=>this.personInfoService.login(user).pipe(
       map((users)=>{
         console.log(users);
-        this.storageService.saveToken(users.userInfos.name, users.userTypeName);
+        this.storageService.saveToken(users);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
-            title:'Login Success', text: users.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania'}, 'bg-success');
+            title:'Login Success', 
+            text: users.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania',
+            color:'green'
+          });
         return usersActions.loginSuccess({person:users})
       }),
       catchError(err=>{
         console.log(err);
         return of(usersActions.loginFailure({error:{
           text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
-          title:'Login Error'
+          title:'Login Error',
+          color:'red'
         }}))
       })
     ))
@@ -53,8 +58,9 @@ export class UsersEffects {
         console.log('user logged out');
         this.router.navigate(['']);
         this.msgService.message({
-            title:'Logout Success', text:'Successfully Logged out from REMT'
-          }, 'bg-success');
+            title:'Logout Success', text:'Successfully Logged out from REMT',
+            color:'green'
+          });
         return usersActions.logoutSuccess({msg:' loggedout'})
       })
     ))
@@ -64,17 +70,21 @@ export class UsersEffects {
     exhaustMap((user)=>this.personInfoService.register(user).pipe(
       map((users)=>{
         console.log(users);
-        this.storageService.saveToken(users.userInfos.name, users.userTypeName);
+        this.storageService.saveToken(users);
         this.router.navigate([users.userTypeName.toLowerCase()])
           this.msgService.message({
-            title:'Login Success', text:'Wellcome to Real Estate Management Tanzania '+ users.userInfos.name.toUpperCase()}, 'bg-success');
+            title:'Login Success', 
+            text:'Wellcome to Real Estate Management Tanzania '+ users.userInfos.name.toUpperCase(),
+            color:'green'
+          });
         return usersActions.registerSuccess({person:users})
       }),
       catchError(err=>{
         console.log(err);
         return of(usersActions.loginFailure({error:{
           text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
-          title:'Login Error'
+          title:'Login Error',
+          color:'red'
         }}))
       })
     ))
@@ -95,7 +105,8 @@ export class UsersEffects {
         console.log(err);
         return of(usersActions.searchFailure({error:{
           text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
-          title:'Loading Data Error'
+          title:'Loading Data Error',
+          color:'red'
         }}))
       })
     ))

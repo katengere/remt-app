@@ -62,7 +62,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     EffectsModule.forRoot([UsersEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EntityDataModule.forRoot(entityConfig)
+    EntityDataModule.forRoot(entityConfig),
   ],
   providers: [ ],
   bootstrap: [AppComponent]

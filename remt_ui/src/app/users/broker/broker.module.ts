@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { BrokerRoutingModule } from './broker-routing.module';
 import { BrokerHomeComponent } from './broker-home/broker-home.component';
+import { RecruitTenantsComponent } from './recruit-tenants/recruit-tenants.component';
 
 
 @NgModule({
   declarations: [
-    BrokerHomeComponent
+    BrokerHomeComponent,
+    RecruitTenantsComponent
   ],
   imports: [
     CommonModule,

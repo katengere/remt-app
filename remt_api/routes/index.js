@@ -5,6 +5,6 @@ const ctrlUserTypes = require('../controllers/userTypes');
 /* GET home page. */
 router.get('', ctrlUserTypes.getUserTypes);
 router.post('/login', ctrlUserTypes.logInUser);
-router.post('/register', ctrlUserTypes.registerUser);
+router.post('/register/:id', ctrlUserTypes.registerUser);
 
 module.exports = router;

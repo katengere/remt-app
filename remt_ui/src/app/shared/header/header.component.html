@@ -1,41 +1,41 @@
-<mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
-    <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
-        <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">{{'REMT'}}
+<mat-toolbar style="background-color: black; color: rgb(250, 173, 71)">
+  <span [routerLink]="['']" class="mt-2" routerLinkActive="active">
+    <img src="../favicon.ico" alt="" style="color: rgb(250, 173, 71)" width="30px" height="35px"/>{{ "REMT" }}
+  </span>
+  <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-nav-list *ngIf="!isLessThenLargeDevice">
+    <span *ngFor="let permission of permisions">
+      <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
+        {{ permission }}
+      </a>
     </span>
-    <button mat-icon-button class="example-icon" (click)="displaySideNav()" *ngIf="isLessThenLargeDevice && !route.includes('auth')">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <mat-nav-list *ngIf="!isLessThenLargeDevice">
-        <span *ngFor="let permission of permisions">
-          <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active">
-            {{permission}}
-          </a>
-        </span>
-    </mat-nav-list>
-    <span class="example-spacer"></span>
-    <div class="form-group">
-        <input placeholder="search" type="text" #searchTerm id="searchField" class="form-control" (keyup)="search(searchTerm.value)">
-    </div>
-    <div class="">
-      <mat-menu #navOptions="matMenu">
-        <button *ngIf="logInUser" mat-menu-item class="mt-1">
-          <i class="fa fa-user"></i> {{logInUser.toLocaleUpperCase()}}
-        </button>
-        <button [routerLink]="['/auth']" mat-menu-item *ngIf="!route" class="mt-1">
-          <i class="fa fa-lock-open"></i> Login
-        </button>
-        <button *ngIf="logInUser" (click)="logout()" mat-menu-item class="mt-1">
-          <i class="fa fa-sign-out-alt"></i> Logout
-        </button>
-        <button *ngIf="logInUser" mat-menu-item class="mt-1" >
-          <i class="fa fa-user-edit"></i> Account
-        </button>
-        <button (click)="registerDialog()" class="mt-1" mat-menu-item *ngIf="route == 'admin' || route == 'lga'">
-          <i class="fa fa-sign-in-alt"></i> Register
-        </button>
-      </mat-menu>
-      <button [matMenuTriggerFor]="navOptions" *ngIf="logInUser" mat-icon-button>
-        <mat-icon>more_vert</mat-icon>
+  </mat-nav-list>
+  <span class="example-spacer"></span>
+  <div class="form-group">
+    <input placeholder="search" type="text" #searchTerm id="searchField" class="form-control" (keyup)="search(searchTerm.value)"/>
+  </div>
+  <div class="">
+    <mat-menu #navOptions="matMenu">
+      <a *ngIf="logInUser" mat-menu-item class="mt-1" [routerLink]="[route]">
+        <i class="fa fa-user"></i> {{ logInUser.toLocaleUpperCase() }}
+      </a>
+      <button [routerLink]="['/auth']" mat-menu-item *ngIf="!userType" class="mt-1">
+        <i class="fa fa-lock-open"></i> Login
       </button>
-    </div>
+      <button *ngIf="logInUser" mat-menu-item class="mt-1">
+        <i class="fa fa-user-edit"></i> Account
+      </button>
+      <button (click)="registerDialog()" class="mt-1" mat-menu-item *ngIf="userType == 'admin'">
+        <i class="fa fa-sign-in-alt"></i> Register
+      </button>
+      <button *ngIf="logInUser" (click)="logout()" mat-menu-item class="mt-1">
+        <i class="fa fa-sign-out-alt"></i> Logout
+      </button>      
+    </mat-menu>
+    <button [matMenuTriggerFor]="navOptions" *ngIf="logInUser" mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>

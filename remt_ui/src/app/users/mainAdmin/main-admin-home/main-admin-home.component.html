@@ -1,31 +1,38 @@
-<div class="table-responsive">
-      <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">User Type</th>
-                <th scope="col" class="text-center">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let userOg of users; let i=index">
-                <tr>
-                    <th scope="row" [attr.rowspan]="userOg.users.length+1">{{userOg.userTypeName}}</th>
-                </tr>
-                <tr *ngFor="let user of userOg.users; let i=index">
-                    <td>
-                      <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Name: {{user.userInfos.name}}</h5>
-                            <small>Phone No: {{user.userInfos.phoneNumber}}</small>
-                          </div>
-                          <p class="mb-1">Some placeholder content in a paragraph.</p>
-                          <small>And some small print.</small>
-                        </a>
-                      </div>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+<div class="container-fluid">
+  <div class="row pt-2">
+    <div class="col-12">
+      <div class="card text-left">
+        <div class="card-body">
+          <h4 class="card-title border-bottom">User Types Summary Chart</h4>
+          <ngx-charts-bar-vertical 
+              [view]="[800,400]"
+              [results]="users"
+              [xAxisLabel]="'Users'"
+              [legendTitle]="'User Type Chart'"
+              [yAxisLabel]="'Amount'"
+              [legend]="true"
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [gradient]="true">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card text-left">
+        <div class="card-body">
+          <h4 class="card-title border-bottom">Houses per Street Chart</h4>
+          <ngx-charts-pie-chart 
+              [results]="estates"
+              [legend]="true"
+              [legendTitle]="'Product Sale Report'" 
+              [view]="[800,300]"
+              [labels]="true" >
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

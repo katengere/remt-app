@@ -1,0 +1,6 @@
+h5, 
+mat-dialog-content,
+mat-dialog-actions{
+    background-color:  rgb(250, 173, 71)!important ;
+    color: red !important;
+}

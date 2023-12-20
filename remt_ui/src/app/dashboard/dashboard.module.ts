@@ -14,6 +14,9 @@ import { DashboardIndexComponent } from './dashboard-index/dashboard-index.compo
 import { DashboardSavedItemComponent } from './dashboard-saved-item/dashboard-saved-item.component';
 import { DashboardProfileComponent } from './dashboard-profile/dashboard-profile.component';
 import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AdminNgxChartComponent } from './admin-ngx-chart/admin-ngx-chart.component';
 
 
 @NgModule({
@@ -22,12 +25,15 @@ import { DashboardOrderComponent } from './dashboard-order/dashboard-order.compo
     DashboardIndexComponent,
     DashboardSavedItemComponent,
     DashboardProfileComponent,
-    DashboardOrderComponent
+    DashboardOrderComponent,
+    AdminNgxChartComponent
   ],
   exports:[DashboardLayoutComponent, DashboardIndexComponent],
   imports: [
     CommonModule, DashboardRoutingModule,SharedModule, MatMenuModule, MatCardModule,
-    MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule
+    MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule,
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers:[]
 })

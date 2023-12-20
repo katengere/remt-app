@@ -8,10 +8,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from "@angular/material/list";
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MngUsersComponent } from './mng-users/mng-users.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
     MainAdminHomeComponent,
+    MngUsersComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ]
 })
 export class MainAdminModule { }

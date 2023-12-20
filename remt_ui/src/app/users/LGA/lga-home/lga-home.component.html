@@ -1,20 +1,27 @@
-<div>
-    <h3>The Brain is Habit Machine</h3>
-    <p>
-        If you stop and think about all the habits that make up what you do every day, from brushing your teeth, to drinking coffee, to what you do when we arrive at work, to how you act and react to people and situations, to the words you use, the things you
-        say, to what you do at home after work and everything in between, you’ll see that the lion’s share of what you do is ALL habit triggered by external cues, for better or for worse, that is. In fact, only 2% of our brain is designed to retain memory
-        in our consciousness. The rest is all subconscious. The brain WANTS to create habits so that we’re not required to use up conscious effort. It only follows then that performance is achieved not by what our conscious mind tells us, but largely
-        through the subconscious cues that guide us throughout our day.
-    </p>
-    <p>
-        Now, clearly, I could go off on a tangent here and cite all the dangers and pitfalls of our subconscious ruling our behaviors, but that will be a subject for another book! However... just for the fun of it, here’s a good story... One of my favorite real
-        life examples of the dangers of habit creation was depicted in the recent movie, The Wolf of Wall Street. It’s based on the true story of Jordan Belfort, a New York stockbroker who ran a firm that engaged in securities fraud and corruption on
-        Wall Street in the 1990s, and ended up spending years in jail.
-    </p>
-    <p>
-        It’s a cautionary tale, and in a stunning interview with Piers Morgan on CNN, Belfort explains how a young man raised in a typical middle class home, with good family values, could turn into such a criminal. He says, “You don’t lose your soul all at once,
-        you lose it a little bit at a time, incrementally. When I lost my ethical way it did not start off that way. It’s like these tiny imperceptible steps over the line. Each time your line of morality moves a bit, and before you know it you’re doing
-        things you thought you would never do and it seems perfectly okay. What seems amazing first becomes commonplace after a period of time and you become numb. Day one it’s one thing, and a year later it’s completely off the rails.” Watch this video
-        from 7:30 to 8:52 minutes, to see Jordan Belfort describe this.
-    </p>
-</div>
+<mat-card class="example-card">
+    <mat-card-header class="d-flex justify-content-between">
+      <span mat-card-avatar class="example-header-image">
+        <img mat-card-image src="../../../../assets/imgs/img1.jpg" width="45px" height="50px" alt="Photo of a Shiba Inu">
+      </span>
+      <span>
+        <mat-card-title>{{lga?.userInfos?.name}}</mat-card-title>
+        <mat-card-subtitle>{{lga?.userTypeName}}</mat-card-subtitle>
+      </span>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        For the local government administrators, they would need to have the ability to add landlords and properties in their 
+        respective areas. The user interface for this user type would include a form for adding new landlords, with fields for name, 
+        property address, and owner name.
+      </p>
+      <p>
+        No of landlords registerd: {{lga?.regUserIds?.length}} 
+      </p>
+
+    </mat-card-content>
+    <mat-card-actions class=" d-flex justify-content-end">
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  

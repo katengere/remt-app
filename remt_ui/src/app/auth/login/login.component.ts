@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { UserTypeInterface } from 'src/app/users/types/userTypes';
-import { MessageService } from 'src/app/shared/services/message.service';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import * as userActions from "../../users/store/users.actions";
 import { MatDialog } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
-import { UserEntityService } from '../../shared/services/user-entity.service';
-import { UserDataService } from 'src/app/shared/services/user-data.service';
-import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/shared/services/message.service';
+import { UserDataService } from 'src/app/shared/services/user-data.service';
+import { UserTypeInterface } from 'src/app/users/types/userTypes';
+import { UserEntityService } from '../../shared/services/user-entity.service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +20,8 @@ export class LoginComponent {
     userTypeName: '',
     permissions: [],
     ui: {},
-    estates: []
+    estates: [],
+    createdAt: new Date()
   }
   userTypeNames!: string[];
   constructor(
@@ -51,27 +50,31 @@ export class LoginComponent {
       this.userDataService.add(this.user).subscribe({
         next:(user)=>{
           console.log(user);
-          this.storageService.saveToken(user.userInfos.name, user.userTypeName);
-          this.router.navigate([user.userTypeName.toLowerCase()])
+          this.storageService.saveToken(user);
+          this.router.navigate([user.userTypeName.toLowerCase(), user.id]);
           this.msgService.message({
-            title:'Login Success', text: user.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania'
-          }, 'bg-success');
+            title:'Login Success', 
+            text: user.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania',
+            color:'green'
+          });
         },
         error:err=>{
           console.log(err);
           this.msgService.message({
-            title:'Login Error', text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message
-          }, 'bg-success');
+            title:'Login Error', 
+            text: err.statusText=="Unknown Error"? 'No internet connection' : typeof(err.error)=='string' ? err.error : err.message,
+            color:'red'
+          });
         }
       });
       form.resetForm();
       this.dialog.closeAll();
     } else {
-      this.userEntityService.dispatch(userActions.loginFailure({
-        error:{
-          text:'Please make sure to fill all required fields!',
-        title: 'Form Error'}
-      }))
+      this.msgService.message({
+        text:'Please make sure to fill all required fields!',
+        title: 'Form Error',
+        color:'red'
+    });
     }
   }
 }

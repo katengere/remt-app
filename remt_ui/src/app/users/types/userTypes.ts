@@ -54,6 +54,9 @@ export class UserTypeInterface {
   ui!: UIConfigInterface;
   userInfos!: PersonInfoInterface;
   estates!: HouseInterface[] | null;
+  regUserIds?: string[];
+  regEstateIds?: string[];
+  createdAt!: Date;
   constructor(){}
 }
 

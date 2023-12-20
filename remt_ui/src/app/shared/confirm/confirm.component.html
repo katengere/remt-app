@@ -1,0 +1,21 @@
+<h5 mat-dialog-title class="card-title">
+    {{dialogData.action}} {{dialogData.context}}
+</h5>
+<mat-dialog-content class="card-text">
+    <div class="card">
+        <div class="card-body">
+            <p>
+                Are you sure to delete {{dialogData.name | formatNames}}?
+            </p>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="card-footer">
+    <button mat-raised-button mat-dialog-close class="btn btn-sm m-1">
+      <i class="fa fa-window-close"></i>Close
+    </button>
+    <button mat-raised-button *ngIf="dialogData.context=='User'" mat-dialog-close class="btn btn-sm bg-danger m-1" (click)="deleteUser(dialogData.data.id)">
+      <i class="fa fa-trash"></i>Delete
+    </button>    
+</mat-dialog-actions>

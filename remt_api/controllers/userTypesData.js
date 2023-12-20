@@ -1,6 +1,6 @@
  const dataSource = [
     {
-        id:'1',
+        id:"HQ2xHxwvQfMg",
         userTypeName: "Admin",
         permissions: ["manage_users"],
         ui: {
@@ -8,10 +8,11 @@
           overview: true,
         },
         userInfos:{name:'jaoko', age:30, phoneNumber:+255764779234,nationId:15121989},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023,10,23)
       },
       {
-        id:'2',
+        id:"KnsjkJyLUm5T",
         userTypeName: "LGA",
         permissions: ["add_landlords", "add_properties"],
         ui: {
@@ -26,10 +27,11 @@
           },
         },
         userInfos:{name:'mery', age:40, phoneNumber:+255769044790,nationId:0},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023, 8,15)
       },
       {
-        id:'3',
+        id:"zDC2yBBY2O1j",
         userTypeName: "Landlord",
         permissions: [
           "manage_properties",
@@ -49,21 +51,22 @@
         userInfos:{name:'gladness', age:60, phoneNumber:+255767620337,nationId:0},
         estates:[
           {
-            owner_Id:'',
+            owner_Id:"cFyV7FopQtly",
             address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
             type:'appartments',
             open:false
           },
           {
-            owner_Id:'',
+            owner_Id:"T7b0ihtnIYh6",
             address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
             type:'rooms',
             open:false
           }
-        ]
+        ],
+        createdAt: new Date(2023,6,11)
       },
       {
-        id:'0',
+        id:"eorV6y9pVTB1",
         userTypeName: "Admin",
         permissions: ["manage_users"],
         ui: {
@@ -73,21 +76,22 @@
         userInfos:{name:'kadet', age:30, phoneNumber:+255754765698,nationId:15121989},
         estates:[
           {
-            owner_Id:'',
-            address:{id:'2', region:'shy',district:'temeke',ward:'tazara',street:'kwampalange'},
+            owner_Id:"90n9gtv28Si6",
+            address:{id:'2', region:'shy',district:'shy dc',ward:'ngokolo',street:'mwinamila'},
             type:'rooms',
             open:false
           },
           {
-            owner_Id:'',
-            address:{id:'2', region:'dsm',district:'temeke',ward:'tazara',street:'kwampalange'},
+            owner_Id:"JtOQSaFWwe2t",
+            address:{id:'2', region:'shy',district:'shy dc',ward:'ngokolo',street:'mwinamila'},
             type:'appartments',
             open:false
           }
-        ]
+        ],
+        createdAt: new Date(2023,5,1)
       },
       {
-        id:'4',
+        id:"edaapX1LtqzD",
         userTypeName: "Caretaker",
         permissions: [
           "manage_tenants",
@@ -101,10 +105,11 @@
           rental_history: true,
         },
         userInfos:{name:'nyanzala', age:20, phoneNumber:+255655101010,nationId:0},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023,8,20)
       },
       {
-        id:'5',
+        id:"rSWIPsOnBM5P",
         userTypeName: "Broker",
         permissions: ["recruit_tenants"],
         ui: {
@@ -114,10 +119,11 @@
           },
         },
         userInfos:{name:'swaga', age:26, phoneNumber:+255624992151,nationId:0},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023,9,12)
       },
       {
-        id:'6',
+        id:"J09QZJsYG1Zg",
         userTypeName: "Tenant",
         permissions: [
           "manage_rental_payments",
@@ -133,10 +139,11 @@
           auto_payments: true,
         },
         userInfos:{name:'mika', age:32, phoneNumber:+255644304020,nationId:0},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023, 11,1)
       },
       {
-        id:'7',
+        id:"EIEl1RVTNFfJ",
         userTypeName: "Lender",
         permissions: ["verify_address"],
         ui: {
@@ -146,8 +153,10 @@
           },
         },
         userInfos:{name:'mery', age:28, phoneNumber:+255620223810,nationId:0},
-        estates:[]
+        estates:[],
+        createdAt: new Date(2023,7,8)
       }
  ];
+
 
  module.exports = { dataSource };

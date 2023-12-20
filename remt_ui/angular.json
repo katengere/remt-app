@@ -19,6 +19,7 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": ["rfdc"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -36,7 +37,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

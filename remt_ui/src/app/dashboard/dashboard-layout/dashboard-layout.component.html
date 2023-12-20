@@ -7,17 +7,17 @@
     <mat-icon>menu</mat-icon>
         </span>
         <mat-nav-list *ngIf="!isLessThenLargeDevice">
-            <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
+            <a routerLink="" routerLinkActive="active" class="btn btn-sm m-1 p-0">       
                 <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
             </a>
-            <a routerLink="/dashboard/profile" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
-                <mat-icon class="mr-2">account_circle</mat-icon> View my profile
+            <a routerLink="/dashboard/profile" routerLinkActive="active" class="btn btn-sm m-1 p-0">       
+                <mat-icon class="mr-2">account_circle</mat-icon> Location profile
             </a>
-            <a routerLink="/dashboard/saved-items" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
-                <mat-icon class="mr-2">list</mat-icon> Saved Items
+            <a routerLink="/dashboard/about" routerLinkActive="active" class="btn btn-sm m-1 p-0">       
+                <mat-icon class="mr-2">list</mat-icon> About
             </a>
-            <a routerLink="/dashboard/orders" routerLinkActive="active" class="btn btn-sm m-0 p-0">       
-                <mat-icon class="mr-2">article</mat-icon> Orders
+            <a routerLink="/dashboard/charts" routerLinkActive="active" class="btn btn-sm m-1 p-0">       
+                <mat-icon class="mr-2">article</mat-icon> Charts
             </a>
         </mat-nav-list>
         <span class="example-spacer"></span>
@@ -32,7 +32,7 @@
             <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
               <i class="fa fa-sign-out-alt"></i> Logout
             </button>
-            <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase()]" mat-menu-item class="mt-1" >
+            <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase(), id]" mat-menu-item class="mt-1">
               <i class="fa fa-user-edit"></i> {{userType}}
             </button>
           </mat-menu>
@@ -40,18 +40,18 @@
     </mat-toolbar>
     <mat-sidenav-container class="">
         <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">            
-            <a routerLink="/dashboard" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+            <a routerLink="" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
                 <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
             </a><br>
             <a routerLink="/dashboard/profile" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
-                <mat-icon class="mr-2">account_circle</mat-icon> View my profile
+                <mat-icon class="mr-2">account_circle</mat-icon> Location profile
             </a><br>
-            <a routerLink="/dashboard/saved-items" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
-                <mat-icon class="mr-2">list</mat-icon> Saved Items
+            <a routerLink="/dashboard/about" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">list</mat-icon> About
             </a><br>
-            <a routerLink="/dashboard/orders" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
-                <mat-icon class="mr-2">article</mat-icon> Orders
-            </a><br>          
+            <a routerLink="/dashboard/charts" (click)="sidenav.toggle()" class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon class="mr-2">article</mat-icon> Charts
+            </a><br>           
         </mat-sidenav>
         <mat-sidenav-content>
             <main>

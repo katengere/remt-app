@@ -19,6 +19,8 @@ import { DefaultDataServiceConfig } from '@ngrx/data';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrokerDetailsComponent } from './broker-details/broker-details.component';
 import { LandlordDetailsComponent } from './landlord-details/landlord-details.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { FormatNamesPipe } from './pipes/format-names.pipe';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,16 @@ import { LandlordDetailsComponent } from './landlord-details/landlord-details.co
     UserlayoutComponent,
     MessageComponent,
     BrokerDetailsComponent,
-    LandlordDetailsComponent, 
+    LandlordDetailsComponent,
+    ConfirmComponent,
+    FormatNamesPipe, 
   ],
   exports:[
     HeaderComponent,
     SideNavComponent,
     FooterComponent,
-    MessageComponent
+    MessageComponent,
+    FormatNamesPipe
   ],
   imports: [
     CommonModule,

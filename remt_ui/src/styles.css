@@ -31,7 +31,8 @@ mat-sidenav{
 }
 mat-sidenav-content,
 mat-dialog-content,
-mat-dialog-actions{
+mat-dialog-actions,
+mat-card, mat-card-header, mat-card-content, mat-card-actions{
   background-color:  rgb(250, 173, 71);
 }
 .card {

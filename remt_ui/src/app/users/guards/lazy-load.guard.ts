@@ -15,7 +15,8 @@ export function LazyLoadGuard (routeSeg:string): CanMatchFn{
     store.dispatch(userActions.authFailure({
       error: {
         title:'Authentication Error',
-        text:'Please Login to access the selected route'
+        text:'Please Login to access the selected route',
+        color:'red'
       }
     }))
     const router:Router = inject(Router);
