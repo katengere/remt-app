@@ -3,7 +3,7 @@
 html,
 body {
     height: 100%;
-    background-color: rgb(250, 173, 71);
+    background-color: burlywood;
     color: white;
 }
 
@@ -26,32 +26,33 @@ mat-toolbar{
   z-index: 99;
 }
 mat-sidenav{
-  background-color:  rgb(250, 173, 71)  !important;
+  background-color:  burlywood;
   width: auto;
 }
 mat-sidenav-content,
 mat-dialog-content,
 mat-dialog-actions,
 mat-card, mat-card-header, mat-card-content, mat-card-actions{
-  background-color:  rgb(250, 173, 71);
+  background-color:  burlywood;
+  color: white;
 }
 
 .card {
     background-color: inherit;
 }
 a{
-  background-color: inherit !important;
-  color: rgb(250, 173, 71) !important;
+  background-color: inherit;
+  color: grey ;
   font-weight: bolder;
 }
 .sideNav a{
-  background-color: inherit !important;
-  color: black !important;
+  background-color: inherit;
+  color: black;
 }
 .sideNav .active{
-  color: white !important;
+  color: black ;
 }
 .active{
-color: white !important;
+color: black;
 /* background-color:  white !important; */
 }
