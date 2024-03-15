@@ -1,64 +1,127 @@
-<mat-dialog-content class="col-12">
-  <h3 mat-dialog-title class="d-flex justify-content-center">
-    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px">
-  </h3>                  
-                  <form [formGroup]="userInfosForm">
-                    <mat-card style="padding: 0px; margin: 0px;">
-                        
-                        <mat-card-content style="background-color:  rgb(250, 173, 71);
-                        color: black;">
-                            <div>
-                                <mat-form-field>
-                                    <mat-label>Name</mat-label>
-                                    <input name="name" matInput type="text" placeholder="Name" formControlName="name">
-                                </mat-form-field>
-                            </div>    
-                            <div *ngIf="dialogData.action=='Edit'">
-                                <mat-form-field>
-                                    <mat-label>User Type</mat-label>
-                                    <input name="userTypeName" matInput readonly type="text" placeholder="userTypeName" formControlName="userTypeName">
-                                </mat-form-field>
-                            </div>
-                            <div *ngIf="dialogData.action=='Register'">
-                                <mat-form-field>
-                                    <mat-label><i class="fa fa-user-plus"></i> User Type</mat-label>
-                                    <mat-select placeholder="Placeholder" formControlName="userTypeName" name="userTypeName">
-                                      <mat-option *ngFor="let userTypeName of userTypeNames" [value]="userTypeName">
-                                        {{userTypeName}}
-                                      </mat-option>
-                                    </mat-select>                                    
-                                </mat-form-field>
-                            </div>
-                            <div>
-                              <mat-form-field>
-                                  <mat-label>NationId</mat-label>
-                                  <input name="nationId" matInput type="text" placeholder="nationId" formControlName="nationId">
-                              </mat-form-field>
-                            </div>
-                            <div>
-                              <mat-form-field>
-                                  <mat-label>PhoneNumber</mat-label>
-                                  <input name="phoneNumber" matInput type="text" placeholder="phoneNumber" formControlName="phoneNumber">
-                              </mat-form-field>
-                          </div>
-                          <div>
-                            <mat-form-field>
-                                <mat-label>Age</mat-label>
-                                <input name="age" matInput type="text" placeholder="age" formControlName="age">
-                            </mat-form-field>
-                        </div>                                                                                           
-                        </mat-card-content>                        
-                    </mat-card>
-                </form>
+<mat-dialog-content>
+  <h2 mat-dialog-title align="center">
+    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px"><br>
+    <small>
+      <b>{{action}} Account</b>
+    </small>
+  </h2>
+  <mat-card>
+    <mat-card-content class="text-center">
+      <form [formGroup]="userInfosForm">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Name</mat-label>
+              <input name="name" matInput type="text" placeholder="Name" formControlName="name">
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('name')?.touched && userInfosForm.get('name')?.invalid">
+                name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Gender</mat-label>
+              <mat-select placeholder="gender" matInput formControlName="gender" name="gender">
+                <mat-option *ngFor="let gender of ['male', 'female']" [value]="gender">
+                  {{gender}}
+                </mat-option>
+              </mat-select>
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('gender')?.touched && userInfosForm.get('gender')?.invalid">
+                gender is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>DOB</mat-label>
+              <input placeholder="Date of Birth" [matDatepicker]="age" matInput formControlName="age" />
+              <mat-hint class="text-danger"
+                *ngIf="userInfosForm.get('age')?.touched && userInfosForm.get('age')?.invalid">
+                Age must be 18 - 120 yrs
+              </mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="age"></mat-datepicker-toggle>
+              <mat-datepicker #age></mat-datepicker>
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('age')?.touched && userInfosForm.get('age')?.pristine">
+                DOB is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>NationId</mat-label>
+              <input name="nation_Id" matInput type="number" placeholder="nationId" formControlName="nation_Id">
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('nationId')?.touched && userInfosForm.get('nationId')?.invalid">
+                NationId is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>PhoneNumber</mat-label>
+              <input name="phoneNumber" matInput type="text" placeholder="phoneNumber" formControlName="phoneNumber">
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('phoneNumber')?.touched && userInfosForm.get('phoneNumber')?.invalid">
+                phoneNumber is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div *ngIf="action=='Edit'" class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>User Type</mat-label>
+              <input name="userTypeName" matInput readonly type="text" placeholder="userTypeName"
+                formControlName="userTypeName">
+            </mat-form-field>
+          </div>
+          <div *ngIf="action=='Register'" class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label><i class="fa fa-user-plus"></i> User Type</mat-label>
+              <mat-select placeholder="userTypeName" matInput formControlName="userTypeName" name="userTypeName">
+                <mat-option *ngFor="let userTypeName of userTypeNames" [value]="userTypeName">
+                  {{userTypeName}}
+                </mat-option>
+              </mat-select>
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('userTypeName')?.touched && userInfosForm.get('userTypeName')?.invalid">
+                userTypeName is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="action !== 'Edit'" class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Password</mat-label>
+              <input name="password" matInput type="text" placeholder="password" formControlName="password">
+              <mat-error class="text-danger"
+                *ngIf="userInfosForm.get('password')?.touched && userInfosForm.get('password')?.invalid">
+                password is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="w-100">
+              <mat-label>Summary</mat-label>
+              <textarea name="summary" cols="10" matInput rows="3" placeholder="summary"
+                formControlName="summary"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-dialog-close class="btn btn-sm">
     <i class="fa fa-window-close"></i>Close
   </button>
-  <button class="btn btn-sm m-1" *ngIf="action == 'Edit'" (click)="onEdit()">
+  <button class="btn btn-sm m-1" *ngIf="action == 'Edit User'" (click)="onEdit()">
     <i class="fa fa-edit"></i> {{action}}!
   </button>
-  <button class="btn btn-sm m-1" *ngIf="action !== 'Edit'" (click)="onRegister()">
+  <button class="btn btn-sm m-1" *ngIf="action !== 'Edit User'" (click)="onRegister()">
     <i class="fa fa-file-upload"></i> Register!
   </button>
 </mat-dialog-actions>

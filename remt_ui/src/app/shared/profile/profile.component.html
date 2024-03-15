@@ -1,0 +1,72 @@
+<div class=" container-fluid m-0 h-100 w-100">
+  <div class="row m-2">
+    <div class="card col-sm-6 flex-row" style="background-color: rgb(112, 111, 111);">
+      <div>
+        <img src="../../../assets//imgs//img7.jpg" width="75px" height="75px" alt="">
+      </div>&nbsp;&nbsp;&nbsp;
+      <div>
+        <h5><b>Name: </b>{{user?.userInfos!.name | formatNames}}</h5>
+        <p><b>Tel: </b>{{user?.userInfos!.phoneNumber}}</p>
+      </div>
+    </div>
+    <div class="card col-sm-6">
+      <p><b>Member Since: </b>{{user?.createdAt | date}}</p>
+      <p><b>User Type: </b>{{user?.userTypeName}}</p>
+    </div>
+    <div class="card col-12">
+      <h6 class=" mx-2">{{user?.userTypeName | formatNames}} Summary</h6>
+      <p>
+        {{user?.userInfos?.summary}}
+      </p>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="card m-0 p-0">
+      <div class="card-header d-flex justify-content-between">
+        <h6 [matBadge]="invoices?.length" matBadgeOverlap="false" matBadgeColor="accent" matBadgeSize="small">Invoices
+          {{user?.userTypeName == 'landlord' ? 'Created' : 'Received'}}</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th scope="col">Issued</th>
+                <th scope="col">Rooms</th>
+                <th scope="col">Rent</th>
+                <th scope="col">Duration <small>(months)</small></th>
+                <th scope="col">Total</th>
+                <th scope="col">Net Total <small>[+ 7% tax]</small></th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let invoice of invoices">
+                <td>{{invoice.createdAt | date}}</td>
+                <td>{{invoice.rooms}}</td>
+                <td>{{invoice.rent}}</td>
+                <td>{{invoice.start+'/'+invoice.end | monthsDiff}}</td>
+                <td>{{invoice.rentTotal | number}}</td>
+                <td>{{invoice.netTotal | number}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="card m-0 p-0 ">
+      <div class="card-header d-flex justify-content-between">
+        <h6 class=" mx-2">Personal Information</h6>
+        <button type="button" class=" mx-2">edit</button>
+      </div>
+      <div class="card-body row">
+        <p class="col-sm-6"><b>Name:</b> {{user?.userInfos?.name}}</p>
+        <p class="col-sm-6"><b>Gender</b> {{user?.userInfos?.gender}}</p>
+        <p class="col-sm-6"><b>PhoneNumber: </b> {{user?.userInfos?.phoneNumber}}</p>
+        <p class="col-sm-6"><b>Age:</b> {{user?.userInfos?.age | userAge}}</p>
+        <p class="col-sm-6"><b>Nation Id</b> {{user?.userInfos?.nation_Id}}</p>
+      </div>
+    </div>
+  </div>
+</div>

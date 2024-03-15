@@ -1,32 +1,87 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+import { StorageService } from 'src/app/auth/services/storage.service';
+import { MessageService } from '../../../shared/services/message.service';
 import { UserEntityService } from '../../../shared/services/user-entity.service';
+import { logout } from '../../../users/store/users.actions';
 import { UserTypeInterface } from '../../types/userTypes';
+import { AddLandlordsComponent } from '../add-landlords/add-landlords.component';
+import { AddPropertiesComponent } from '../add-properties/add-properties.component';
 
 @Component({
   selector: 'app-lga-home',
   templateUrl: './lga-home.component.html',
   styleUrls: ['./lga-home.component.css']
 })
-export class LgaHomeComponent implements OnInit {
-  lga?: UserTypeInterface;
-  constructor(
-    private userEntityService: UserEntityService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-    combineLatest([this.route.params, this.userEntityService.entities$]).subscribe({
-      next:([params, users])=>{
-        const id = params['id'];
-        this.lga = users.find(u=>u.id===id) as UserTypeInterface;
-      },
-      error:(err)=>{
+export class LgaHomeComponent {
+  isLessThenLargeDevice!: boolean;
+  isSidenavExpand = false;
+  @ViewChild('sidenav') sidenav: any;
+  lga!: UserTypeInterface;
+  username!: string;
+  id!: string;
+  userType!: string;
 
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private activatedRoute: ActivatedRoute,
+    private msgService: MessageService,
+    private storageService: StorageService,
+    private dialog: MatDialog,
+    private store: Store,
+    private userEntityService: UserEntityService
+  ) {
+    this.breakpointObserver.observe(['(max-width: 1199px)']).subscribe(({ matches }) => {
+      this.isLessThenLargeDevice = matches;
+      if (!matches) {
+        this.isSidenavExpand = false;
+      }
+    });
+    combineLatest([this.activatedRoute.params, this.userEntityService.entities$]).subscribe({
+      next: ([params, users]) => {
+        this.lga = users.find(u => u._id === params['id']) as UserTypeInterface;
+        this.username = this.lga?.userInfos.name;
+        this.userType = this.lga?.userTypeName;
+        this.id = this.lga?._id;
+      },
+      error: (err) => {
+        this.msgService.message({
+          title: 'Error',
+          text: 'Sorry, something went wrong: ' + err.message,
+          color: 'red',
+        });
       }
     });
   }
-  ngOnInit(): void {
+
+  loginDialog() {
+    this.dialog.open(LoginComponent)
+  }
+
+  logout() {
+    this.store.dispatch(logout());
+  }
+
+  add_landlords() {
+    // this.sidenav.toggle();
+    this.isSidenavExpand = this.sidenav.opened;
+    this.dialog.open(AddLandlordsComponent)
+  }
+
+  add_properties() {
+    this.sidenav.toggle();
+    this.isSidenavExpand = this.sidenav.opened;
+    this.dialog.open(AddPropertiesComponent)
+  }
+
+  toggleSidenav(): void {
+    this.sidenav.toggle();
+    this.isSidenavExpand = this.sidenav.opened;
   }
 
 }

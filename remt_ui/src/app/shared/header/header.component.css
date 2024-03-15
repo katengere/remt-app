@@ -2,3 +2,10 @@
     width: 75px; 
     height: 20px;
 }
+a:hover {
+    color: rgb(246, 5, 5) !important;
+  }
+  mat-toolbar{
+    background-color: black; 
+    color: rgb(250, 173, 71);
+  }

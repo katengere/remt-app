@@ -8,6 +8,7 @@ import { selectUrl } from 'src/app/users/store/users.selectors';
 import { RegisterComponent } from '../../auth/register/register.component';
 import { logout } from '../../users/store/users.actions';
 import { formatUrl } from '../../users/types/usefulFunctions';
+import { UserDataService } from '../services/user-data.service';
 import { UserEntityService } from '../services/user-entity.service';
 
 @Component({
@@ -21,51 +22,58 @@ export class HeaderComponent implements OnInit {
   isLessThenLargeDevice = true;
   permisions!: string[];
   route!: string;
+  activeDashboard!: boolean;
+  id!: string;
   userType: string | undefined;
-  logInUser!: string | null;
+  logInUser!: string | undefined;
   userTypeSearch!: string;
   @Output() sideNav = new EventEmitter();
   constructor(
     private breakpointObserver: BreakpointObserver,
     private store: Store,
+    private userDataService: UserDataService,
     private userEntityService: UserEntityService,
     private dialog: MatDialog,
-    private storageService: StorageService
-  ){
-    this.breakpointObserver.observe(['(max-width: 1199px)']).pipe(takeWhile(() => this.isAlive)).subscribe(({matches}) => {
+    public storageService: StorageService
+  ) {
+    this.breakpointObserver.observe(['(max-width: 1199px)']).pipe(takeWhile(() => this.isAlive)).subscribe(({ matches }) => {
       this.isLessThenLargeDevice = matches;
       if (!matches) {
         this.isSidenavExpand = false;
       }
     });
-   
+
   }
-  displaySideNav(){
+  displaySideNav() {
     this.sideNav.emit();
   }
-  registerDialog(){
+  registerDialog() {
     this.dialog.open(RegisterComponent, {
-      data: {user: {}, action:'Register'}
+      data: { user: {}, action: 'Register' }
     })
   }
-  logout(){
+  logout() {
     this.store.dispatch(logout());
     this.userEntityService.getAll();
   }
   ngOnInit(): void {
     combineLatest([this.store.select(selectUrl), this.userEntityService.entities$]).subscribe({
-      next:([url,users])=>{
+      next: ([url, users]) => {
+        console.log(url);
+        this.activeDashboard = url === '/' + this.storageService.getUserTypeName() + '/' + this.storageService.getId();
         this.route = formatUrl(url);
-        this.userType = this.storageService.getUserTypeName()?.toLowerCase();        
+        this.userType = this.storageService.getUserTypeName()?.toLowerCase();
+        this.id = this.storageService.getId();
         this.logInUser = this.storageService.getUserName();
-        this.permisions = users.filter(u=>u.userTypeName.toLowerCase()==this.userType ||
-        u.userTypeName.toLowerCase() == this.userType)
-        .reduce((acc,{permissions})=>[...acc, ...permissions],[] as string[])
-        .filter((p,i,arr)=>arr.indexOf(p)==i);
+        this.permisions = users.filter(u => u.userTypeName.toLowerCase() == this.userType ||
+          u.userTypeName.toLowerCase() == this.userType)
+          .reduce((acc, { permissions }) => [...acc, ...permissions], [] as string[])
+          .filter((p, i, arr) => arr.indexOf(p) == i);
       }
     });
   }
-  search(value:string): void {
-    this.userEntityService.setFilter(value)
+  search(value: string): void {
+    console.log(value);
+    this.userEntityService.setFilter(value);
   }
 }

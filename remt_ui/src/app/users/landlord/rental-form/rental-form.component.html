@@ -1,0 +1,82 @@
+<mat-dialog-content class="col-12">
+  <mat-card>
+    <mat-card-header class="d-flex justify-content-center">
+      <h3 mat-dialog-title>
+        House Rent Record
+      </h3>
+    </mat-card-header>
+    <mat-card-content class="d-flex justify-content-center">
+      <form [formGroup]="rentForm">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>From</mat-label>
+              <input placeholder="from" [matDatepicker]="from" matInput formControlName="from" />
+              <mat-datepicker-toggle matIconSuffix [for]="from"></mat-datepicker-toggle>
+              <mat-datepicker #from></mat-datepicker>
+              <mat-error class="text-danger" *ngIf="rentForm.get('from')?.touched && rentForm.get('from')?.invalid">
+                From is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>To</mat-label>
+              <input placeholder="to" [matDatepicker]="to" matInput formControlName="to" />
+              <mat-datepicker-toggle matIconSuffix [for]="to"></mat-datepicker-toggle>
+              <mat-datepicker #to></mat-datepicker>
+              <mat-error class="text-danger" *ngIf="rentForm.get('to')?.touched && rentForm.get('to')?.invalid">
+                To is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Rooms</mat-label>
+              <input name="rooms" placeholder="rooms" type="number" matInput formControlName="rooms" />
+              <mat-error class="text-danger" *ngIf="rentForm.get('rooms')?.touched && rentForm.get('rooms')?.pristine">
+                Rooms is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Rent</mat-label>
+              <input name="rent" placeholder="rent" type="text" matInput formControlName="rent" />
+              <mat-hint *ngIf="rentForm.get('rent')?.touched && rentForm.get('rent')?.invalid">
+                Rent must be above 10000
+              </mat-hint>
+              <mat-error class="text-danger" *ngIf="rentForm.get('rent')?.touched && rentForm.get('rent')?.pristine">
+                Rent is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>phoneNumber</mat-label>
+              <input name="phoneNumber" matInput type="text" placeholder="phoneNumber" formControlName="phoneNumber" />
+              <mat-hint
+                *ngIf="rentForm.get('phoneNumber')?.touched && rentForm.get('phoneNumber')?.invalid || rentForm.get('phoneNumber')?.dirty && rentForm.get('phoneNumber')?.invalid">0754
+                767 767</mat-hint>
+              <mat-error class="text-danger"
+                *ngIf="rentForm.get('phoneNumber')?.touched && rentForm.get('phoneNumber')?.invalid">
+                phoneNumber is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-center">
+  <button mat-dialog-close class="btn btn-sm">
+    <i class="fa fa-window-close"></i>Close
+  </button>
+  <button class="btn btn-sm m-1" *ngIf="!dialogData.history" [disabled]="rentForm.invalid" (click)="approveTenant()">
+    <i class="fa fa-plus-circle"></i> Approve!
+  </button>
+  <button class="btn btn-sm m-1" *ngIf="dialogData.history" [disabled]="rentForm.invalid" (click)="editTenant()">
+    <i class="fa fa-plus-circle"></i> {{action || 'Edit!'}}
+  </button>
+</mat-dialog-actions>

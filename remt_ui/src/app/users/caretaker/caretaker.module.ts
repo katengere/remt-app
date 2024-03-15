@@ -1,10 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { CaretakerRoutingModule } from './caretaker-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SharedModule } from '../../shared/shared.module';
 import { CaretakerHomeComponent } from './caretaker-home/caretaker-home.component';
-import { MngTenantsComponent } from './mng-tenants/mng-tenants.component';
+import { CaretakerRoutingModule } from './caretaker-routing.module';
 import { CreateInvoicesComponent } from './create-invoices/create-invoices.component';
+import { MngTenantsComponent } from './mng-tenants/mng-tenants.component';
 import { RentalHistoryComponent } from './rental-history/rental-history.component';
 
 
@@ -17,7 +21,11 @@ import { RentalHistoryComponent } from './rental-history/rental-history.componen
   ],
   imports: [
     CommonModule,
-    CaretakerRoutingModule
+    NgxChartsModule,
+    CaretakerRoutingModule,
+    SharedModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class CaretakerModule { }

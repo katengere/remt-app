@@ -1,1 +1,36 @@
-<p>rental-history works!</p>
+<div class="accordion m-2" id="accordionTenant">
+  <div class="accordion-item" *ngFor="let history of tenants; let i=index">
+    <h2 class="accordion-header">
+      <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+        <p>{{history.client.userInfos.name | formatNames}}</p>
+      </button>
+    </h2>
+    <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{show: i==0}"
+      data-bs-parent="#accordionTenant">
+      <div class="accordion-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between">
+              <h6>
+                <b><span>userTypeName: {{history.client.userTypeName }}</span></b> <br>
+                <span><small>
+                    phoneNumber: {{history.client.userInfos.phoneNumber}}
+                  </small></span>
+              </h6><span><img src="../../../../assets/imgs/img6.jpg" class="userImg float-lg-start" alt></span>
+            </h5>
+            <div class="card-text text-center">
+              <h6 class><b>Rent Details</b></h6>
+              <blockquote>Start: {{history.from | date}}</blockquote>
+              <blockquote>End: {{history.to | date }}</blockquote>
+              <blockquote>
+                Days Remaining: {{history | daysRemain }}
+              </blockquote>
+              <blockquote>Amount Paid: {{history.rent }}</blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,31 +1,32 @@
 <div class="table-responsive">
-    <table class="table">
-      <thead>
-          <tr>
-              <th scope="col">User Type</th>
-              <th scope="col" class="text-center">Details</th>
-          </tr>
-      </thead>
-      <tbody>
-          <ng-container *ngFor="let userOg of users; let i=index">
-              <tr>
-                  <th scope="row" [attr.rowspan]="userOg.users.length+1">{{userOg.userTypeName}}</th>
-              </tr>
-              <tr *ngFor="let user of userOg.users; let i=index">
-                  <td>
-                    <div class="list-group">
-                      <a [routerLink]="[ '/admin/', paramId,'manage_users', user.id ]" routerLinkActive="active" class="list-group-item list-group-item-action" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">Name: {{user.userInfos.name | formatNames}}</h5>
-                          <small>Phone No: {{user.userInfos.phoneNumber}}</small>
-                        </div>
-                        <p class="mb-1">Some placeholder content in a paragraph.</p>
-                        <small>And some small print.</small>
-                      </a>
-                    </div>
-                  </td>
-              </tr>
-          </ng-container>
-      </tbody>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">User Type</th>
+        <th scope="col" class="text-center">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let userOg of users; let i=index">
+        <tr>
+          <th scope="row" [attr.rowspan]="userOg.users.length+1">{{userOg.userTypeName}}</th>
+        </tr>
+        <tr *ngFor="let user of userOg.users; let i=index">
+          <td>
+            <div class="list-group">
+              <a [routerLink]="[ '/admin/', paramId,'manage_users', user._id ]"
+                class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name: {{user.userInfos.name | formatNames}}</h5>
+                  <small>Phone No: {{user.userInfos.phoneNumber}}</small>
+                </div>
+                <p class="mb-1">Some placeholder content in a paragraph.</p>
+                <small>And some small print.</small>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
   </table>
 </div>

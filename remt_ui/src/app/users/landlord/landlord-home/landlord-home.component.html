@@ -1,24 +1,25 @@
-<div class="container-fluid">
-    <div class="row pt-2">
-      <div class="col-12">
-        <div class="card text-left">
-          <div class="card-body">
-            <h4 class="card-title border-bottom">House Types Summary Chart</h4>
-            <ngx-charts-bar-vertical 
-                [view]="[800,400]"
-                [results]="estates"
-                [xAxisLabel]="'Type'"
-                [legendTitle]="'House Type Chart'"
-                [yAxisLabel]="'Amount'"
-                [legend]="true"
-                [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
-                [xAxis]="true"
-                [yAxis]="true"
-                [gradient]="true">
-            </ngx-charts-bar-vertical>
-          </div>
-        </div>
+<div class="card m-0 p-0">
+  <div class="row m-0 p-0">
+    <div class="col-sm-12 m-0 p-0">
+      <div>
+        <h5 class="card-header d-flex justify-content-between">
+          <img src="../../../../assets/imgs/img6.jpg " class="userImg float-lg-start"  alt="">
+          <span><b class="">{{landlord?.userInfos!.name | formatNames}}</b><br>
+            <h6 class=" text-end">
+              <small>{{landlord?.userTypeName}}</small>
+              <div class="btn-group">
+                <button class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" (click)="AddPropertyDialog()">Add House...</button></li>   
+                </ul>
+              </div>
+            </h6>
+           </span>  
+        </h5>        
       </div>
     </div>
+  </div>
 </div>
+<router-outlet></router-outlet>

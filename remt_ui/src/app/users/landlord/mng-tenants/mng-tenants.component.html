@@ -1,1 +1,43 @@
-<div class="">manage tenants</div>
+<div class="card">
+  <div class="row">
+    <h5 class="card-header d-flex justify-content-between">
+      <span>{{title}} <span class="badge rounded-pill text-bg-dark">{{rental_history_Records?.length}}</span></span>
+      <span>
+        <i class="fa fa-exchange-alt"></i>
+        <div class="btn-group">
+          <button class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" (click)="toggleTenantsHistory('current')">Current Tenants</button></li>
+            <li><button class="dropdown-item" (click)="toggleTenantsHistory('')">Past Tenants</button></li>
+          </ul>
+        </div>
+      </span>
+    </h5>
+    <div class="col-sm-12">
+      <div class="card-body" *ngFor="let history of rental_history_Records">
+        <h5 class="card-title d-flex justify-content-between">
+          <h6>
+            <b><span>{{history.client.userInfos.name | formatNames}}</span></b> <br>
+            <span><small>{{history.client.userTypeName}}</small></span>
+          </h6>
+          <span><img src="../../../../assets/imgs/img6.jpg " class="userImg float-lg-start" alt=""></span>
+        </h5>
+        <div class="card-text text-center">
+          <h6 class=""><b>Rent Details</b></h6>
+          <blockquote>House: {{history.house.type}}</blockquote>
+          <blockquote>Rooms: {{history.rooms}}</blockquote>
+          <blockquote>Start: {{history.from | date}}</blockquote>
+          <blockquote>End: {{history.to | date }}</blockquote>
+          <blockquote>Days Remaining: {{history | daysRemain }}</blockquote>
+          <blockquote>Amount Paid: {{history.rent }}</blockquote>
+        </div>
+        <p class="card-footer text-center">
+          <a class="btn text-black bg-warning m-1" (click)="editTenant(history, 'update')">edit</a>
+          <a class="btn text-black bg-danger m-1" (click)="editTenant(history, 'delete')">remove</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

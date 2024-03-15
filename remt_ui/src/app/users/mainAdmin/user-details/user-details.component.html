@@ -1,87 +1,94 @@
-<p>{{ selectedUser | json }}</p>
+<!-- <p>{{ selectedUser | json }}</p> -->
 <div class="card">
-    <div class="card-body">
-      <h5 class="card-header d-flex justify-content-center">
-        Personal Information        
-      </h5>      
-      <div class="card-text">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">From</th>
-                <th scope="col">Age</th>
-                <th scope="col">Phone</th>
-                <th scope="col">id</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{selectedUser?.userInfos?.name | formatNames}}</td>
-                <td>{{selectedUser?.userTypeName}}</td>
-                <td>{{selectedUser?.createdAt | date}}</td>
-                <td>{{selectedUser?.userInfos?.age}}</td>
-                <td>{{selectedUser?.userInfos?.phoneNumber}}</td>
-                <td>{{selectedUser?.userInfos?.nationId}}</td>
-              </tr>           
-            </tbody>
-          </table>
-        </div>
+  <div class="card-header text-center">
+    <img src="../../../../assets/imgs/img7.jpg" height="175px" width="175px" alt=""> <br>
+    <h5>
+      <b>{{selectedUser?.userInfos?.name | formatNames}}</b>
+    </h5>
+    <p>{{selectedUser?.userInfos?.summary}}</p>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">From</th>
+              <th scope="col">Age</th>
+              <th scope="col">Phone</th>
+              <th scope="col">NID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{selectedUser?.userTypeName}}</td>
+              <td>{{selectedUser?.createdAt | date}}</td>
+              <td>{{selectedUser?.userInfos?.age | userAge}}</td>
+              <td>{{selectedUser?.userInfos?.phoneNumber}}</td>
+              <td>{{selectedUser?.userInfos?.nation_Id}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-   <div class="card-body">
+  </div>
+  <div class="card-body">
     <h5 class="card-header d-flex justify-content-center">
       {{selectedUser?.userTypeName}} Permissions
     </h5>
     <p class="card-text" *ngFor="let permision of selectedUser?.permissions">
       {{permision}}
     </p>
-   </div>
-   <div class="card-body" *ngIf="selectedUser?.estates!.length>1">
+  </div>
+  <div class="card-body" *ngIf="selectedUser?.estates!.length>0">
     <h5 class="card-header d-flex justify-content-center">
       Estates owned by {{selectedUser?.userInfos?.name | formatNames}}
-    </h5>    
+    </h5>
     <div class="card-text" *ngFor="let estate of selectedUser?.estates">
       <p>
         {{estate.type}}
       </p>
     </div>
-   </div>
-   <div class="card-body" *ngIf="selectedUser?.regEstateIds">
+  </div>
+  <div class="card-body" *ngIf="selectedUser?.regEstateIds!.length>0">
     <h5 class="card-header d-flex justify-content-center">
       Estates registered by {{selectedUser?.userTypeName}}: {{selectedUser?.userInfos?.name | formatNames}}
     </h5>
-    <p class="card-text" >
-      
+    <p class="card-text">
+
     </p>
-   </div>
-   <div class="card-body" *ngIf="selectedUser?.regUserIds">
+  </div>
+  <div class="card-body" *ngIf="selectedUser?.regUserIds!.length>0">
     <h5 class="card-header d-flex justify-content-center">
-      Users registered by {{selectedUser?.userTypeName}}: {{selectedUser?.userInfos?.name | formatNames}}
-    </h5>    
+      {{selectedUser?.regUserIds!.length}} Users registered by {{selectedUser?.userTypeName}}:
+      {{selectedUser?.userInfos?.name | formatNames}}
+    </h5>
     <div class="card-text">
       <table class="table caption-top">
-        <caption>List of users</caption>
+        <!-- <caption>List of users</caption> -->
         <thead>
           <tr>
-            <th scope="col">No</th>
-            <th scope="col">Name</th>            
+            <th scope="col">Name</th>
+            <th scope="col">userTypeName</th>
+            <th scope="col">Registered</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of regUserIds; let i = index;">
-            <td>{{i}}</td>
-            <td>{{user.userInfos.name}}</td>
-          </tr>        
+          <tr *ngFor="let user of selectedUser?.regUserIds; let i = index;">
+            <td>{{user?.userInfos?.name | formatNames}}</td>
+            <td>{{user?.userTypeName | formatNames}}</td>
+            <td>{{user?.createdAt | date }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
-   </div>
-   
-    <div class="card-footer d-flex justify-content-center">
-      <button (click)="editUser()" class="btn btn-warning btn-sm m-1"><i class="fa fa-edit"></i> Edit</button>
-      <button (click)="deleteUser()" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i> Delete</button>
-    </div>
   </div>
+
+  <div class="card-footer d-flex justify-content-center">
+    <button (click)="editUser()" class="btn btn-warning btn-sm m-1"><i class="fa fa-edit"></i> Edit</button>
+    <button (click)="deleteUser()" [disabled]="disabled" class="btn btn-danger btn-sm m-1">
+      <i class="fa fa-trash"></i> Delete
+    </button>
+  </div>
+</div>

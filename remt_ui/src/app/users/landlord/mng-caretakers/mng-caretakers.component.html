@@ -1,1 +1,32 @@
-<div class="">manage caretakers</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Estate Type</th>
+            <th scope="col" class="text-center">Caretakers</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let estate of estates; let i=index">
+            <tr>
+                <th scope="row" [attr.rowspan]="estate!.caretakers!.length+1">{{estate.type}}</th> 
+            </tr>
+            <tr *ngFor="let caretaker of estate!.caretakers; let i=index">
+                <td>
+                  <div class="list-group">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Name: {{caretaker!.userInfos.name | formatNames}}</h5>
+                        <small>Phone No: {{caretaker!.userInfos.phoneNumber}}</small>
+                      </div>
+                      <p class="mb-1">Some placeholder content in a paragraph.</p>
+                      <small class=" text-end">
+                        <button class="btn btn-sm bg-warning m-1" (click)="editCaretaker(estate, caretaker._id)">Edit</button>
+                        <button class="btn btn-sm bg-danger m-1" (click)="deleteCaretaker(caretaker!.userInfos.name, estate, caretaker._id)">Delete</button>
+                      </small>
+                  </div>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+</div>

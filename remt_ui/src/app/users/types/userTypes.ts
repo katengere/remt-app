@@ -21,50 +21,82 @@ export interface UIConfigInterface {
   auto_payments?: boolean;
   address_verification?: boolean;
 }
-export interface PersonInfoInterface{
-  name:string;
-  age:number|null;
-  nationId:number|null;
-  phoneNumber:string;
+export interface PersonInfoInterface {
+  name: string;
+  gender: string
+  summary: string
+  age: number | null;
+  nation_Id: number | null;
+  phoneNumber: string;
+  password: string
 }
-export interface LocationInterface{
-  id:string;
-  region:string;
-  district:string;
-  ward:string;
-  street:string;
-}
-export interface RentalHistory{
-  from:Date;
+
+export interface RentalHistory {
+  from: Date;
   to: Date;
-  client: PersonInfoInterface
+  rent: number;
+  client: any;
+  house: any;
+  rooms: number;
+  phoneNumber?: number;
+  _id?: string
+  action?: string
 }
-export interface HouseInterface{
-  owner_Id:string;
-  address:LocationInterface;
-  type:string;
-  open:boolean;
-  rental_history?:RentalHistory[];
-  tenants_Ids?:string[];
+export class HouseInterface {
+  owner_Id!: any;
+  admin_Id?: string;
+  _id!: string;
+  region!: string;
+  district!: string;
+  ward!: string;
+  street!: string;
+  type!: string;
+  open!: boolean;
+  rooms?: number;
+  description?: string;
+  rental_history?: RentalHistory[];
+  caretakers?: any[];
+  coords?: number[];
+  currentTenant_Ids?: any[];
+}
+export interface InvoiceInterface {
+  invoiceId: string,
+  invoiceName: string,
+  tenantId: string,
+  tenantName: string,
+  tenantPhoneNumber: string,
+  tax: number,
+  netTotal: number,
+  houseId: string,
+  houseType: string,
+  start: string,
+  end: string,
+  rooms: number,
+  rent: number,
+  rentTotal: number,
+  createdAt: Date
 }
 export class UserTypeInterface {
-  id!:string;
+  _id!: string;
   userTypeName!: string;
   permissions!: string[];
-  ui!: UIConfigInterface;
   userInfos!: PersonInfoInterface;
-  estates!: HouseInterface[] | null;
-  regUserIds?: string[];
-  regEstateIds?: string[];
+  estates!: any;
+  regUserIds?: any[];
+  regEstateIds?: any[];
   createdAt!: Date;
-  constructor(){}
+  invoices?: InvoiceInterface[];
+  coords?: number[];
+  distance?: any;
+  action?: string;
+  constructor() { }
 }
 
 export interface UserTypeStateInterface extends EntityState<UserTypeInterface> {
   isLoading: boolean;
-  error: Message|null;
+  error: Message | null;
 }
-export interface AppStateInterface{
+export interface AppStateInterface {
   userType: UserTypeStateInterface;
-  estate:EntityState<HouseInterface>;
+  estate: EntityState<HouseInterface>;
 }

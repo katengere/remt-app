@@ -1,83 +1,59 @@
-<mat-card
-  style="
-    background-color: rgb(250, 173, 71);
-    color: black;
-    padding: 0px;
-    margin: 0px;
-  "
->
-  <mat-card-header class="d-flex justify-content-center">
-    <h3>
-      <img
-        src="/assets/login.PNG"
-        class="brand_logo"
-        alt="Logo"
-        height="75px"
-        width="75px"
-      />
-    </h3>
-  </mat-card-header>
-  <mat-card-content class="d-flex justify-content-center">
-    <form [formGroup]="userInfosForm">
-      <div>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input
-            name="name"
-            matInput
-            type="text"
-            placeholder="Name"
-            formControlName="name"
-          />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-            <mat-label>User Type</mat-label>
-            <input name="userTypeName" matInput readonly type="text" placeholder="userTypeName" formControlName="userTypeName">
-        </mat-form-field>
-    </div>
-      <div>
-        <mat-form-field>
-          <mat-label>NationId</mat-label>
-          <input
-            name="nationId"
-            matInput
-            type="text"
-            placeholder="nationId"
-            formControlName="nationId"
-          />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-label>PhoneNumber</mat-label>
-          <input
-            name="phoneNumber"
-            matInput
-            type="text"
-            placeholder="phoneNumber"
-            formControlName="phoneNumber"
-          />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-label>Age</mat-label>
-          <input
-            name="age"
-            matInput
-            type="text"
-            placeholder="age"
-            formControlName="age"
-          />
-        </mat-form-field>
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions class="d-flex justify-content-center">    
-    <button mat-button (click)="addLandlord()">
-      <i class="fa fa-plus-circle"></i> Add!
-    </button>
-  </mat-card-actions>
-</mat-card>
+<mat-dialog-content>
+  <h3 align="center" mat-dialog-title>
+    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px" />
+  </h3>
+  <mat-card>
+    <mat-card-content class="d-flex justify-content-center">
+      <form [formGroup]="userInfosForm">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Name</mat-label>
+              <input name="name" matInput type="text" placeholder="Name" formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>User Type</mat-label>
+              <input name="userTypeName" matInput readonly type="text" placeholder="userTypeName"
+                formControlName="userTypeName">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>NationId</mat-label>
+              <input name="nation_Id" matInput type="text" placeholder="nationId" formControlName="nation_Id" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>PhoneNumber</mat-label>
+              <input name="phoneNumber" matInput type="text" placeholder="phoneNumber" formControlName="phoneNumber" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Password</mat-label>
+              <input name="password" matInput type="text" placeholder="password" formControlName="password" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Age</mat-label>
+              <input name="age" matInput type="text" placeholder="age" formControlName="age" />
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions class="d-flex justify-content-center">
+  <button mat-button mat-dialog-close>
+    <i class="fa fa-plus-circle"></i> Close!
+  </button>
+  <button mat-button mat-dialog-close (click)="addLandlord()">
+    <i class="fa fa-plus-circle"></i> Add!
+  </button>
+</mat-dialog-actions>

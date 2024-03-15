@@ -1,0 +1,13 @@
+.card-title .userImg{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+.accordion, 
+.accordion-item, 
+.accordion-header, 
+.accordion-button, 
+.accordion-body{
+  background-color:  rgb(250, 173, 71) !important;
+  color: black !important;
+}

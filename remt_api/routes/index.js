@@ -1,10 +1,22 @@
-var express = require('express');
-var router = express.Router();
-const ctrlUserTypes = require('../controllers/userTypes');
+const express = require('express');
+const router = express.Router();
+const ctrlUserTypes = require('../controllers/userTypesCtrl');
+const jwt = require('express-jwt');
+const auth = jwt.expressjwt({
+  secret: process.env.jwtSecret,
+  userProperty: 'payload',
+  algorithms: ['HS256']
+});
 
 /* GET home page. */
-router.get('', ctrlUserTypes.getUserTypes);
+router.route('').get(ctrlUserTypes.getUserTypes)
+  .post(ctrlUserTypes.registerUser);
 router.post('/login', ctrlUserTypes.logInUser);
-router.post('/register/:id', ctrlUserTypes.registerUser);
+/* GET Single User. */
+router.route('/:id').get(auth, ctrlUserTypes.getUser);
 
-module.exports = router;
+router.put('/:id', auth, ctrlUserTypes.updateUser)
+
+router.delete('/:id', auth, ctrlUserTypes.deleteUser);
+
+module.exports = { router, auth };

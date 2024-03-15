@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { UserEntityService } from '../services/user-entity.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectUrl } from 'src/app/users/store/users.selectors';
+import { StorageService } from '../../auth/services/storage.service';
+import { logout } from '../../users/store/users.actions';
+import { HouseEntityService } from '../services/house-entity.service';
 import { MessageService } from '../services/message.service';
+import { UserEntityService } from '../services/user-entity.service';
 
 export interface ConfirmDialog{
     name: string,
@@ -23,30 +24,41 @@ export class ConfirmComponent {
   action!: string;
   url!: string;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dialogData: ConfirmDialog,
-    private userEntityService: UserEntityService,
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private dialog: MatDialog,
     private store: Store,
-    private router: Router,
-    private msg: MessageService
+    private userEntityService: UserEntityService,
+    private houseEntityService: HouseEntityService,
+    private msg: MessageService,
+    private storageService: StorageService
   ){
-    this.store.select(selectUrl).subscribe({
-      next:(url)=>{
-        const urlSegments = url.split('/');
-        urlSegments.pop();
-        this.url = urlSegments.join('/');
-      }
-    });
+   
   }
-  deleteUser(id: string){
-    this.userEntityService.delete(this.dialogData.data);
+  deleteUser(){
+   return this.userEntityService.delete(this.dialogData.data._id).subscribe({
+      next:(res)=>{        
     this.dialog.closeAll();
-    this.userEntityService.getAll();
+    if (this.dialogData.data._id === this.storageService.getId()) {
+       this.store.dispatch(logout());
+    }
+    history.back();
     this.msg.message({
       title:'Delete Success',
       text:'Successfully removed '+ this.dialogData.data.userInfos.name,
       color:'green'
-    })
-    this.router.navigateByUrl(this.url);
+    });
+    },
+      error: err=>{
+        this.msg.message({
+          title:'Delete Failure',
+          text:'Error '+ err.message,
+          color:'red'
+        })
+      }
+    });
+  }
+  deleteCaretaker(){
+    console.log('houseId ', this.dialogData.estate._id);
+    console.log('caretakerId ', this.dialogData.caretakerId);    
   }
 }

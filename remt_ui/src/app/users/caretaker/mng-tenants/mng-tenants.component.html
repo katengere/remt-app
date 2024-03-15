@@ -1,1 +1,24 @@
-<p>mng-tenants works!</p>
+<div class="card m-1" *ngFor="let history of tenants">
+  <div class="card-body">
+    <h5 class="card-title d-flex justify-content-between">
+      <h6>
+        <b><span>{{history.client.userInfos.name | formatNames}}</span></b> <br>
+        <span><small>{{history.client.userTypeName}}</small></span>
+      </h6>
+      <span><img src="../../../../assets/imgs/img6.jpg " class="userImg" alt=""></span>
+    </h5>
+    <div class="card-text row text-center">
+      <h6 class=""><b>Rent Details</b></h6>
+      <blockquote class="col-sm-6"><b>House:</b> {{history.house.type}}</blockquote>
+      <blockquote class="col-sm-6"><b>Rooms:</b> {{history.rooms}}</blockquote>
+      <blockquote class="col-sm-6"><b>Start:</b> {{history.from | date}}</blockquote>
+      <blockquote class="col-sm-6"><b>End:</b> {{history.to | date }}</blockquote>
+      <blockquote class="col-sm-6"><b>Days Remaining:</b> {{history | daysRemain }}</blockquote>
+      <blockquote class="col-sm-6"><b>Amount Paid:</b> {{history.rent }}</blockquote>
+    </div>
+    <p class="card-footer text-center">
+      <a class="btn text-black bg-warning mx-1" (click)="editTenant(history, 'update')">edit</a>
+      <a class="btn text-black bg-danger mx-1" (click)="editTenant(history, 'delete')">remove</a>
+    </p>
+  </div>
+</div>

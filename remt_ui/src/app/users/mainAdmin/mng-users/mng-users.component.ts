@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { merge } from 'rxjs';
 import { UserEntityService } from 'src/app/shared/services/user-entity.service';
+import { UserDataService } from '../../../shared/services/user-data.service';
 import { UserTypeInterface } from '../../types/userTypes';
 
 interface GroupedUsers {
@@ -19,9 +20,10 @@ export class MngUsersComponent {
   users!: GroupedUsers[];
   constructor(
     private userEntityService: UserEntityService,
-    private route: ActivatedRoute
-  ){
-    merge(this.userEntityService.entities$, this.userEntityService.filteredEntities$).subscribe({
+    private route: ActivatedRoute,
+    private userDataService: UserDataService,
+    ){
+      merge(this.userEntityService.entities$, this.userEntityService.filteredEntities$).subscribe({
       next:(users)=>{      
         this.paramId = this.route.snapshot.parent?.params['id'];  
         this.users = users.reduce((acc:GroupedUsers[], obj:UserTypeInterface)=>{

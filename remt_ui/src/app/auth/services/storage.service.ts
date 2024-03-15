@@ -1,36 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserTypeInterface } from 'src/app/users/types/userTypes';
 
 @Injectable({providedIn:'root'})
 export class StorageService {
 
   constructor(private router: Router) { }
 
-  saveToken(user: UserTypeInterface){
-    localStorage.setItem('userTypeName', user.userTypeName)
-    localStorage.setItem('remtUserName', user.userInfos.name);
-    localStorage.setItem('remtUserId', user.id);
+  saveToken(token: string){
+    localStorage.setItem('remtUser', token);
   }
-  getToken(){
-    return localStorage.getItem('remtUserName');
+  getToken(): string{
+    return localStorage.getItem('remtUser') as string;
   }
-  getId(){
-    return localStorage.getItem('remtUserId');
+  getId(): string {
+    const payload = this.getToken() ? JSON.parse(atob(this.getToken().split('.')[1])) : undefined;
+    if (payload) {
+      return payload._id;
+    }
+    return '';
   }
   getUserTypeName(){
-    return localStorage.getItem('userTypeName');
+    const payload = this.getToken() ? JSON.parse(atob(this.getToken().split('.')[1])) : undefined;
+    if (payload) {
+      return payload.userTypeName;
+    }
+    return undefined;
   }
   removeToken(){
-    this.router.navigateByUrl('');
-    localStorage.removeItem('userTypeName')
-    localStorage.removeItem('remtUserName');
-    localStorage.removeItem('remtUserId');
+    this.router.navigateByUrl('');    
+    localStorage.removeItem('remtUser');
   }
   isLoggedIn(): boolean{
-    return this.getToken() ? true : false;
-  }
-  getUserName(): string | null{
-      return this.getToken();
+    const token: string = this.getToken();
+if (token) {
+const payload = this.getToken() ? JSON.parse(atob(this.getToken().split('.')[1])) : undefined;
+return payload.exp > (Date.now() / 1000);
+} else {
+return false;
+}
+
+}
+  getUserName(): string | undefined{
+    const payload = this.getToken() ? JSON.parse(atob(this.getToken().split('.')[1])) : undefined;
+    if (payload) {
+      return payload.name;
+    }    
+    return undefined;
   }
 }

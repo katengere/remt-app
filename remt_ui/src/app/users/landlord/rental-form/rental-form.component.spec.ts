@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminNgxChartComponent } from './admin-ngx-chart.component';
+import { RentalFormComponent } from './rental-form.component';
 
-describe('AdminNgxChartComponent', () => {
-  let component: AdminNgxChartComponent;
-  let fixture: ComponentFixture<AdminNgxChartComponent>;
+describe('RentalFormComponent', () => {
+  let component: RentalFormComponent;
+  let fixture: ComponentFixture<RentalFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminNgxChartComponent ]
+      declarations: [ RentalFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminNgxChartComponent);
+    fixture = TestBed.createComponent(RentalFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

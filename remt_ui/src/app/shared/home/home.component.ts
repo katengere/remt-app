@@ -1,15 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, ViewChild } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { takeWhile } from 'rxjs';
-import { userSelector } from '../../users/store/users.selectors';
-import * as userActions from '../../users/store/users.actions';
-import { UserTypeInterface, AppStateInterface } from '../../users/types/userTypes';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { StorageService } from 'src/app/auth/services/storage.service';
-import { UserEntityService } from '../services/user-entity.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { takeWhile } from 'rxjs';
 import { LoginComponent } from 'src/app/auth/login/login.component';
+import { StorageService } from 'src/app/auth/services/storage.service';
+import * as userActions from '../../users/store/users.actions';
+import { AppStateInterface, UserTypeInterface } from '../../users/types/userTypes';
+import { UserEntityService } from '../services/user-entity.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +22,7 @@ export class HomeComponent {
   @ViewChild('sidenav') sidenav: any;
   user$!: UserTypeInterface[];
   route!: string;
-  username!: string | null;
+  username!: string | undefined;
   userTypeNames!:string[];
 
   constructor(
@@ -57,7 +56,7 @@ export class HomeComponent {
   logout() {
     this.store.dispatch(userActions.logout());
     this.userEntityService.getAll();
-    this.router.navigate([''])
+    this.router.navigate(['']);
     }
   toggleSidenav(): void {
     this.sidenav.toggle();

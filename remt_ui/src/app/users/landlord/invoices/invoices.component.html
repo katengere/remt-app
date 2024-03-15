@@ -1,44 +1,132 @@
-<div  class="d-flex justify-content-center">
-    <form [formGroup]="invoiceForm">
-        <mat-card>
-            <mat-card-header>
-                <h3>Edit Invoice</h3>
-            </mat-card-header>
-            <mat-card-content>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Service</mat-label>
-                        <input name="service" matInput type="text" placeholder="Service" formControlName="service">
-                    </mat-form-field>
-                </div>    
-                <div>
-                    <mat-form-field>
-                        <mat-label>Hours</mat-label>
-                        <input name="hours" matInput type="number" placeholder="Hours" formControlName="hours">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field>
-                        <mat-label>Rate</mat-label>
-                        <input name="rate" matInput type="number" placeholder="Rate" formControlName="rate">
+<mat-dialog-content>
+    <h3 mat-dialog-title align="center"><b>Create Invoice</b></h3>
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="invoiceForm">
+                <div class="row border">
+                    <h6 align="center"><small><b>Invoice Details</b></small></h6>
+                    <div class="col-md-12">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Invoice Name</mat-label>
+                            <input name="invoiceName" matInput type="text" placeholder="invoice Name"
+                                formControlName="invoiceName">
                         </mat-form-field>
+                    </div>
                 </div>
-    
-                <div class="toggler">
-                        <mat-slide-toggle formControlName="paid">Paid</mat-slide-toggle>
+                <br>
+                <div class="row">
+                    <h6 align="center"><small><b>Tenant Details</b></small></h6>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Tenant Name</mat-label>
+                            <mat-select matInput formControlName="tenantName">
+                                <mat-option *ngFor="let tenant of tenants; let i=index" (click)="userChange(i, tenant)"
+                                    [value]="tenant.client.userInfos.name">
+                                    {{tenant.client.userInfos.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint>Select name to populate other fields </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Tenant Id</mat-label>
+                            <input readonly (click)="readonlyHint()" matInput type="text" placeholder="tenantId"
+                                formControlName="tenantId">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Tenant phoneNumber</mat-label>
+                            <input name="tenantPhoneNumber" matInput type="text" placeholder="tenantPhoneNumber"
+                                formControlName="tenantPhoneNumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="w-100">
+                            <mat-label>Date range</mat-label>
+                            <mat-date-range-input [rangePicker]="duration">
+                                <input placeholder="Start date" matStartDate formControlName="start" />
+                                <input placeholder="End date" matEndDate formControlName="end" />
+                            </mat-date-range-input>
+                            <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="duration"></mat-datepicker-toggle>
+                            <mat-date-range-picker #duration></mat-date-range-picker>
+                            <mat-error class="text-danger"
+                                *ngIf="invoiceForm.get('duration')?.touched && invoiceForm.get('duration')?.invalid">
+                                Duration is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div class="total">
-                    <mat-label>Total:</mat-label>
-                        {{total | currency:'USD':true:'.2'}}
+                <br>
+                <div class="row">
+                    <h6 align="center"><small><b>House Details</b></small></h6>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>House Type</mat-label>
+                            <input (click)="readonlyHint()" readonly matInput type="text" placeholder="houseType"
+                                formControlName="houseType">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>House Id</mat-label>
+                            <input (click)="readonlyHint()" matInput type="text" readonly placeholder="houseId"
+                                formControlName="houseId">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Rooms</mat-label>
+                            <input matInput type="text" placeholder="rooms" formControlName="rooms">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Rent</mat-label>
+                            <input matInput type="text" placeholder="rent" formControlName="rent">
+                        </mat-form-field>
+                    </div>
                 </div>
-            </mat-card-content>
-            <mat-card-actions>
-                <div>
-                    <span><button type="button" mat-button>Delete</button></span>
-                    <span><button type="button" mat-button>Cancel</button></span>
-                    <span><button type="submit" mat-raised-button color="primary" (click)="saveInvoice()">Save</button></span>
+                <br>
+                <div class="row">
+                    <h6 align="center"><small><b>Cost Summary</b></small></h6>
+                    <div class="col-md-4">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Total</mat-label>
+                            <input (click)="readonlyHint()" matInput type="text" readonly placeholder="total"
+                                formControlName="rentTotal">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class=" w-100">
+                            <mat-label>Tax (%)</mat-label>
+                            <input (click)="readonlyHint()" name="tax" readonly matInput placeholder="tax"
+                                formControlName="tax">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class=" w-100">
+                            <mat-label>NetTotal</mat-label>
+                            <input (click)="readonlyHint()" name="netTotal" readonly matInput placeholder="netTotal"
+                                formControlName="netTotal">
+                            <mat-hint *ngIf="readOnly">Read Only Field</mat-hint>
+                        </mat-form-field>
+                    </div>
                 </div>
-            </mat-card-actions>
-        </mat-card>
-    </form>
-</div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="bg-warning text-black" mat-dialog-close><i class="fa fa-window-close"></i>
+        Cancel</button>
+    <button mat-button class="bg-warning text-black" (click)="saveInvoice()"><i class="fa fa-save"></i>
+        Save</button>
+</mat-dialog-actions>

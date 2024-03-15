@@ -1,1 +1,93 @@
-<p>add-properties works!</p>
+<mat-dialog-content class="col-12">
+  <mat-card>
+    <mat-card-header class="d-flex justify-content-center">
+      <h3 mat-dialog-title>
+        <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px" />
+      </h3>
+    </mat-card-header>
+    <mat-card-content class="d-flex justify-content-center">
+      <form [formGroup]="houseDetailsForm">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Region</mat-label>
+              <input name="region" matInput type="text" placeholder="Region" formControlName="region" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>District</mat-label>
+              <input name="district" matInput type="text" placeholder="District" formControlName="district">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Ward</mat-label>
+              <input name="ward" matInput type="text" placeholder="ward" formControlName="ward" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Street</mat-label>
+              <input name="street" matInput type="text" placeholder="street" formControlName="street" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label><i class="fa fa-user-plus"></i> House Type</mat-label>
+              <mat-select placeholder="house type" formControlName="type" name="type">
+                <mat-option *ngFor="let type of houseTypes" [value]="type">
+                  {{type}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Open</mat-label>
+              <mat-select placeholder="open" formControlName="open" name="open">
+                <mat-option *ngFor="let type of [true, false]" [value]="type">
+                  {{type}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Rooms</mat-label>
+              <input name="rooms" matInput type="number" placeholder="rooms" formControlName="rooms" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>caretakerPhoneNo</mat-label>
+              <input name="caretakerPhoneNo" matInput type="text" placeholder="caretakerPhoneNo"
+                formControlName="caretakerPhoneNo" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100">
+              <mat-label>Descriptions</mat-label>
+              <textarea name="description" matInput placeholder="short descriptions" cols="10" rows="3"
+                formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-center">
+  <button mat-dialog-close class="btn btn-sm">
+    <i class="fa fa-window-close"></i>Close
+  </button>
+  <button class="btn btn-sm m-1 bg-warning" *ngIf="action === 'add' " (click)="addProperty()">
+    <i class="fa fa-plus-circle"></i> Add!
+  </button>
+  <button class="btn btn-sm m-1 bg-warning" *ngIf="action === 'edit' " (click)="editProperty()">
+    <i class="fa fa-edit"></i> Edit!
+  </button>
+  <button class="btn btn-sm m-1 bg-danger" *ngIf="action === 'delete' " (click)="deleteProperty()">
+    <i class="fa fa-trash"></i> Delete!
+  </button>
+</mat-dialog-actions>

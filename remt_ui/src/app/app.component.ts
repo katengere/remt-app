@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserEntityService } from './shared/services/user-entity.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
     private userEntityService: UserEntityService
   ){}
   ngOnInit(){
+    console.log('only app component is calling the api ');
+    
     this.userEntityService.getAll();
   }
 }

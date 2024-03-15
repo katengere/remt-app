@@ -1,37 +1,37 @@
-
 <mat-dialog-content>
-        <form #form="ngForm">
-            <div class="mb-3">
-              <h3 mat-dialog-title class="d-flex justify-content-center">
-                <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px">
-              </h3>
-              <!-- <p>
-                Not Registered? <br> Please
-                <button class="btn btn-sm" (click)="registerDialog()">Register</button>
-              </p> -->
-            </div>
-            <div class="mb-3">
-                <label for="Name" class="form-label"><i class="fa fa-user"></i> Name</label>
-                <input type="text" name="Name" #name="ngModel" [(ngModel)]="user.userInfos.name" class="form-control" required placeholder="Name">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label"><i class="fa fa-passport"></i> Password</label>
-                <input type="tel" autocomplete="" name="password" #password="ngModel" [(ngModel)]="user.userInfos.phoneNumber" required placeholder="+255755000000" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label"><i class="fa fa-user-plus"></i> User Type</label>
-                <select required name="userTypeName" #userTypeName="ngModel" class="form-select" [(ngModel)]="user.userTypeName">
-                <option *ngFor="let userTypeName of userTypeNames" [value]="userTypeName" style="background-color:  rgb(250, 173, 71);">{{userTypeName}}</option>
-              </select>
-            </div>
-        </form>
+  <h2 mat-dialog-title align="center">
+    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px"><br>
+    <small>
+      <b>Login</b>
+    </small>
+  </h2>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="loginForm">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="w-100">
+              <mat-label><i class="fa fa-user"></i>PhoneNumber</mat-label>
+              <input name="phoneNumber" matInput type="text" placeholder="phoneNumber" formControlName="phoneNumber">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="w-100">
+              <mat-label><i class="fa fa-passport"></i> Password</mat-label>
+              <input name="password" matInput type="text" placeholder="password" formControlName="password">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-dialog-close class="btn btn-sm">
-      <i class="fa fa-window-close"></i>Close
+    <i class="fa fa-window-close"></i>Close
   </button>
-  <button class="btn btn-sm m-2" (click)="onLogin(form)">
-      <i class="fa fa-file-upload"></i> Login!
+  <button class="btn btn-sm m-2" (click)="onLogin()">
+    <i class="fa fa-file-upload"></i> Login!
   </button>
 </mat-dialog-actions>

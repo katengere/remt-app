@@ -1,0 +1,60 @@
+<mat-card class="example-card">
+  <mat-card-header class="d-flex justify-content-between">
+    <span mat-card-avatar class="example-header-image">
+      <img mat-card-image src="../../../../assets/imgs/img1.jpg" width="45px" height="50px" alt="Photo of a Shiba Inu">
+    </span>
+    <span>
+      <mat-card-title>{{lga?.userInfos?.name}}</mat-card-title>
+      <mat-card-subtitle>{{lga?.userTypeName}}</mat-card-subtitle>
+    </span>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      For the local government administrators, they would need to have the ability to add landlords and properties in
+      their
+      respective areas. The user interface for this user type would include a form for adding new landlords, with fields
+      for name,
+      property address, and owner name.
+    </p>
+    <p>
+      No of landlords registerd: {{lga?.regUserIds?.length || 'None'}}
+    </p>
+    <div class="card-text" *ngIf="lga?.regUserIds!.length>0">
+      <div class="table-responsive">
+        <table class="table caption-top">
+          <!-- <caption>List of users</caption> -->
+          <thead>
+            <tr class="text-center">
+              <th scope="col">No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Houses</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of lga?.regUserIds; let i = index;" class="text-center">
+              <td>{{i+1}}</td>
+              <td>{{user?.userInfos?.name | formatNames}}</td>
+              <td>{{user?.estates?.length}}</td>
+              <td>
+                <span (click)="editUser(user)" class="btn btn-warning btn-sm m-1">
+                  <i class="fa fa-edit"></i>
+                </span>
+                <span (click)="addHouse(user)" class="btn btn-warning btn-sm m-1">
+                  <i class="fa fa-plus"></i> <i class="fa fa-home"></i>
+                </span>
+                <span (click)="deleteUser(user)" class="btn btn-danger btn-sm m-1">
+                  <i class="fa fa-trash"></i>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class=" d-flex justify-content-end">
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

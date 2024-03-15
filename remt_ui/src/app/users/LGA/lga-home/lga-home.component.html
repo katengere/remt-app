@@ -1,27 +1,56 @@
-<mat-card class="example-card">
-    <mat-card-header class="d-flex justify-content-between">
-      <span mat-card-avatar class="example-header-image">
-        <img mat-card-image src="../../../../assets/imgs/img1.jpg" width="45px" height="50px" alt="Photo of a Shiba Inu">
-      </span>
-      <span>
-        <mat-card-title>{{lga?.userInfos?.name}}</mat-card-title>
-        <mat-card-subtitle>{{lga?.userTypeName}}</mat-card-subtitle>
-      </span>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        For the local government administrators, they would need to have the ability to add landlords and properties in their 
-        respective areas. The user interface for this user type would include a form for adding new landlords, with fields for name, 
-        property address, and owner name.
-      </p>
-      <p>
-        No of landlords registerd: {{lga?.regUserIds?.length}} 
-      </p>
-
-    </mat-card-content>
-    <mat-card-actions class=" d-flex justify-content-end">
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-  
+<div>
+  <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+    <span [routerLink]="['']" class="" routerLinkActive="active">
+      <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">REMT
+    </span>
+    <span class="example-icon" (click)="sidenav.toggle()" *ngIf="isLessThenLargeDevice">
+      <mat-icon>menu</mat-icon>
+    </span>
+    <mat-nav-list *ngIf="!isLessThenLargeDevice">
+      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center"
+        (click)="add_landlords()" routerLinkActive="active">
+        add_landlords
+      </a>
+      <!-- <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
+          (click)="add_properties()" routerLinkActive="active">
+          add_properties
+          </a> -->
+    </mat-nav-list>
+    <span class="example-spacer"></span>
+    <div class="">
+      <a (click)="loginDialog()" *ngIf="!username" class="btn btn-sm mb-2">
+        <i class="fa fa-lock-open"></i> Login
+      </a>
+      <a *ngIf="username" [matMenuTriggerFor]="navOptions" class="btn btn-sm m-0 p-0">
+        <i class="fa fa-user-check"></i> {{username}}
+      </a>
+      <mat-menu #navOptions="matMenu">
+        <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase(), id, 'profile']" mat-menu-item
+          class="mt-1">
+          <i class="fa fa-user-circle"></i> Profile
+        </button>
+        <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
+          <i class="fa fa-sign-out-alt"></i> Logout
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container class="">
+    <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
+      <a mat-raised-button *ngIf="isLessThenLargeDevice" style="background-color:  rgb(250, 173, 71); color: black"
+        class="m-1 align-content-center" (click)="add_landlords()" routerLinkActive="active">
+        add_landlords
+      </a><br>
+      <!-- <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
+          (click)="add_properties()" routerLinkActive="active">
+          add_properties
+          </a><br> -->
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

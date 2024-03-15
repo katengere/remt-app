@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/shared/services/message.service';
 import { UserDataService } from 'src/app/shared/services/user-data.service';
 import { UserTypeInterface } from 'src/app/users/types/userTypes';
+import { environment } from '../../../environments/environment';
 import { UserEntityService } from '../../shared/services/user-entity.service';
 import { StorageService } from '../services/storage.service';
 
@@ -15,46 +17,45 @@ import { StorageService } from '../services/storage.service';
 })
 export class LoginComponent {
   user: UserTypeInterface = {
-    userInfos: { name: '', phoneNumber: '', nationId: null, age: null },
-    id: '',
+    userInfos: { name: '', phoneNumber: '', gender:'', summary:'', password:'', nation_Id: null, age: null },
+    _id: '',
     userTypeName: '',
     permissions: [],
-    ui: {},
     estates: [],
     createdAt: new Date()
   }
-  userTypeNames!: string[];
+  loginForm: FormGroup;
   constructor(
+    private formBuilder: FormBuilder,
     private storageService: StorageService,
     private router: Router,
     private msgService: MessageService,
     private userDataService: UserDataService,
     private userEntityService: UserEntityService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private http: HttpClient
     ) {
-    this.userEntityService.entities$.subscribe({
-      next:(users)=>{
-        this.userTypeNames= users.map(u=>u.userTypeName.toLowerCase())
-          .filter((n,i,arr)=>arr.indexOf(n)==i);
-      }
+    this.loginForm = this.formBuilder.group({
+      phoneNumber: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  // registerDialog(){
-  //   this.dialog.closeAll();
-  //   this.dialog.open(RegisterComponent);
-  // }
-
-  onLogin(form: NgForm){
-    if (form.valid) {
-      this.userDataService.add(this.user).subscribe({
+  onLogin(){
+    if (this.loginForm.valid) {
+      this.http.post(environment.apiUrl+'/users/login', this.loginForm.value).subscribe({
         next:(user)=>{
           console.log(user);
-          this.storageService.saveToken(user);
-          this.router.navigate([user.userTypeName.toLowerCase(), user.id]);
+          
+          const token = user as unknown as string;
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          console.log(payload);
+          this.storageService.saveToken(token);
+          this.dialog.closeAll();
+          this.router.navigate([payload.userTypeName.toLowerCase(), payload._id]);
           this.msgService.message({
             title:'Login Success', 
-            text: user.userInfos.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania',
+            text: payload.name.toUpperCase()+', Wellcome to Real Estate Management Tanzania',
             color:'green'
           });
         },
@@ -67,8 +68,6 @@ export class LoginComponent {
           });
         }
       });
-      form.resetForm();
-      this.dialog.closeAll();
     } else {
       this.msgService.message({
         text:'Please make sure to fill all required fields!',

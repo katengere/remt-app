@@ -3,7 +3,14 @@
     <div class="col-12">
       <div class="card text-left">
         <div class="card-body">
-          <h4 class="card-title border-bottom">User Types Summary Chart</h4>
+          <h5 class="card-title border-bottom text-center text-capitalize"><span>User Types Summary Chart</span></h5> <br>
+          <h6 class="d-flex justify-content-between">
+            <span>
+              <span>Total Users: {{usersTotal}}</span>
+            </span>
+            <small>Users Registered By Admin {{storageService.getUserName() | formatNames}}: {{usersTotalByAdmin}}</small>
+        </h6>
+        <br>
           <ngx-charts-bar-vertical 
               [view]="[800,400]"
               [results]="users"
@@ -23,14 +30,23 @@
     <div class="col-12">
       <div class="card text-left">
         <div class="card-body">
-          <h4 class="card-title border-bottom">Houses per Street Chart</h4>
-          <ngx-charts-pie-chart 
+          <h4 class="card-title border-bottom d-flex justify-content-between">
+            <span>Houses per Street Chart</span>
+            <span>Total Estates : {{estatesTotal}}</span>
+          </h4>
+          <ngx-charts-bar-vertical 
+              [view]="[800,400]"
               [results]="estates"
+              [xAxisLabel]="'Estates'"
+              [legendTitle]="'Estates Chart'"
+              [yAxisLabel]="'Amount'"
               [legend]="true"
-              [legendTitle]="'Product Sale Report'" 
-              [view]="[800,300]"
-              [labels]="true" >
-          </ngx-charts-pie-chart>
+              [showXAxisLabel]="true"
+              [showYAxisLabel]="true"
+              [xAxis]="true"
+              [yAxis]="true"
+              [gradient]="true">
+          </ngx-charts-bar-vertical>
         </div>
       </div>
     </div>

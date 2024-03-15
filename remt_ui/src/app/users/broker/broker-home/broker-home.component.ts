@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UserDataService } from '../../../shared/services/user-data.service';
 import { UserTypeInterface } from '../../types/userTypes';
-import { UserEntityService } from 'src/app/shared/services/user-entity.service';
 
 @Component({
   selector: 'app-broker-home',
@@ -10,12 +10,11 @@ import { UserEntityService } from 'src/app/shared/services/user-entity.service';
 export class BrokerHomeComponent {
   users!: UserTypeInterface[];
   constructor(
-    private userEntityService: UserEntityService
+    private userDataService: UserDataService
   ){
-    this.userEntityService.entities$.subscribe({
+    this.userDataService.getAll().subscribe({
       next:(users)=>{
         this.users = users.filter(u=>u.estates!=null);
-        console.log(this.users);        
       }
     });
   }

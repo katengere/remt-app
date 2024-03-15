@@ -3,14 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MessageService } from 'src/app/shared/services/message.service';
-import { UserDataService } from 'src/app/shared/services/user-data.service';
 import { UserEntityService } from 'src/app/shared/services/user-entity.service';
 import { selectUrl } from 'src/app/users/store/users.selectors';
 import {
   AppStateInterface,
   UserTypeInterface,
 } from 'src/app/users/types/userTypes';
-import { UUID, formatUrl } from '../../types/usefulFunctions';
+import { formatUrl } from '../../types/usefulFunctions';
 
 @Component({
   selector: 'app-add-landlords',
@@ -19,15 +18,10 @@ import { UUID, formatUrl } from '../../types/usefulFunctions';
 })
 export class AddLandlordsComponent {
   newLandlord: UserTypeInterface = {
-    id: UUID(),
+    _id: '',
     userTypeName: '',
     permissions: [],
-    ui: {},
-    userInfos: {
-      name: '',
-      age: null,
-      nationId: null,
-      phoneNumber: '',
+    userInfos: {name: '',age: null,nation_Id: null,phoneNumber: '',password:'', gender:'', summary:''
     },
     estates: [],
     createdAt: new Date()
@@ -41,15 +35,14 @@ export class AddLandlordsComponent {
     private msgService: MessageService,
     private store: Store<AppStateInterface>,
     private userEntityService: UserEntityService,
-    private userDataService: UserDataService
   ) {
     this.userInfosForm = this.formBuilder.group({
       name: ['', Validators.required],
-      id: [''],
       userTypeName: ['landlord', Validators.required],
       age: [null, Validators.required],
-      nationId: [null, Validators.required],
+      nation_Id: [null, Validators.required],
       phoneNumber: ['', Validators.required],
+      password: ['', Validators.required],
     });
     this.store.select(selectUrl).subscribe({
       next: (url) => {        
@@ -59,18 +52,16 @@ export class AddLandlordsComponent {
   }
 
   addLandlord() {
-    if (!this.userInfosForm.valid) {
-      return this.msgService.message({
+    if (!this.userInfosForm.valid) return this.msgService.message({
         text: 'Please make sure to fill all required fields!',
         title: 'Form Error',
         color: 'red',
       });
-    }
-    const {name, userTypeName, age, nationId, phoneNumber} = this.userInfosForm.value;
+    
+    const {name, userTypeName, password, gender, summary, age, nation_Id, phoneNumber} = this.userInfosForm.value;
     this.newLandlord.userTypeName = userTypeName;
-    this.newLandlord.userInfos = {name, age, nationId, phoneNumber};
-    console.log('add landlord ', this.newLandlord);
-    return this.userDataService.add(this.newLandlord).subscribe({
+    this.newLandlord.userInfos = {name, age, password, gender, summary, nation_Id, phoneNumber};
+    return this.userEntityService.add(this.newLandlord).subscribe({
       next: (user) => {
         this.userEntityService.getAll();
         this.router.navigateByUrl(this.url);
@@ -84,12 +75,7 @@ export class AddLandlordsComponent {
         console.log(err);
         this.msgService.message({
           title: 'Register Error',
-          text:
-            err.statusText == 'Unknown Error'
-              ? 'No internet connection'
-              : typeof err.error == 'string'
-              ? err.error
-              : err.message,
+          text:err.statusText == 'Unknown Error'? 'No internet connection': typeof err.error == 'string'? err.error: err.message,
           color: 'red',
         });
       },

@@ -1,20 +1,44 @@
-<div>
-    <h3>The Brain is Habit Machine</h3>
-    <p>
-        If you stop and think about all the habits that make up what you do every day, from brushing your teeth, to drinking coffee, to what you do when we arrive at work, to how you act and react to people and situations, to the words you use, the things you
-        say, to what you do at home after work and everything in between, you’ll see that the lion’s share of what you do is ALL habit triggered by external cues, for better or for worse, that is. In fact, only 2% of our brain is designed to retain memory
-        in our consciousness. The rest is all subconscious. The brain WANTS to create habits so that we’re not required to use up conscious effort. It only follows then that performance is achieved not by what our conscious mind tells us, but largely
-        through the subconscious cues that guide us throughout our day.
-    </p>
-    <p>
-        Now, clearly, I could go off on a tangent here and cite all the dangers and pitfalls of our subconscious ruling our behaviors, but that will be a subject for another book! However... just for the fun of it, here’s a good story... One of my favorite real
-        life examples of the dangers of habit creation was depicted in the recent movie, The Wolf of Wall Street. It’s based on the true story of Jordan Belfort, a New York stockbroker who ran a firm that engaged in securities fraud and corruption on
-        Wall Street in the 1990s, and ended up spending years in jail.
-    </p>
-    <p>
-        It’s a cautionary tale, and in a stunning interview with Piers Morgan on CNN, Belfort explains how a young man raised in a typical middle class home, with good family values, could turn into such a criminal. He says, “You don’t lose your soul all at once,
-        you lose it a little bit at a time, incrementally. When I lost my ethical way it did not start off that way. It’s like these tiny imperceptible steps over the line. Each time your line of morality moves a bit, and before you know it you’re doing
-        things you thought you would never do and it seems perfectly okay. What seems amazing first becomes commonplace after a period of time and you become numb. Day one it’s one thing, and a year later it’s completely off the rails.” Watch this video
-        from 7:30 to 8:52 minutes, to see Jordan Belfort describe this.
-    </p>
+<div class="container-fluid">
+  <div class="row pt-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title border-bottom">House Types Summary Chart</h4>
+          <ngx-charts-bar-vertical [view]="[800,400]" [results]="estatesGroup" [xAxisLabel]="'Type'"
+            [legendTitle]="'House Type Chart'" [yAxisLabel]="'Amount'" [legend]="true" [showXAxisLabel]="true"
+            [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="true">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pt-2">
+    <div class="col-12">
+      <div class="card" *ngFor="let estate of estates">
+        <div class="card-body row border-success">
+          <h4 class="card-title col-sm-3 align-middle">{{estate.type | formatNames}}
+          </h4>
+          <div class="card col-sm-9">
+            <div class="card-body row">
+              <h6 class="text-center text-decoration-underline"><b>House Details</b></h6>
+              <blockquote class="col-sm-6"><b>Ward:</b> {{estate.ward}}</blockquote>
+              <blockquote class="col-sm-6"><b>Street:</b> {{estate.street}} </blockquote>
+              <blockquote class="col-sm-6"><b>Rooms:</b> {{estate.rooms}} </blockquote>
+              <blockquote class="col-sm-6"><b>Tenants Records:</b> {{estate.rental_history?.length}} </blockquote>
+              <blockquote class="col-sm-12"><b>Description:</b> {{estate.description}} </blockquote>
+            </div>
+            <hr>
+            <div class="card-body row">
+              <h6 class="text-center text-decoration-underline"><b>Owner Details</b></h6>
+              <blockquote class="col-sm-6"><b>Owner:</b> {{estate.owner_Id.userInfos.name | formatNames}}</blockquote>
+              <blockquote class="col-sm-6"><b>Gender:</b> {{estate.owner_Id.userInfos.gender}} </blockquote>
+              <blockquote class="col-sm-6"><b>Age:</b> {{estate.owner_Id.userInfos.age | userAge}} </blockquote>
+              <blockquote class="col-sm-6"><b>phoneNumber:</b> {{estate.owner_Id.userInfos.phoneNumber}} </blockquote>
+              <blockquote class="col-sm-12"><b>Summary:</b> {{estate.owner_Id.userInfos.summary}} </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

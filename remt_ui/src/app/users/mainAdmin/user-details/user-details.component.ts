@@ -5,7 +5,8 @@ import { exhaustMap } from 'rxjs';
 import { RegisterComponent } from 'src/app/auth/register/register.component';
 import { ConfirmComponent } from 'src/app/shared/confirm/confirm.component';
 import { MessageService } from 'src/app/shared/services/message.service';
-import { UserEntityService } from 'src/app/shared/services/user-entity.service';
+import { UserDataService } from '../../../shared/services/user-data.service';
+import { UserEntityService } from '../../../shared/services/user-entity.service';
 import { UserTypeInterface } from '../../types/userTypes';
 
 @Component({
@@ -17,48 +18,48 @@ export class UserDetailsComponent implements OnInit {
   regUserIds?: UserTypeInterface[];
   regEstateIds?: UserTypeInterface[];
   selectedUser?: UserTypeInterface;
+  disabled: boolean = false;
   constructor(
+    private userDataService: UserDataService,
     private userEntityService: UserEntityService,
     private activeRoute: ActivatedRoute,
     private route: Router,
     private dialog: MatDialog,
     private msg: MessageService
-  ){ }
+  ) { }
   ngOnInit() {
-    this.activeRoute.params.pipe(exhaustMap((param:Params)=>this.userEntityService.getByKey(param['id']))).subscribe({
-      next:(user)=>{
+    this.activeRoute.params.pipe(exhaustMap((param: Params) => this.userEntityService.getByKey(param['id']))).subscribe({
+      next: (user) => {
         this.selectedUser = user;
-        if (user.regUserIds) {
-          this.userEntityService.entities$.subscribe({
-            next:(users)=>{
-              this.regUserIds = user.regUserIds?.map(id=>users.find(u=>u.id==id)) as UserTypeInterface[];
-            }
-          });
-        } else if(user.regEstateIds){
-          this.userEntityService.entities$.subscribe({
-            next:(users)=>{
-              this.regEstateIds = user.regEstateIds?.map(id=>users.find(u=>u.id==id)) as UserTypeInterface[];
-            }
-          });
-        }
+        console.log(user);
+
+        this.disabled = this.selectedUser.userTypeName.toLocaleLowerCase() == 'admin' ||
+          this.selectedUser.userTypeName.toLocaleLowerCase() == 'lga';
       },
-      error:(err)=>{        
-        this.msg.message({title:'Incorrect Credentials', text:err.message, color:'red'});
+      error: (err) => {
+        this.msg.message({ title: 'Incorrect Credentials', text: err.message, color: 'red' });
       }
     });
   }
 
-  editUser(){
-    this.dialog.open(RegisterComponent, {data: {user:this.selectedUser, action:'Edit'}});
+  editUser() {
+    this.dialog.open(RegisterComponent, { data: { user: this.selectedUser, action: 'Edit User' } }).afterClosed().subscribe({
+      next: value => {
+        console.log(value);
+        this.ngOnInit();
+      },
+      error: e => console.log(e)
+    });
   }
 
-  deleteUser(){
-   this.dialog.open(ConfirmComponent, {
-    data:{
-    name: this.selectedUser?.userInfos.name,
-    context:'User',
-    action:'Delete',
-    data: this.selectedUser
-   }})   
+  deleteUser() {
+    this.dialog.open(ConfirmComponent, {
+      data: {
+        name: this.selectedUser?.userInfos.name,
+        context: 'User',
+        action: 'Delete',
+        data: this.selectedUser
+      }
+    });
   }
 }

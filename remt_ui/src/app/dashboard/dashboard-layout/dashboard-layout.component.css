@@ -1,0 +1,33 @@
+#searchField{
+  width: 95px; 
+  height: 20px;
+  margin-right: 1px;
+}
+a{
+  background-color: inherit !important;
+  color: rgb(250, 173, 71) !important;
+  font-weight: bolder;
+}
+mat-sidenav-container mat-sidenav a{
+  color: black !important;
+  font-weight: bolder;
+  text-decoration: none;
+  border: none;
+}
+a, .username{
+  font-weight: unset;
+}
+.brand{font-weight: bolder;}
+.active{
+  color: white !important;
+  background-color: inherit !important;
+  border: none;
+}
+mat-sidenav-container mat-sidenav .active{
+  color: white !important;
+  background-color: inherit !important;
+  border: none;
+}
+.form-group .btn {
+  color: rgb(250, 173, 71) !important;
+}

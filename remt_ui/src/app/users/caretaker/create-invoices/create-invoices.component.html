@@ -1,1 +1,50 @@
-<p>create-invoices works!</p>
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h3>Invoice Listings</h3>
+    <a class="btn btn-sm bg-dark text-warning" (click)="invoiceFormDialog()">
+      New [+]
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Tenant</th>
+            <th scope="col">Rooms</th>
+            <th scope="col">Rent</th>
+            <th scope="col">Duration <small>(months)</small></th>
+            <th scope="col">Total</th>
+            <th scope="col">Net Total <small>[+ 7% tax]</small></th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let invoice of caretaker?.invoices | sortInvoices">
+            <td>{{invoice.tenantName}}</td>
+            <td>{{invoice.rooms}}</td>
+            <td>{{invoice.rent}}</td>
+            <td>{{invoice.start+'/'+invoice.end | monthsDiff}}</td>
+            <td>{{invoice.rentTotal | number}}</td>
+            <td>{{invoice.netTotal | number}}</td>
+            <td>
+              <div class="">
+                <mat-menu #navOptions="matMenu">
+                  <a (click)="editInvoice(invoice)" class="mt-1 bg-warning text-black" mat-menu-item>
+                    <i class="fa fa-edit"></i> Edit
+                  </a>
+                  <a (click)="deleteInvoice(invoice)" mat-menu-item class="mt-1 bg-danger text-black">
+                    <i class="fa fa-trash"></i> Delete
+                  </a>
+                </mat-menu>
+                <span [matMenuTriggerFor]="navOptions" mat-icon-button>
+                  <mat-icon>more_vert</mat-icon>
+                </span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

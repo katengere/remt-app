@@ -1,7 +1,14 @@
-
+<div class="sideNav">
+  <span>
+    <a mat-raised-button class="m-1 align-content-center" [routerLink]="['/', userType, id]"
+      [ngClass]="{active: activeDashboard}" (click)="toggleSideNav()">
+      dashboard
+    </a><br>
+  </span>
   <span *ngFor="let permission of permisions">
-    <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
-    [routerLink]="[permission]" routerLinkActive="active" (click)="toggleSideNav()">
+    <a mat-raised-button class="m-1 align-content-center" [routerLink]="[permission]" routerLinkActive="active"
+      (click)="toggleSideNav()">
       {{permission}}
     </a><br>
   </span>
+</div>
