@@ -1,7 +1,20 @@
 mat-hint {
   color: red;
 }
-mat-card-content, form, h6{
-  text-decoration: underline;
-  text-decoration-color: red;
+mat-card-content form h6 small{
+  background-color: bisque;
+  color: green;
+}
+mat-dialog-actions button.close {
+  background-color:  bisque;
+  border: 1px solid red;
+  color:  red;
+}
+mat-dialog-actions button.add {
+  background-color:  bisque;
+  border: 1px solid green;
+  color:  green;
+}
+img{
+  border-radius: 50%;
 }

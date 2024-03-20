@@ -1,6 +1,9 @@
 <mat-dialog-content>
   <h3 align="center" mat-dialog-title>
-    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px" />
+    <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px" /><br>
+    <small>
+      <b>Add Landlord</b>
+    </small>
   </h3>
   <mat-card>
     <mat-card-content class="d-flex justify-content-center">
@@ -50,10 +53,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="d-flex justify-content-center">
-  <button mat-button mat-dialog-close>
-    <i class="fa fa-plus-circle"></i> Close!
+  <button mat-button mat-dialog-close class="close">
+    <i class="fa fa-window-close"></i> Close!
   </button>
-  <button mat-button mat-dialog-close (click)="addLandlord()">
+  <button mat-button mat-dialog-close class="add" (click)="addLandlord()">
     <i class="fa fa-plus-circle"></i> Add!
   </button>
 </mat-dialog-actions>

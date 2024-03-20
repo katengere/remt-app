@@ -1,9 +1,15 @@
-button {
-  background-color:  black;
-  color:  rgb(250, 173, 71) !important;
+mat-dialog-actions button {
+  background-color:  bisque;
+  color:  black;
 }
 
-button:hover {
-  background-color:  rgb(250, 173, 71);
-  color:  black !important;
+mat-dialog-actions button.close {
+  background-color:  burlywood;
+  border: 1px solid red;
+  color:  red;
+}
+mat-dialog-actions button.add {
+  background-color:  burlywood;
+  border: 1px solid green;
+  color:  green;
 }

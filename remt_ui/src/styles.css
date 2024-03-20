@@ -4,7 +4,7 @@ html,
 body {
     height: 100%;
     background-color: burlywood;
-    color: white;
+    color: black;
 }
 
 .belowNav {
@@ -25,7 +25,8 @@ mat-toolbar{
   top: 0;
   z-index: 99;
 }
-mat-sidenav{
+
+mat-sidenav-container mat-sidenav{
   background-color:  burlywood;
   width: auto;
 }
@@ -34,25 +35,22 @@ mat-dialog-content,
 mat-dialog-actions,
 mat-card, mat-card-header, mat-card-content, mat-card-actions{
   background-color:  burlywood;
-  color: white;
+  color: black;
 }
 
 .card {
     background-color: inherit;
 }
-a{
+
+/* a{
   background-color: inherit;
   color: grey ;
   font-weight: bolder;
 }
-.sideNav a{
-  background-color: inherit;
-  color: black;
-}
+
 .sideNav .active{
-  color: black ;
+  color: green ;
 }
 .active{
-color: black;
-/* background-color:  white !important; */
-}
+color: green;
+} */

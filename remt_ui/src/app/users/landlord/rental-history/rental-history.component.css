@@ -8,6 +8,6 @@
 .accordion-header, 
 .accordion-button, 
 .accordion-body{
-  background-color:  rgb(250, 173, 71) !important;
-  color: black !important;
+  background-color:  inherit;
+  color: black;
 }

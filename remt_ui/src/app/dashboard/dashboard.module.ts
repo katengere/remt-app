@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardIndexComponent } from './dashboard-index/dashboard-index.component';
@@ -30,7 +31,7 @@ import { DashboardSavedItemComponent } from './dashboard-saved-item/dashboard-sa
   imports: [
     CommonModule, DashboardRoutingModule, SharedModule, MatMenuModule, MatCardModule,
     MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, MatButtonModule,
     NgxChartsModule
   ],
   providers: []

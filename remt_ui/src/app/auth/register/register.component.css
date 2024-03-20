@@ -1,8 +1,17 @@
 mat-dialog-actions button{
-  background-color:  black;
-  color:  rgb(250, 173, 71);
+  background-color:  bisque;
+  color:  black;
 }
-div p button {
-  background-color:  black;
-  color:  rgb(250, 173, 71);
+mat-dialog-actions button:hover {
+  color:  brown;
+}
+mat-dialog-actions button.add {
+  background-color:  bisque;
+  border: 1px solid green;
+  color:  green;
+}
+mat-dialog-actions button.close {
+  background-color:  bisque;
+  border: 1px solid red;
+  color:  red;
 }

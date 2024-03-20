@@ -2,10 +2,30 @@
     width: 75px; 
     height: 20px;
 }
-a:hover {
-    color: rgb(246, 5, 5) !important;
-  }
-  mat-toolbar{
-    background-color: black; 
-    color: rgb(250, 173, 71);
-  }
+mat-toolbar{
+  background-color: bisque;
+  color: black;
+  font-weight: bold;
+}
+mat-toolbar mat-nav-list a{
+  color: black;
+  opacity: 0.8;
+}
+mat-toolbar mat-nav-list a:hover {
+  color: black;
+  opacity: 1;
+  font-weight: bolder;
+}
+mat-toolbar mat-nav-list a.active{
+  color: brown;
+  background-color: bisque;
+}
+a, .username{
+  font-weight: unset;
+}
+img {
+  border-radius: 35%;
+}
+.brand{
+  font-weight: bolder;
+}

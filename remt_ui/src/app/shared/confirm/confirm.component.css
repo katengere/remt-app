@@ -1,6 +1,25 @@
 h5, 
 mat-dialog-content,
 mat-dialog-actions{
-    background-color:  rgb(250, 173, 71)!important ;
-    color: red !important;
+    background-color:  bisque ;
+    color: black;
 }
+mat-dialog-content div.card{
+    color: black;
+}
+mat-dialog-actions button {
+    background-color:  burlywood;
+    color:  black;
+  }
+  
+  mat-dialog-actions button.del:hover {
+    background-color:  burlywood;
+    border: 1px solid red;
+    color:  red;
+  }
+  mat-dialog-actions button.close:hover {
+    background-color:  burlywood;
+    border: 1px solid green;
+    color:  white;
+  }
+  

@@ -8,6 +8,9 @@
 .accordion-header, 
 .accordion-button, 
 .accordion-body{
-  background-color:  rgb(250, 173, 71) !important;
-  color: black !important;
+  background-color:  burlywood;
+  color: black;
+}
+.accordion-header .active{
+  border: 1px solid bisque;
 }

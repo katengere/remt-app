@@ -1,38 +1,41 @@
 <div>
-    <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+    <mat-toolbar>
         <span class="brand" [routerLink]="['']">
-            <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">REMT
+            <img src="../favicon.ico" alt="" width="30px" height="35px">REMT
         </span>
         <span class="example-icon" (click)="sidenav.toggle()" *ngIf="isLessThenLargeDevice">
             <mat-icon>menu</mat-icon>
         </span>
         <mat-nav-list *ngIf="!isLessThenLargeDevice">
-            <a routerLink="" [ngClass]="{active: activeDashboard}" class="btn btn-sm m-1 p-0">
-                <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
+            <a mat-raised-button routerLink="" [ngClass]="{active: activeDashboard}" class=" m-1 align-content-center">
+                <mat-icon>dashboard</mat-icon> Dashboard
             </a>
-            <a routerLink="/dashboard/profile" routerLinkActive="active" class="btn btn-sm m-1 p-0">
-                <mat-icon class="mr-2">account_circle</mat-icon> Location profile
+            <a mat-raised-button routerLink="/dashboard/profile" routerLinkActive="active"
+                class=" m-1 align-content-center">
+                <mat-icon>account_circle</mat-icon> Location profile
             </a>
-            <a routerLink="/dashboard/about" routerLinkActive="active" class="btn btn-sm m-1 p-0">
-                <mat-icon class="mr-2">list</mat-icon> About
+            <a mat-raised-button routerLink="/dashboard/about" routerLinkActive="active"
+                class=" m-1 align-content-center">
+                <mat-icon>list</mat-icon> About
             </a>
         </mat-nav-list>
         <span class="example-spacer"></span>
         <div class="form-group">
             <input placeholder="search" type="text" *ngIf="showInput" class="form-control" #searchTerm id="searchField"
                 (keyup)="search(searchTerm.value)" />
-            <span class="btn m-0" *ngIf="!showInput" (click)="toggleSearchField()"><i class="fa fa-search"></i></span>
+            <span mat-raised-button class="btn m-0" *ngIf="!showInput" (click)="toggleSearchField()"><i
+                    class="fa fa-search"></i></span>
         </div>
         <div class="">
-            <a (click)="loginDialog()" *ngIf="!username" class="btn btn-sm mb-2">
+            <a mat-raised-button (click)="loginDialog()" *ngIf="!username" class=" mb-2">
                 <i class="fa fa-lock-open"></i> Login
             </a>
             <button [matMenuTriggerFor]="navOptions" (click)="toggleSearchField()"
                 *ngIf="username && isLessThenLargeDevice" mat-icon-button>
                 <mat-icon>more_vert</mat-icon>
             </button>
-            <a *ngIf="username && !isLessThenLargeDevice" [matMenuTriggerFor]="navOptions"
-                class="btn btn-sm m-0 p-0 username">
+            <a mat-raised-button *ngIf="username && !isLessThenLargeDevice" [matMenuTriggerFor]="navOptions"
+                class=" m-0 align-content-center username">
                 <i class="fa fa-user-check"></i> {{username.split(' ')[0] | formatNames}}
             </a>
             <mat-menu #navOptions="matMenu">
@@ -40,28 +43,28 @@
                     *ngIf="username && isLessThenLargeDevice" mat-menu-item class="mt-1">
                     <i class="fa fa-user-check"></i> {{username.split(' ')[0] | formatNames}}
                 </button>
-                <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
-                    <i class="fa fa-sign-out-alt"></i> Logout
-                </button>
                 <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase(), id]" mat-menu-item class="mt-1">
                     <i class="fa fa-user-edit"></i> {{userType}}
+                </button>
+                <button *ngIf="username" (click)="logout()" mat-menu-item class="mt-1">
+                    <i class="fa fa-sign-out-alt"></i> Logout
                 </button>
             </mat-menu>
         </div>
     </mat-toolbar>
     <mat-sidenav-container class="">
         <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
-            <a routerLink="" class=" mt-5" [ngClass]="{active: activeDashboard}" (click)="sidenav.toggle()"
-                class="m-1 align-content-center">
-                <mat-icon class="mr-2">dashboard</mat-icon> Dashboard
+            <a mat-raised-button routerLink="" class=" mt-5" [ngClass]="{active: activeDashboard}"
+                (click)="sidenav.toggle()" class="m-1 align-content-center">
+                <mat-icon>dashboard</mat-icon> Dashboard
             </a><br>
-            <a routerLink="/dashboard/profile" (click)="sidenav.toggle()" class="m-1 align-content-center"
-                routerLinkActive="active">
-                <mat-icon class="mr-2">account_circle</mat-icon> Location profile
+            <a mat-raised-button routerLink="/dashboard/profile" (click)="sidenav.toggle()"
+                class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon>account_circle</mat-icon> Location profile
             </a><br>
-            <a routerLink="/dashboard/about" (click)="sidenav.toggle()" class="m-1 align-content-center"
-                routerLinkActive="active">
-                <mat-icon class="mr-2">list</mat-icon> About
+            <a mat-raised-button routerLink="/dashboard/about" (click)="sidenav.toggle()"
+                class="m-1 align-content-center" routerLinkActive="active">
+                <mat-icon>list</mat-icon> About
             </a><br>
         </mat-sidenav>
         <mat-sidenav-content>

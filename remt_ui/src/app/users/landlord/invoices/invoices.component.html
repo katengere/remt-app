@@ -1,10 +1,13 @@
 <mat-dialog-content>
-    <h3 mat-dialog-title align="center"><b>Create Invoice</b></h3>
+    <h3 mat-dialog-title align="center">
+        <img src="../../../../assets/imgs/img3.jpeg" alt="" height="75px" width="75px"><br>
+        <small><b>Create Invoice</b></small>
+    </h3>
     <mat-card>
         <mat-card-content>
             <form [formGroup]="invoiceForm">
                 <div class="row border">
-                    <h6 align="center"><small><b>Invoice Details</b></small></h6>
+                    <h6 align="center"><small mat-raised-button><b mat-raised-button>Invoice Details</b></small></h6>
                     <div class="col-md-12">
                         <mat-form-field class=" w-100">
                             <mat-label>Invoice Name</mat-label>
@@ -124,9 +127,11 @@
         </mat-card-content>
     </mat-card>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button class="bg-warning text-black" mat-dialog-close><i class="fa fa-window-close"></i>
-        Cancel</button>
-    <button mat-button class="bg-warning text-black" (click)="saveInvoice()"><i class="fa fa-save"></i>
-        Save</button>
+<mat-dialog-actions align="center">
+    <button class="close" mat-button mat-dialog-close>
+        <i class="fa fa-window-close"></i>Cancel
+    </button>
+    <button class="add" mat-button (click)="saveInvoice()">
+        <i class="fa fa-save"></i>Save
+    </button>
 </mat-dialog-actions>

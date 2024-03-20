@@ -1,7 +1,7 @@
 <div class="accordion m-2" id="accordionTenant">
   <div class="accordion-item" *ngFor="let history of tenants; let i=index">
     <h2 class="accordion-header">
-      <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse"
+      <button class="accordion-button d-flex justify-content-between active" type="button" data-bs-toggle="collapse"
         [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
         <p>{{history.client.userInfos.name | formatNames}}</p>
       </button>

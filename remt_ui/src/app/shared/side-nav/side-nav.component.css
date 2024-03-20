@@ -1,3 +1,15 @@
+a{
+  color: black;
+  font-weight: bold;
+  opacity: 0.8;
+}
 a:hover {
-  color: rgb(246, 5, 5) !important;
+  color: black;
+  opacity: 1;
+  font-weight: bolder;
+}
+a.active{
+  color: brown;
+  font-weight: bolder;
+  background-color: bisque;
 }

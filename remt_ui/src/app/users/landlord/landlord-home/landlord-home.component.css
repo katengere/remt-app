@@ -4,6 +4,10 @@
   border-radius: 50%;
 }
 h5 ul, li{
-  background-color:  rgb(250, 173, 71) !important;
-  color: black !important;
+  background-color:  bisque;
+  color: black;
+}
+h5 ul, li button:hover{
+  background-color: bisque;
+  font-weight: bolder;
 }

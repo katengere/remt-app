@@ -21,7 +21,7 @@
     </p>
     <div class="card-text" *ngIf="lga?.regUserIds!.length>0">
       <div class="table-responsive">
-        <table class="table caption-top">
+        <table class="table table-hover">
           <!-- <caption>List of users</caption> -->
           <thead>
             <tr class="text-center">
@@ -32,13 +32,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of lga?.regUserIds; let i = index;" class="text-center">
+            <tr *ngFor="let user of lga?.regUserIds; let i = index;"
+              [routerLink]="[ '/lga/', paramId,'manage_users', user._id ]" routerLinkActive="router-link-active"
+              class="text-center">
               <td>{{i+1}}</td>
               <td>{{user?.userInfos?.name | formatNames}}</td>
               <td>{{user?.estates?.length}}</td>
               <td>
                 <span (click)="editUser(user)" class="btn btn-warning btn-sm m-1">
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-user-edit"></i>
                 </span>
                 <span (click)="addHouse(user)" class="btn btn-warning btn-sm m-1">
                   <i class="fa fa-plus"></i> <i class="fa fa-home"></i>

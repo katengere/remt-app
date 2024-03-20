@@ -1,14 +1,17 @@
 <div>
-  <mat-toolbar style="background-color: black; color:  rgb(250, 173, 71);">
+  <mat-toolbar>
     <span [routerLink]="['']" class="" routerLinkActive="active">
-      <img src="../favicon.ico" alt="" style="color:  rgb(250, 173, 71);" width="30px" height="35px">REMT
+      <img src="../favicon.ico" alt="" width="30px" height="35px">REMT
     </span>
     <span class="example-icon" (click)="sidenav.toggle()" *ngIf="isLessThenLargeDevice">
       <mat-icon>menu</mat-icon>
     </span>
     <mat-nav-list *ngIf="!isLessThenLargeDevice">
-      <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center"
-        (click)="add_landlords()" routerLinkActive="active">
+      <a mat-raised-button class="m-1 align-content-center" [routerLink]="['/', userType, id]"
+        [ngClass]="{active: activeDashboard}">
+        dashboard
+      </a>
+      <a mat-raised-button class="m-1 align-content-center" (click)="add_landlords()" routerLinkActive="active">
         add_landlords
       </a>
       <!-- <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
@@ -21,8 +24,8 @@
       <a (click)="loginDialog()" *ngIf="!username" class="btn btn-sm mb-2">
         <i class="fa fa-lock-open"></i> Login
       </a>
-      <a *ngIf="username" [matMenuTriggerFor]="navOptions" class="btn btn-sm m-0 p-0">
-        <i class="fa fa-user-check"></i> {{username}}
+      <a mat-raised-button [ngClass]="{active: activeProfile}" *ngIf="username" [matMenuTriggerFor]="navOptions">
+        <i class="fa fa-user-check"></i> {{username | formatNames}}
       </a>
       <mat-menu #navOptions="matMenu">
         <button *ngIf="username" [routerLink]="['/', userType!.toLowerCase(), id, 'profile']" mat-menu-item
@@ -37,8 +40,12 @@
   </mat-toolbar>
   <mat-sidenav-container class="">
     <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidenavExpand && isLessThenLargeDevice">
-      <a mat-raised-button *ngIf="isLessThenLargeDevice" style="background-color:  rgb(250, 173, 71); color: black"
-        class="m-1 align-content-center" (click)="add_landlords()" routerLinkActive="active">
+      <a mat-raised-button class="m-1 align-content-center" [routerLink]="['/', userType, id]"
+        [ngClass]="{active: activeDashboard}" (click)="toggleSidenav()">
+        dashboard
+      </a><br>
+      <a mat-raised-button *ngIf="isLessThenLargeDevice" class="m-1 align-content-center" (click)="add_landlords()"
+        routerLinkActive="active">
         add_landlords
       </a><br>
       <!-- <a mat-raised-button style="background-color:  rgb(250, 173, 71); color: black" class="m-1 align-content-center" 
@@ -50,7 +57,7 @@
       <main>
         <router-outlet></router-outlet>
       </main>
-      <app-footer></app-footer>
+      <app-footer class="fixed-bottom"></app-footer>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -25,9 +25,7 @@
   </div> -->
   <div class="">
     <mat-menu #navOptions="matMenu">
-      <!-- <button [routerLink]="['/auth']" mat-menu-item *ngIf="!userType" class="mt-1">
-        <i class="fa fa-lock-open"></i> Login
-      </button> -->
+
       <button [routerLink]="['/', storageService.getUserTypeName(), storageService.getId(), 'profile']"
         *ngIf="logInUser && isLessThenLargeDevice" mat-menu-item class="mt-1">
         <i class="fa fa-user"></i> {{logInUser | formatNames}}
@@ -46,8 +44,8 @@
     <button [matMenuTriggerFor]="navOptions" *ngIf="logInUser && isLessThenLargeDevice" mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
-    <span class="btn text-warning" [matMenuTriggerFor]="navOptions" *ngIf="logInUser && !isLessThenLargeDevice">
+    <a mat-raised-button [matMenuTriggerFor]="navOptions" *ngIf="logInUser && !isLessThenLargeDevice">
       <i class="fa fa-user"></i> {{logInUser | formatNames}}
-    </span>
+    </a>
   </div>
 </mat-toolbar>

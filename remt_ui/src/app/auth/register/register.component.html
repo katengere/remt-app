@@ -114,14 +114,14 @@
   </mat-card>
 
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-dialog-close class="btn btn-sm">
+<mat-dialog-actions align="center">
+  <button mat-dialog-close class="btn btn-sm close">
     <i class="fa fa-window-close"></i>Close
   </button>
-  <button class="btn btn-sm m-1" *ngIf="action == 'Edit User'" (click)="onEdit()">
+  <button class="btn btn-sm m-1 add" *ngIf="action == 'Edit User'" (click)="onEdit()">
     <i class="fa fa-edit"></i> {{action}}!
   </button>
-  <button class="btn btn-sm m-1" *ngIf="action !== 'Edit User'" (click)="onRegister()">
+  <button class="btn btn-sm m-1 add" *ngIf="action !== 'Edit User'" (click)="onRegister()">
     <i class="fa fa-file-upload"></i> Register!
   </button>
 </mat-dialog-actions>

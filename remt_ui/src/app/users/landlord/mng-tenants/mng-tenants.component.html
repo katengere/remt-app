@@ -34,8 +34,8 @@
           <blockquote>Amount Paid: {{history.rent }}</blockquote>
         </div>
         <p class="card-footer text-center">
-          <a class="btn text-black bg-warning m-1" (click)="editTenant(history, 'update')">edit</a>
-          <a class="btn text-black bg-danger m-1" (click)="editTenant(history, 'delete')">remove</a>
+          <a class="btn m-1 edit" (click)="editTenant(history, 'update')"><i class="fa fa-user-edit"></i>Edit</a>
+          <a class="btn m-1 del" (click)="editTenant(history, 'delete')"><i class="fa fa-trash"></i>Remove</a>
         </p>
       </div>
     </div>

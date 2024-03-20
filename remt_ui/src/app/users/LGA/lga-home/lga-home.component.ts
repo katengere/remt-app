@@ -9,6 +9,7 @@ import { StorageService } from 'src/app/auth/services/storage.service';
 import { MessageService } from '../../../shared/services/message.service';
 import { UserEntityService } from '../../../shared/services/user-entity.service';
 import { logout } from '../../../users/store/users.actions';
+import { selectUrl } from '../../store/users.selectors';
 import { UserTypeInterface } from '../../types/userTypes';
 import { AddLandlordsComponent } from '../add-landlords/add-landlords.component';
 import { AddPropertiesComponent } from '../add-properties/add-properties.component';
@@ -26,6 +27,8 @@ export class LgaHomeComponent {
   username!: string;
   id!: string;
   userType!: string;
+  activeDashboard = false;
+  activeProfile = false;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -36,16 +39,16 @@ export class LgaHomeComponent {
     private store: Store,
     private userEntityService: UserEntityService
   ) {
-    this.breakpointObserver.observe(['(max-width: 1199px)']).subscribe(({ matches }) => {
-      this.isLessThenLargeDevice = matches;
-      if (!matches) {
-        this.isSidenavExpand = false;
-      }
-    });
-    combineLatest([this.activatedRoute.params, this.userEntityService.entities$]).subscribe({
-      next: ([params, users]) => {
+    combineLatest([this.breakpointObserver.observe(['(max-width: 1199px)']), this.store.select(selectUrl), this.activatedRoute.params, this.userEntityService.entities$]).subscribe({
+      next: ([{ matches }, url, params, users]) => {
+        this.isLessThenLargeDevice = matches;
+        if (!matches) {
+          this.isSidenavExpand = false;
+        }
         this.lga = users.find(u => u._id === params['id']) as UserTypeInterface;
         this.username = this.lga?.userInfos.name;
+        this.activeDashboard = url === '/' + this.storageService.getUserTypeName() + '/' + this.storageService.getId();
+        this.activeProfile = url === '/' + this.storageService.getUserTypeName() + '/' + this.storageService.getId() + '/' + 'profile';
         this.userType = this.lga?.userTypeName;
         this.id = this.lga?._id;
       },

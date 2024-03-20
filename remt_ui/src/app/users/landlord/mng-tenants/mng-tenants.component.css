@@ -4,6 +4,37 @@
   border-radius: 50%;
 }
 h5 ul, li{
-  background-color:  rgb(250, 173, 71) !important;
-  color: black !important;
+  background-color:  bisque;
+  color: black;
+}
+h5 ul, li button:hover{
+  background-color: bisque;
+  font-weight: bolder;
+}
+div.col-sm-12 p a{
+  background-color: bisque;
+}
+div.col-sm-12 p a.del{
+  background-color: bisque;
+  border: 1px solid red;
+  color: red;
+  opacity: 0.8;
+}
+div.col-sm-12 p a.edit{
+  background-color: bisque;
+  border: 1px solid green;
+  color: green;
+  opacity: 0.8;
+}
+div.col-sm-12 p a.del:hover{
+  background-color: bisque;
+  border: 1px solid red;
+  color: red;
+  opacity: 1;
+}
+div.col-sm-12 p a.edit:hover{
+  background-color: bisque;
+  border: 1px solid green;
+  color: green;
+  opacity: 1;
 }

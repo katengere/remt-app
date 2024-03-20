@@ -1,4 +1,13 @@
 .carousel-item .slideImg{
    height: 275px;
 }
-
+.list-group-item{
+   background-color: inherit;
+}
+h5 button{
+   background-color: bisque;
+}
+h5 button:hover{
+   border: 1px solid burlywood;
+   color: green;
+}

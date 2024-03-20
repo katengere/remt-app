@@ -1,10 +1,11 @@
-<mat-dialog-content class="col-12">
+<mat-dialog-content>
+  <h2 mat-dialog-title align="center">
+    <img src="../../../../favicon.ico" class="brand_logo" alt="Logo" height="75px" width="75px" /><br>
+    <small>
+      <b>Add House</b>
+    </small>
+  </h2>
   <mat-card>
-    <mat-card-header class="d-flex justify-content-center">
-      <h3 mat-dialog-title>
-        <img src="/assets/login.PNG" class="brand_logo" alt="Logo" height="75px" width="75px" />
-      </h3>
-    </mat-card-header>
     <mat-card-content class="d-flex justify-content-center">
       <form [formGroup]="houseDetailsForm">
         <div class="row">
@@ -78,16 +79,16 @@
   </mat-card>
 </mat-dialog-content>
 <mat-dialog-actions class="d-flex justify-content-center">
-  <button mat-dialog-close class="btn btn-sm">
+  <button mat-dialog-close class="btn btn-sm close">
     <i class="fa fa-window-close"></i>Close
   </button>
-  <button class="btn btn-sm m-1 bg-warning" *ngIf="action === 'add' " (click)="addProperty()">
+  <button class="btn btn-sm m-1 add" *ngIf="action === 'add' " (click)="addProperty()">
     <i class="fa fa-plus-circle"></i> Add!
   </button>
-  <button class="btn btn-sm m-1 bg-warning" *ngIf="action === 'edit' " (click)="editProperty()">
+  <button class="btn btn-sm m-1 add" *ngIf="action === 'edit' " (click)="editProperty()">
     <i class="fa fa-edit"></i> Edit!
   </button>
-  <button class="btn btn-sm m-1 bg-danger" *ngIf="action === 'delete' " (click)="deleteProperty()">
+  <button class="btn btn-sm m-1 close" *ngIf="action === 'delete' " (click)="deleteProperty()">
     <i class="fa fa-trash"></i> Delete!
   </button>
 </mat-dialog-actions>

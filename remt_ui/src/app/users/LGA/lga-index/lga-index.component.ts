@@ -16,6 +16,7 @@ import { AddPropertiesComponent } from '../add-properties/add-properties.compone
 })
 export class LgaIndexComponent {
   lga?: UserTypeInterface;
+  paramId = '';
   constructor(
     private userEntityService: UserEntityService,
     private activeRoute: ActivatedRoute,
@@ -24,10 +25,11 @@ export class LgaIndexComponent {
     private msgService: MessageService
   ) {
     combineLatest([this.activeRoute.params, this.userEntityService.entities$]).subscribe({
-      next:([params, users])=>{        
-        this.lga = users.find(u=>u._id===params['id']) as UserTypeInterface;        
+      next: ([params, users]) => {
+        this.paramId = params['id'];
+        this.lga = users.find(u => u._id === params['id']) as UserTypeInterface;
       },
-      error:(err)=>{
+      error: (err) => {
         this.msgService.message({
           title: 'Error',
           text: 'Sorry, something went wrong: ' + err.message,
@@ -37,33 +39,34 @@ export class LgaIndexComponent {
     });
   }
 
-  editUser(user: any){
+  editUser(user: any) {
     console.log(user);
-    
-    this.dialog.open(RegisterComponent, {data: {user, action:'Edit'}});
+
+    this.dialog.open(RegisterComponent, { data: { user, action: 'Edit' } });
   }
 
-  deleteUser(user: UserTypeInterface){
+  deleteUser(user: UserTypeInterface) {
     this.dialog.open(ConfirmComponent, {
-      data:{
-      name: user.userInfos.name,
-      context:'User',
-      action:'Delete',
-      data: user
-     }});
+      data: {
+        name: user.userInfos.name,
+        context: 'User',
+        action: 'Delete',
+        data: user
+      }
+    });
   }
 
-  addHouse(user: UserTypeInterface){
-        this.dialog.open(AddPropertiesComponent, {
-          data:{
-             user,
-            context:'Add House',
-            action:'add',
-            estate:{}
-          }
-        });
+  addHouse(user: UserTypeInterface) {
+    this.dialog.open(AddPropertiesComponent, {
+      data: {
+        user,
+        context: 'Add House',
+        action: 'add',
+        estate: {}
+      }
+    });
   }
-  
+
   ngOnInit(): void {
   }
 }

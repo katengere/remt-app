@@ -3,13 +3,13 @@
   height: 20px;
   margin-right: 1px;
 }
-a{
-  background-color: inherit !important;
-  color: rgb(250, 173, 71) !important;
+mat-toolbar{
+  background-color: bisque;
+  color: black;
   font-weight: bolder;
 }
 mat-sidenav-container mat-sidenav a{
-  color: black !important;
+  color: black;
   font-weight: bolder;
   text-decoration: none;
   border: none;
@@ -17,17 +17,47 @@ mat-sidenav-container mat-sidenav a{
 a, .username{
   font-weight: unset;
 }
-.brand{font-weight: bolder;}
-.active{
-  color: white !important;
-  background-color: inherit !important;
-  border: none;
+img {
+  border-radius: 35%;
+}
+.brand{
+  font-weight: bolder;
+}
+/* a:hover {
+  color: goldenrod;
+}
+ */
+ .form-group span.btn{
+  color: black;
+  opacity: 0.8;
+}
+.form-group span.btn:hover{
+  color: black;
+  opacity: 1;
+  font-weight: bolder;
+}
+
+mat-toolbar mat-nav-list a{
+  color: black;
+  opacity: 0.8;
+}
+mat-toolbar mat-nav-list a:hover {
+  color: black;
+  opacity: 1;
+  font-weight: bolder;
+}
+
+mat-toolbar mat-nav-list a.active{
+  color: brown;
+  background-color: burlywood;
+}
+mat-sidenav-container mat-sidenav{
+  background-color: burlywood;
 }
 mat-sidenav-container mat-sidenav .active{
-  color: white !important;
-  background-color: inherit !important;
-  border: none;
+  color: brown;
+  background-color: burlywood;
 }
 .form-group .btn {
-  color: rgb(250, 173, 71) !important;
+  color: black;
 }

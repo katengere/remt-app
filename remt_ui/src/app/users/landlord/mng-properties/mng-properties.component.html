@@ -32,10 +32,12 @@
         <div class="list-group">
           <a class="list-group-item list-group-item-action text-black" aria-current="true">
             <h5><b>{{estate.type}}</b>
-              <button class="btn btn-sm bg-warning float-end m-1"
-                (click)="editHouseDialog(estate)"><small>Edit...</small></button>
-              <button class="btn btn-sm bg-warning float-end m-1"
-                (click)="displayRentForm(estate)"><small>Tenants...</small></button>
+              <button class="btn btn-sm float-end m-1" (click)="editHouseDialog(estate)">
+                <i class="fa fa-house-damage"></i><small>Edit...</small>
+              </button>
+              <button class="btn btn-sm float-end m-1" (click)="displayRentForm(estate)">
+                <i class="fa fa-user-plus"></i><small>Tenants...</small>
+              </button>
             </h5>
             <hr>
             <div class="d-flex w-100 justify-content-between">

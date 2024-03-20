@@ -12,15 +12,15 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" class="card-footer">
-    <button mat-raised-button mat-dialog-close class="btn btn-sm m-1">
-      <i class="fa fa-window-close"></i>Close
+    <button mat-raised-button mat-dialog-close class="btn btn-sm m-1 close">
+        <i class="fa fa-window-close"></i>Close
     </button>
-    <button mat-raised-button *ngIf="dialogData.context=='Caretaker'" mat-dialog-close 
-    class="btn btn-sm bg-danger m-1" (click)="deleteCaretaker()">
+    <button mat-raised-button *ngIf="dialogData.context=='Caretaker'" mat-dialog-close class="btn btn-sm m-1 del"
+        (click)="deleteCaretaker()">
         <i class="fa fa-trash"></i>Delete Caretaker
-      </button> 
-    <button mat-raised-button *ngIf="dialogData.context=='User'" mat-dialog-close 
-    class="btn btn-sm bg-danger m-1" (click)="deleteUser()">
-      <i class="fa fa-trash"></i>Delete User
-    </button>    
+    </button>
+    <button mat-raised-button *ngIf="dialogData.context=='User'" mat-dialog-close class="btn btn-sm m-1 del"
+        (click)="deleteUser()">
+        <i class="fa fa-trash"></i>Delete User
+    </button>
 </mat-dialog-actions>
