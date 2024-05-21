@@ -13,18 +13,8 @@
     <link rel="stylesheet" href="./assets/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/stylesheets/all.min.css">
 </head>
-<script>
-    function handleUnsupportedBrowsers() {
-        const appRoot = document.getElementsByTagName('app-root')[0];
-        console.log('handle unsupported browser function was called');
-        console.log('handle unsupported browser ', appRoot);
-        if (appRoot && appRoot.innerHTML === '') {
-            appRoot.innerHTML = '<h1>Unsupported Browser (too old) <h1>' + '<p>Please use a modern browser!<p>';
-        }
-    }
-</script>
 
-<body onload="handleUnsupportedBrowsers()">
+<body>
     <app-root></app-root>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
 </body>
